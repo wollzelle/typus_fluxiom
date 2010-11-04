@@ -4,11 +4,12 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "flux_assets"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "typus_flux_assets"
+    gem.summary = %Q{the fluxiom assets browser for typus}
+    gem.description = %Q{the fluxiom assets browser for typus}
+    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
     gem.email = "t.koenig@wollzelle.com"
-    gem.homepage = "http://github.com/tkoenig/flux_assets"
+    gem.homepage = "wollzelle.com"
     gem.authors = ["T Koenig"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
@@ -47,7 +48,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "flux_assets #{version}"
+  rdoc.title = "typus_flux_assets #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

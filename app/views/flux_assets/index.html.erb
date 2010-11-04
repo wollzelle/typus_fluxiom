@@ -1,0 +1,49 @@
+<div class="selector_container" id="flux_assets_block">
+  
+  <div class="sheet_header">
+    <h1>Wählen Sie die Komponente aus</h1>
+    <ul id="flux_tags"> </ul>
+  </div><!-- div.sheet_header -->
+
+  <form id="fluxiomAssetChooserForm" action="">
+    
+    <div class="loading-indicator">Loading...</div>
+    
+    <div class="select_photos" id="flux_assets">&nbsp;</div>
+    
+    <input id="asset_id" type="hidden" value="" name="asset_id" />
+    <input id="asset_filename" type="hidden" value="" name="asset_filename" />
+    <input id="asset_thumbs" type="hidden" value="" name="asset_thumbs" />
+    <input type="hidden" value="<%= @asset_type %>" name="asset_type" />
+  
+    <div class="options">
+    	<input class="primary flux_add_btn" type="button" disabled="disabled" value="Übernehmen" />
+    	<span class="separator"> oder </span>
+    	<a href="#" class="actionlink" id="flux_cancel_btn">Cancel</a>
+    </div><!-- div.options -->
+  
+  </form>
+  
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+// Function for binding logic to top level window
+function openFile(json) {
+  if(window.top.opener){
+    window.top.opener.<%= @callback_function %>(json);
+    }
+};
+
+
+(function(){
+  chooser = new AssetChooser({
+    tags: <%= @tags.to_json %>,
+    activeTags: <%= @active_tags.to_json %>,
+    assetURL:'<%= url_for(:action => 'list') %>',
+    onSave: openFile,
+    //onCancel: window.close,
+    allowMultiple: <%= @multiple %>
+  });
+})();
+</script>
