@@ -1,0 +1,18 @@
+<form>
+	<div id="radio">
+	  <% @alltags.each do |tag| 
+	  tagname = tag[:tag]  
+	  %>
+		<input type="radio" id="radio-<%= tagname %>" name="radio" /><label for="radio-<%= tagname %>"><%= tagname %></label>
+		<% end %>
+	</div>
+</form>
+
+<ol id="selectable">
+<li class="ui-state-default ui-corner-all" title=".ui-icon-contact"><span class="ui-icon ui-icon-contact"></span></li>
+<% @assets.each do |asset| %>
+  <% next unless asset.public_url %>
+	<li class="ui-state-default"><img src="http://thumbs.fluxiom.com/<%= asset.thumb_url%>"></img></li>
+<% end %>	  
+</ol>
+	  
