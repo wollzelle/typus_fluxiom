@@ -23,10 +23,12 @@ class FluxAssetsController < ApplicationController
 
   def list
     tags = "images" + (params[:tags] ? " #{params[:tags]}" : '')
+    @alltags = FluxTag.allTags
     @assets = FluxAsset.search('', tags)#, params[:term], params[:tags])
     @baseURL = "#{(FLUXIOM_CONFIG['ssl'] ? 'http' : 'http')}://#{FLUXIOM_CONFIG['host']}"
     respond_to do |format|
         format.json
+        format.html
     end
   end
 
