@@ -1,12 +1,111 @@
 <% 
-geometry = 50
+geometry = 150
 obj = @item.class.to_s.downcase
 %>
 <% content_for :stylesheets do %>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">
+  
+  <style type="text/css" media="screen">
+  .flux-item {
+    width: <%= geometry %>px;
+    height: <%= geometry %>px;
+  }
+  .flux-item a.btn_add {
+    padding: <%= geometry %>px 5px;
+  }
+
+  .flux-gallery {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    zoom: 1;
+  }
+    .flux-item {
+      position: relative;
+      float: left;
+      margin: 5px;
+      margin-bottom: 40px;
+      list-style: none;
+      width: 75px;
+      height: 75px;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+/*      background: url('../images/loader-white.gif') no-repeat 50% 50%;*/
+    }
+      .flux-item input {
+        position: absolute;
+        padding: 3px;
+        left: -5px;
+        bottom: -30px;
+        color: #666;
+        width: 100%;
+        border: 1px solid #fff;
+        -webkit-transition: .125s ease-in-out;
+      }
+      .flux-item input:hover {
+        background-color: #ffc;
+      }
+      .flux-item input:focus {
+        margin-left: 0px;
+        color: #000;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        z-index: 9999;
+      }
+
+
+      .flux-item img {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+        .flux-item a.remove-button {
+          display: block;
+          position: absolute;
+          right: 0;
+          top: 0;
+          padding: 3px 0 0;
+/*          padding-left: 18px;
+          font-size: 10px;
+          font-weight: bold;
+          color: #f00;
+          width: 40px;
+          height: 16px;
+          border: 1px solid #666;
+          border-width: 0 0 1px 1px;
+*/          opacity: 0;
+          -webkit-transition: opacity .125s ease-in-out;
+        }
+        .flux-item a.remove-button:hover {
+          background-position: 2px -13px;
+        }
+        .flux-item:hover a.remove-button {
+          opacity: 1;
+        }
+
+
+        .flux-item#btn_add_wrap {
+          background: #efefef;
+        }
+        .flux-item a.btn_add {
+          display: block;
+          padding: 30px 5px;
+          color: #CCC;
+          font-size: 64px;
+          line-height: 64px;
+          text-align: center;
+          text-decoration: none !important;
+        }
+        .flux-item a.btn_add:hover {
+          background-color: #CCC;
+          color: #FFF;
+        }
+  </style>
 <% end %>
 <% content_for :javascripts do %>
-  
+  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
   <% javascript_tag do %>
   $(function() { $(".flux-gallery").sortable(); });
   	
@@ -36,21 +135,23 @@ obj = @item.class.to_s.downcase
 
 <fieldset>
   <legend>Gallery</legend>
-  <%= debug(@resource)%>
   <ul class="flux-gallery">
-    <% @item[attribute].each do |img| %>
-    <li class="flux-item"><img src="<%= flux_image_for(img['public_url'], geometry) %>" alt="img['description']" /><br>
-      <a href="#" class="remove-button" title="Remove this image" onclick="removeImageFromGallery($(this).parent()); return false;">Remove</a>
+    <% @item[attribute].each do |img| 
+    fmt = "f#{geometry}.jpg"  
+    %>
+    
+    <li class="flux-item"><img src="<%= flux_image_for(img['public_url'], fmt) %>" alt="img['description']" /><br>
+      <a href="#" class="remove-button" title="Remove this image" onclick="removeImageFromGallery($(this).parent()); return false;"><span class="ui-icon ui-icon-circle-minus">Remove</span></a>
       <% img.each do |k,v|
         type = "hidden"
         type = "text" if k == 'description' #&& description_enabled
        %>     
-        <input type="<%= type %>" name="<%= "#{object_name}[#{method.to_s}][][#{k}]"%>" value="<%= v%>" onclick="this.select();" />
+        <input type="<%= type %>" name="<%= "#{obj}[#{attribute}][][#{k}]"%>" value="<%= v%>" onclick="this.select();" />
       <% end %>
     </li>
     <% end if @item[attribute] %>
-    <li class="flux-item" id="btn_add_wrap">
-      <a href="#" class="btn_add" onclick="window.open('<%= url_for(:controller => 'flux_assets') %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600'); return false;">+</a>
+    <li class="ui-state-default ui-corner-all flux-item" id="btn_add_wrap">
+      <a href="#" class="btn_add" onclick="window.open('<%= flux_assets_url %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600'); return false;"><span class="ui-icon ui-icon-circle-plus">+</a>
     </li>
   </ul>
   

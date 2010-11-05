@@ -6,6 +6,8 @@ module FluxAssets
    
    def initialize
      FluxAssets::Configuration.config!
+     # Cms::FormBuilder.send(:include, Cms::Fluxiom::FormBuilder)
+     ActionView::Base.send(:include, FluxAssets::ApplicationHelper)
    end
      
   end

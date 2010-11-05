@@ -1,32 +1,62 @@
-<div class="selector_container" id="flux_assets_block">
-  
-  <div class="sheet_header">
-    <h1>Wählen Sie die Komponente aus</h1>
-    <ul id="flux_tags"> </ul>
-  </div><!-- div.sheet_header -->
+<div id="flux-asset-browser">
+<form action="<%= url_for(:action => 'list') %>" method="GET">
 
-  <form id="fluxiomAssetChooserForm" action="">
-    
-    <div class="loading-indicator">Loading...</div>
-    
-    <div class="select_photos" id="flux_assets">&nbsp;</div>
-    
-    <input id="asset_id" type="hidden" value="" name="asset_id" />
-    <input id="asset_filename" type="hidden" value="" name="asset_filename" />
-    <input id="asset_thumbs" type="hidden" value="" name="asset_thumbs" />
-    <input type="hidden" value="<%= @asset_type %>" name="asset_type" />
-  
-    <div class="options">
-    	<input class="primary flux_add_btn" type="button" disabled="disabled" value="Übernehmen" />
-    	<span class="separator"> oder </span>
-    	<a href="#" class="actionlink" id="flux_cancel_btn">Cancel</a>
-    </div><!-- div.options -->
-  
-  </form>
-  
+
+  <div id="flux-tags">  
+	  <% @tags.each do |tag| 
+	    tagname = tag[:tag]  
+	  %>
+		<input type="radio" id="radio-<%= tagname %>" name="radio" /><label for="radio-<%= tagname %>"><%= tagname %></label>
+		<% end %>
+  </div>
+
+  <div class="flux-images">  
+    <div id="assets">
+
+    </div>
+  </div>
+
+  <div class="submit">
+    <input type="submit">
+  </div>
+
+
+</form>
 </div>
 
-<script type="text/javascript" charset="utf-8">
+<%= content_for :javascripts do %>
+<script>
+
+	$(function() {
+
+	  $( "#flux-tags" ).buttonset();
+		$( "#selectable" ).selectable();
+		
+
+    
+		
+		$('#flux-asset-browser form').submit(function(e){		  
+      // if(typeof console != 'undefined'){console.log(this.action)};
+      $.ajax({
+        url: this.action,
+        dataType: 'html',
+        complete: function(data) {
+          // if(typeof console != 'undefined'){console.log(data.responseText)};
+          
+          $('#assets').html(data.responseText);
+		      $( "#selectable" ).selectable();          
+        }
+      });
+      return false;
+      
+		});
+		$('#flux-asset-browser form').submit();
+	});
+
+</script>
+
+
+<!-- <script type="text/javascript" charset="utf-8">
 
 // Function for binding logic to top level window
 function openFile(json) {
@@ -46,4 +76,7 @@ function openFile(json) {
     allowMultiple: <%= @multiple %>
   });
 })();
-</script>
+</script> -->
+
+<% end %>
+
