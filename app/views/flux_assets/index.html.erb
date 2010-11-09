@@ -6,18 +6,19 @@
 	  <% @tags.each do |tag| 
 	    tagname = tag[:tag]  
 	  %>
-		<input type="radio" id="radio-<%= tagname %>" name="radio" /><label for="radio-<%= tagname %>"><%= tagname %></label>
+		<input type="checkbox" id="radio-<%= tagname.parameterize %>" name="radio" /><label for="radio-<%= tagname.parameterize %>"><%= tagname %></label>
 		<% end %>
   </div>
 
-  <div class="flux-images">  
+  <div id="flux-images">  
     <div id="assets">
 
     </div>
   </div>
-
-  <div class="submit">
-    <input type="submit">
+  
+  <div id="footer">
+  <button  id="send-to-typus"><span class="ui-button-text">Use selected images</span></button>
+  <input type="submit" value="Refresh">
   </div>
 
 
@@ -31,9 +32,28 @@
 
 	  $( "#flux-tags" ).buttonset();
 		$( "#selectable" ).selectable();
-		
+		$( "button, input:submit").button();
 
-    
+    $('#send-to-typus').click(function(e){
+      var selected, return_data = [];
+      selected = $('#selectable .ui-selected img');
+      if(typeof console != 'undefined'){console.log(selected)};
+      
+      selected.each(function(index, elem) {
+        if(typeof console != 'undefined'){console.log(elem)};
+        return_data.push({ public_url: $(elem).attr('data-public-url'), 
+                    description: $(elem).attr('data-description')
+                  });
+        if(typeof console != 'undefined'){console.log(return_data)};
+        
+      });
+
+      if(window.top.opener){
+        window.top.opener.<%= @callback_function %>(return_data);
+        }
+
+      return false;
+    });
 		
 		$('#flux-asset-browser form').submit(function(e){		  
       // if(typeof console != 'undefined'){console.log(this.action)};
@@ -51,6 +71,7 @@
       
 		});
 		$('#flux-asset-browser form').submit();
+
 	});
 
 </script>

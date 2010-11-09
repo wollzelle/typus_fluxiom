@@ -6,6 +6,10 @@ obj = @item.class.to_s.downcase
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">
   
   <style type="text/css" media="screen">
+  .ui-widget{
+    font-size: 0.6em;
+  }
+
   .flux-item {
     width: <%= geometry %>px;
     height: <%= geometry %>px;
@@ -34,16 +38,25 @@ obj = @item.class.to_s.downcase
       border-radius: 4px;
 /*      background: url('../images/loader-white.gif') no-repeat 50% 50%;*/
     }
-      .flux-item input {
+      fieldset.inputs .flux-item input[type='text'] {
         position: absolute;
         padding: 3px;
         left: -5px;
-        bottom: -30px;
+        bottom: -18px;
         color: #666;
         width: 100%;
         border: 1px solid #fff;
+        font-size:8px;
         -webkit-transition: .125s ease-in-out;
       }
+      
+/*      input[type='text'],
+        fieldset.inputs input[type='password'] {
+          font-size: 20px;
+          padding: 5px;
+          width: 685px;
+        }
+*/      
       .flux-item input:hover {
         background-color: #ffc;
       }
@@ -106,7 +119,7 @@ obj = @item.class.to_s.downcase
 <% end %>
 <% content_for :javascripts do %>
   <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
-  <% javascript_tag do %>
+  <%= javascript_tag do %>
   $(function() { $(".flux-gallery").sortable(); });
   	
   function removeImageFromGallery(parent) {
@@ -123,10 +136,10 @@ obj = @item.class.to_s.downcase
 
     $.each(data, function(idx, asset){
       var input = "";
-      input += '<input type="text" name="<%= "#{obj}[#{attribute}][]"%>[description]" value="'+ (asset.title) + '" onclick="this.select();" />';
+      input += '<input type="text" name="<%= "#{obj}[#{attribute}][]"%>[description]" value="'+ (asset.description) + '" onclick="this.select();" />';
       input += '<input type="hidden" name="<%= "#{obj}[#{attribute}][]"%>[public_url]" value="'+ (asset.public_url) + '"  />';
       
-      var el = $('<li class="flux-item"><img src="' + asset.public_url.replace(/_.*/,'_<%= geometry %>') + '" alt="' + (asset.title) + '" /><a href="#" class="remove-button" title="Remove this image" onclick="removeImageFromGallery($(this).parent()); return false;">Remove</a>' + input + '</li>');
+      var el = $('<li class="flux-item"><img src="' + asset.public_url.replace(/_.*/,'_f<%= geometry %>.jpg') + '" alt="' + (asset.description) + '" /><a href="#" class="remove-button" title="Remove this image" onclick="removeImageFromGallery($(this).parent()); return false;">Remove</a>' + input + '</li>');
       $("#btn_add_wrap").before(el);
     });
   }
@@ -136,6 +149,7 @@ obj = @item.class.to_s.downcase
 <fieldset>
   <legend>Gallery</legend>
   <ul class="flux-gallery">
+    <% puts attribute %>
     <% @item[attribute].each do |img| 
     fmt = "f#{geometry}.jpg"  
     %>

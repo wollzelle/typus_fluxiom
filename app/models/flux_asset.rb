@@ -21,6 +21,14 @@ class FluxAsset < FluxResource
     FluxUser.find(self.user_id)
   end
   
+  def medium_thumbnail_url
+    @medium_thumbnail ||= "http://thumbs.fluxiom.com/" + self.thumb_url.gsub(/_64.jpg$/, '_128.jpg')
+  end
+
+  def large_thumbnail_url
+    @large_thumbnail ||= "http://thumbs.fluxiom.com/" + self.thumb_url.gsub(/_64.jpg$/, '_256.jpg')
+  end
+  
   protected
     
     def self.sort_by_date(assets)
