@@ -9,7 +9,7 @@ begin
     gem.description = %Q{the fluxiom assets browser for typus}
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
     gem.email = "t.koenig@wollzelle.com"
-    gem.homepage = "wollzelle.com"
+    gem.homepage = "http://wollzelle.com"
     gem.authors = ["T Koenig"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
