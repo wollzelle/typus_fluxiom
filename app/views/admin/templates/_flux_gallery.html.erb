@@ -1,5 +1,7 @@
 <% 
-geometry = 150
+width= FluxAssets::Configuration.config['preview_width'] || 100
+height=FluxAssets::Configuration.config['preview_height'] || 100
+geometry = "#{width}x#{height}"
 obj = @item.class.to_s.downcase
 %>
 <% content_for :stylesheets do %>
@@ -10,18 +12,15 @@ obj = @item.class.to_s.downcase
     font-size: 0.6em;
   }
 
-  .flux-item {
-    width: <%= geometry %>px;
-    height: <%= geometry %>px;
-  }
   .flux-item a.btn_add {
-    padding: <%= geometry %>px 5px;
+    padding: <%= width %>px 5px;
   }
 
-  .flux-gallery {
-    margin: 0;
+  ul.flux-gallery {
+    margin: 0 !important;
     padding: 0;
     overflow: hidden;
+    width: 690px;
     zoom: 1;
   }
     .flux-item {
@@ -30,8 +29,8 @@ obj = @item.class.to_s.downcase
       margin: 5px;
       margin-bottom: 40px;
       list-style: none;
-      width: 75px;
-      height: 75px;
+      width:<%= width %>px;;
+      height: <%= height %>px;;
       border: 1px solid #ccc;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
@@ -149,7 +148,6 @@ obj = @item.class.to_s.downcase
 <fieldset>
   <legend>Gallery</legend>
   <ul class="flux-gallery">
-    <% puts attribute %>
     <% @item[attribute].each do |img| 
     fmt = "f#{geometry}.jpg"  
     %>

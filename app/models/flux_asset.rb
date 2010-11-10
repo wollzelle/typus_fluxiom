@@ -1,10 +1,11 @@
 class FluxAsset < FluxResource
   self.site = FluxResource::FLUXIOM_SITE
-  self.format = :json
+  #self.format = :json
   set_element_name 'asset'
   set_collection_name 'assets'
   
   FILTER_TAG = FluxAssets::Configuration.config['filter_tag'] || ''
+  CDN = FluxAssets::Configuration.config['cdn']
   
   def self.recent(count = 10)
     sort_by_date(find(:all, :params => {:tags => FLUXIOM_API['tag'] })).first(count)
@@ -27,6 +28,12 @@ class FluxAsset < FluxResource
 
   def large_thumbnail_url
     @large_thumbnail ||= "http://thumbs.fluxiom.com/" + self.thumb_url.gsub(/_64.jpg$/, '_256.jpg')
+  end
+  
+  def image_url
+    return self.public_url if CDN.nil?
+    
+    @public_url ||= self.public_url.gsub(/\/\/.*?\//, "//#{CDN}/")
   end
   
   protected
