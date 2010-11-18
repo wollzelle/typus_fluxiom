@@ -15,11 +15,18 @@ class FluxAssetsController < ApplicationController
 
   #Show the asset chooser
   def index
-    @tags = FluxTag.allTags
+    #
     @multiple   = params[:multiple] || false
     @callback_function = params[:callback] || "Fluxiom.insertImage"
-#    @flux_assets = FluxAsset.search('', tags)#, params[:term], params[:tags])
-    @active_tags = DEFAULT_TAGS[@asset_type].to_a
+    @assets ||= FluxAsset.search('')#, params[:term], params[:tags])
+    
+    #select tags
+    @tags ||= begin
+      tags = []
+      @assets.each { |a| tags = tags | a.tags }
+      tags
+    end
+    
   end
 
 

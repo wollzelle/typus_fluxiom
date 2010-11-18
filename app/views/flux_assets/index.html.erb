@@ -4,17 +4,16 @@
 
   <div id="flux-tags">  
 	  <% @tags.each do |tag| 
-	    tagname = tag[:tag]  
-	    
+	    tagname = tag.tag
+	    is_filter = (tag.tag == FluxAsset::FILTER_TAG)
+	    class_name = (is_filter ? 'filter-tag' : '')
 	  %>
-		<input type="checkbox" id="radio-<%= tagname.parameterize %>" name="radio" value="<%= tag[:filter] %>"><label for="radio-<%= tagname.parameterize %>" data-tag-filter="<%= tag[:filter] %>"><%= tagname %></label>
+		<input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>"><label for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>"><%= tagname %></label>
 		<% end %>
   </div>
 
-  <div id="flux-images">  
-    <div id="assets">
-
-    </div>
+  <div id="flux-assets">  
+    <%= render "list" %>
   </div>
   
   <div id="footer">
@@ -32,36 +31,16 @@
 	$(function() {
 
 	  $( "#flux-tags" ).buttonset();
-		$( "#selectable" ).selectable();
-		$( "button, input:submit").button();
+		$( "button, input:submit").button();	  
+    $( "#selectable" ).selectable();
+
     
-    $( "#flux-tags" ).click(function(e){
-      var tags = "?tags=";
-      $( "#flux-tags .ui-state-active" ).each(function(idx, item){
-        if(typeof console != 'undefined'){console.log($(item).attr('data-tag-filter'))};
-        tags += $(item).attr('data-tag-filter') + " ";
-        // if(typeof console != 'undefined'){console.log(item)};
-      });
-      // e.stopPropagation();
-  		$('#flux-asset-browser form').submit(function(e){		  
-        // if(typeof console != 'undefined'){console.log(this.action)};
-        $.ajax({
-          url: this.action + tags,
-          dataType: 'html',
-          complete: function(data) {
-            // if(typeof console != 'undefined'){console.log(data.responseText)};
-
-            $('#assets').html(data.responseText);
-  		      $( "#selectable" ).selectable();          
-          }
-        });
-        return false;
-
-  		});
-  		
-      $('#flux-asset-browser form').submit();
-      e.preventDefault();
-
+    $( "#flux-tags input" ).click(function(e){
+      var tag = $(e.target).attr('value');
+      $('#flux-assets li').hide();
+      $('#flux-assets li.' + tag ).show();
+    $( "#selectable" ).selectable('destroy');
+    $( "#selectable" ).selectable();
     });
     
     $('#send-to-typus').click(function(e){
@@ -85,50 +64,13 @@
 
       return false;
     });
-		
-    // $('#flux-asset-browser form').submit(function(e){      
-    //       // if(typeof console != 'undefined'){console.log(this.action)};
-    //       $.ajax({
-    //         url: this.action,
-    //         dataType: 'html',
-    //         complete: function(data) {
-    //           // if(typeof console != 'undefined'){console.log(data.responseText)};
-    //           
-    //           $('#assets').html(data.responseText);
-    //       $( "#selectable" ).selectable();          
-    //         }
-    //       });
-    //       return false;
-    //       
-    // });
-		//$('#flux-asset-browser form').submit();
 
 	});
 
 </script>
 
 
-<!-- <script type="text/javascript" charset="utf-8">
 
-// Function for binding logic to top level window
-function openFile(json) {
-  if(window.top.opener){
-    window.top.opener.<%= @callback_function %>(json);
-    }
-};
-
-
-(function(){
-  chooser = new AssetChooser({
-    tags: <%= @tags.to_json %>,
-    activeTags: <%= @active_tags.to_json %>,
-    assetURL:'<%= url_for(:action => 'list') %>',
-    onSave: openFile,
-    //onCancel: window.close,
-    allowMultiple: <%= @multiple %>
-  });
-})();
-</script> -->
 
 <% end %>
 
