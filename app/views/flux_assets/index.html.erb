@@ -1,76 +1,31 @@
 <div id="flux-asset-browser">
-<form action="<%= url_for(:action => 'list') %>" method="GET">
 
+  <form action="<%= url_for(:action => 'list') %>" method="GET">
 
-  <div id="flux-tags">  
-	  <% @tags.each do |tag| 
-	    tagname = tag.tag
-	    is_filter = (tag.tag == FluxAsset::FILTER_TAG)
-	    class_name = (is_filter ? 'filter-tag' : '')
-	  %>
-		<input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>"><label for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>"><%= tagname %></label>
-		<% end %>
-  </div>
+    <div id="flux-tags">  
+  	  <% @tags.each do |tag| 
+  	    tagname = tag.tag
+  	    is_filter = (tag.tag == FluxAsset::FILTER_TAG)
+  	    class_name = (is_filter ? 'filter-tag' : '')
+  	  %>
+  		<input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>"><label for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>"><%= tagname %></label>
+  		<% end %>
+    </div>
 
-  <div id="flux-assets">  
-    <%= render "list" %>
-  </div>
+    <div id="flux-assets">  
+      <ol id="selectable">
+      <% @assets.each do |asset| %>
+        <% next unless asset.public_url %>
+      	<li class="ui-state-default <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>"><img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>"></li>
+      <% end %>	  
+      </ol>
+    </div>
   
-  <div id="footer">
-  <button  id="send-to-typus"><span class="ui-button-text">Use selected images</span></button>
-  <input type="submit" value="Refresh">
-  </div>
+    <div id="flux-actions">
+      <button id="flux-use-button">Use selected images</button>
+      <input type="submit" value="Refresh">
+    </div>
 
+  </form>
 
-</form>
 </div>
-
-<%= content_for :javascripts do %>
-<script>
-
-	$(function() {
-
-	  $( "#flux-tags" ).buttonset();
-		$( "button, input:submit").button();	  
-    $( "#selectable" ).selectable();
-
-    
-    $( "#flux-tags input" ).click(function(e){
-      var tag = $(e.target).attr('value');
-      $('#flux-assets li').hide();
-      $('#flux-assets li.' + tag ).show();
-    $( "#selectable" ).selectable('destroy');
-    $( "#selectable" ).selectable();
-    });
-    
-    $('#send-to-typus').click(function(e){
-      var selected, return_data = [];
-      selected = $('#selectable .ui-selected img');
-      if(typeof console != 'undefined'){console.log(selected)};
-      
-      selected.each(function(index, elem) {
-        if(typeof console != 'undefined'){console.log(elem)};
-        return_data.push({ public_url: $(elem).attr('data-public-url'), 
-                    description: $(elem).attr('data-description')
-                  });
-        if(typeof console != 'undefined'){console.log(return_data)};
-        
-      });
-
-      if(window.top.opener){
-        window.top.opener.<%= @callback_function %>(return_data);
-        window.top.opener.focus();
-        }
-
-      return false;
-    });
-
-	});
-
-</script>
-
-
-
-
-<% end %>
-

@@ -1,171 +1,297 @@
 <% 
-width= FluxAssets::Configuration.config['preview_width'] || 100
-height=FluxAssets::Configuration.config['preview_height'] || 100
-geometry = "#{width}x#{height}"
-obj = @item.class.to_s.downcase
+  width    = FluxAssets::Configuration.config['preview_width'] || 100
+  height   = FluxAssets::Configuration.config['preview_height'] || 100
+  geometry = "#{width}x#{height}"  
+  format   = "f#{geometry}.jpg"    
+  obj      = @item.class.to_s.downcase
 %>
+
 <% content_for :stylesheets do %>
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">
-  
+
+  <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">   -->
   <style type="text/css" media="screen">
-  .ui-widget{
-    font-size: 0.6em;
-  }
+  
+    /* flux-gallery
+    ------------------------------------- */
+  
+    .flux-gallery {
+      margin: 0 !important;
+      padding: 0;
+      overflow: hidden;
+      width: 690px;
+      zoom: 1;
+    }
 
-  .flux-item a.btn_add {
-    padding: <%= width %>px 5px;
-  }
-
-  ul.flux-gallery {
-    margin: 0 !important;
-    padding: 0;
-    overflow: hidden;
-    width: 690px;
-    zoom: 1;
-  }
     .flux-item {
       position: relative;
       float: left;
-      margin: 5px;
-      margin-bottom: 40px;
+      margin: 5px !important;
       list-style: none;
-      width:<%= width %>px;;
-      height: <%= height %>px;;
-      border: 1px solid #ccc;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-/*      background: url('../images/loader-white.gif') no-repeat 50% 50%;*/
+      width:<%= width %>px;
+      height: <%= height %>px;
+      border: 1px solid transparent;
+      -moz-user-select: none;
+      overflow: hidden;
+      padding-bottom: 19px;
     }
-      fieldset.inputs .flux-item input[type='text'] {
-        position: absolute;
-        padding: 3px;
-        left: -5px;
-        bottom: -18px;
-        color: #666;
-        width: 100%;
-        border: 1px solid #fff;
-        font-size:8px;
-        -webkit-transition: .125s ease-in-out;
-      }
-      
-/*      input[type='text'],
-        fieldset.inputs input[type='password'] {
-          font-size: 20px;
-          padding: 5px;
-          width: 685px;
-        }
-*/      
-      .flux-item input:hover {
-        background-color: #ffc;
-      }
-      .flux-item input:focus {
-        margin-left: 0px;
-        color: #000;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        z-index: 9999;
-      }
 
-
-      .flux-item img {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-      }
-        .flux-item a.remove-button {
-          display: block;
-          position: absolute;
-          right: 0;
-          top: 0;
-          padding: 3px 0 0;
-/*          padding-left: 18px;
-          font-size: 10px;
-          font-weight: bold;
-          color: #f00;
-          width: 40px;
-          height: 16px;
-          border: 1px solid #666;
-          border-width: 0 0 1px 1px;
-*/          opacity: 0;
-          -webkit-transition: opacity .125s ease-in-out;
-        }
-        .flux-item a.remove-button:hover {
-          background-position: 2px -13px;
-        }
-        .flux-item:hover a.remove-button {
-          opacity: 1;
-        }
-
-
-        .flux-item#btn_add_wrap {
-          background: #efefef;
-        }
-        .flux-item a.btn_add {
-          display: block;
-          padding: 30px 5px;
-          color: #CCC;
-          font-size: 64px;
-          line-height: 64px;
-          text-align: center;
-          text-decoration: none !important;
-        }
-        .flux-item a.btn_add:hover {
-          background-color: #CCC;
-          color: #FFF;
-        }
-  </style>
-<% end %>
-<% content_for :javascripts do %>
-  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
-  <%= javascript_tag do %>
-  $(function() { $(".flux-gallery").sortable(); });
-  	
-  function removeImageFromGallery(parent) {
-    parent.remove();
-    if ($(".flux-gallery .flux-item").length == 1) { //no more assets availabe
-        var name= '<%= "#{obj}[#{attribute}]"%>'; 
-        var input = '<input id="flux-gallery-empty" type="hidden" name="' + name + '" value="" />';
-        $(".flux-gallery .flux-item").before(input);
+    .flux-image-template {
+      display: none;
     }
-  }
-  
-  function setGallery(data) {
-    $('input').remove('#flux-gallery-empty');
-
-    $.each(data, function(idx, asset){
-      var input = "";
-      input += '<input type="text" name="<%= "#{obj}[#{attribute}][]"%>[description]" value="'+ (asset.description) + '" onclick="this.select();" />';
-      input += '<input type="hidden" name="<%= "#{obj}[#{attribute}][]"%>[public_url]" value="'+ (asset.public_url) + '"  />';
-      
-      var el = $('<li class="flux-item"><img src="' + asset.public_url.replace(/_.*/,'_f<%= geometry %>.jpg') + '" alt="' + (asset.description) + '" /><a href="#" class="remove-button" title="Remove this image" onclick="removeImageFromGallery($(this).parent()); return false;">Remove</a>' + input + '</li>');
-      $("#btn_add_wrap").before(el);
-    });
-  }
-  <% end %>
-<% end %>
-
-<fieldset>
-  <legend>Gallery</legend>
-  <ul class="flux-gallery">
-    <% @item[attribute].each do |img| 
-    fmt = "f#{geometry}.jpg"  
-    %>
+    .flux-image:hover {
+      cursor: move;
+    }
     
-    <li class="flux-item"><img src="<%= flux_image_for(img['public_url'], fmt) %>" alt="img['description']" /><br>
-      <a href="#" class="remove-button" title="Remove this image" onclick="removeImageFromGallery($(this).parent()); return false;"><span class="ui-icon ui-icon-circle-minus">Remove</span></a>
-      <% img.each do |k,v|
-        type = "hidden"
-        type = "text" if k == 'description' #&& description_enabled
-       %>     
-        <input type="<%= type %>" name="<%= "#{obj}[#{attribute}][][#{k}]"%>" value="<%= v%>" onclick="this.select();" />
-      <% end %>
-    </li>
-    <% end if @item[attribute] %>
-    <li class="ui-state-default ui-corner-all flux-item" id="btn_add_wrap">
-      <a href="#" class="btn_add" onclick="window.open('<%= flux_assets_url %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600'); return false;"><span class="ui-icon ui-icon-circle-plus">+</a>
-    </li>
-  </ul>
+    .ui-sortable-placeholder {
+      visibility: visible !important;
+      border: 1px dashed #ccc;
+    }    
   
-</fieldset>
+    .flux-caption {
+      font-family: verdana;
+      font-size: 8px !important;
+      color: #666;
+      position: absolute;
+      bottom: 0;
+      padding: 3px !important;
+      width: <%= width-8 %>px !important;
+      height: 10px;
+      border: 1px solid #fff;
+    }     
+    .flux-caption:hover {
+      background-color: #fffce1;
+      border-color: #fffce1;    
+    }
+    .flux-caption:focus {
+      background: #fff !important;
+      color: #000;
+      border-color: #999;
+      height: <%= height + 10 %>px;
+    }
+    
+    .flux-button {
+      line-height: 1em;
+      text-decoration: none !important;
+      font-weight: bold;
+      background: #fff;
+      display: block;     
+      
+    }
+    .flux-remove-button {
+      padding: 3px 5px;     
+      position: absolute;
+      right: 0;
+      top: 0; 
+      color: #333;
+/*      -moz-border-radius: 8px;*/
+    }
+    .flux-add-button {
+      background: #eee;   
+      text-align: center;
+      width:<%= width %>px;
+      height: <%= height %>px;      
+      line-height: <%= height %>px;    
+      color: #999;
+      font-size: 20px;
+    }
 
+
+    /* flux-asset-browser
+    ------------------------------------- */
+
+    #flux-asset-browser {
+      position: relative;
+    }
+
+    .ui-widget{
+      font-size: 0.6em;
+    }
+  	#feedback { font-size: 1.4em; }
+  	
+  	#selectable .ui-selecting { background: #FECA40; }
+  	#selectable .ui-selected { background: #F39814; color: white; }
+  	#selectable { list-style-type: none; margin: 0; padding: 0; }
+  	#selectable li { 
+  	  margin: 0px; 
+  	  padding: 0px; 
+      float: left; 
+      width: 256px;
+      line-height: 256px;
+      height: 256px;
+      font-size: 4em; 
+      text-align: center; 
+    }
+    #selectable li img { 
+     vertical-align:middle;
+   }
+    
+    #flux-assets {
+     margin-top:30px;
+   }
+
+    #flux-tags{
+/*         position:fixed;*/
+     position: absolute;
+     top:0px;
+     background: #ccc;
+/*         width:100%;*/
+     padding: 5px;
+   }
+    #flux-tags .filter-tag {
+     background-color:yellow;
+   }
+
+    #flux-actions {
+  /*         position:fixed;*/
+       position: absolute;
+       bottom:0px;
+       background: #ccc;
+  /*         width:100%;*/
+       padding: 5px;
+     }
+
+  </style>
+
+<% end %>
+
+<% content_for :javascripts do %>
+
+  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
+  <script>
+
+    $(function() { 
+
+      /* flux-gallery
+      ------------------------------------- */
+
+      $(".flux-gallery").sortable({ 
+        items: '.flux-image',
+        cursor: 'move',
+        helper: 'clone',
+        containment: 'parent',
+        revert: 50
+      }); 
+      
+      $('.flux-caption').live('keyup', function(e) {
+        if (e.keyCode == 13 || e.keyCode == 27) this.blur();
+      });
+      
+      $('.flux-add-button').fancybox({        
+        'titleShow' : false,
+        'type' : 'ajax',
+        'margin': 100,
+        'onComplete': setupAssetBrowser        
+        // window.open('<%= flux_assets_url %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600');                
+      });        
+      
+      $('.flux-remove-button').live('click', function(e){        
+        var el = $(this);        
+        el.parent().remove();        
+
+        // TODO: clean up
+        if ($(".flux-gallery .flux-image").length == 0) { //no more assets availabe
+          var name  = '<%= "#{obj}[#{attribute}]" %>'; 
+          var input = '<input id="flux-gallery-empty" type="hidden" name="' + name + '" value="">';
+          $(".flux-gallery .flux-item").before(input);
+        }
+        return false;
+      });      
+
+
+      /* flux-asset-browser
+      ------------------------------------- */
+
+      function setupAssetBrowser() {
+
+        $("#flux-tags").buttonset();
+        // $("#flux-actions button, ¢input:submit").button();          
+        $("#flux-assets").selectable();
+                        
+        $('#flux-use-button').click(function(e){
+
+          e.preventDefault();
+
+          var selected = $('#flux-assets .ui-selected img');
+
+          selected.each(function(idx, item) {
+
+            var item        = $(item);
+            var public_url  = item.attr('data-public-url');
+            var img_src     = public_url.replace(/_.*/,'_f<%= geometry %>.jpg');
+            var description = item.attr('data-description');
+            var obj         = '<%= "#{obj}[#{attribute}][]" %>';
+            var template = $('.flux-image-template').clone();
+
+            template.removeClass('flux-image-template').addClass('flux-image');
+            template.children('img').attr('src', img_src).attr('alt', description);
+            template.children('.flux-caption').attr('name', obj + '[description]').val(description);
+            template.children('.flux-public-url').attr('name', obj + '[public_url]').val(public_url);
+            
+            template.insertBefore('.flux-item-add');   
+            
+            $.fancybox.close();                                 
+          });
+          
+        });
+        
+        $( "#flux-tags input" ).click(function(e){
+          var tag = $(e.target).attr('value');
+          $('#flux-assets li').hide();
+          $('#flux-assets li.' + tag ).show();
+          // $( "#selectable" ).selectable('destroy');
+          // $( "#selectable" ).selectable();
+        });
+                
+      }
+
+    });
+
+
+  </script>
+
+<% end %>
+
+<li>
+  <fieldset>
+
+    <label>Gallery</label>
+
+    <ul class="flux-gallery">
+    <% if @item[attribute].is_a? Array  %>
+      <% @item[attribute].each do |img| %>
+    
+        <li class="flux-item flux-image">      
+
+          <img src="<%= flux_image_for(img['public_url'], format) %>" alt="img['description']">
+      
+          <a href="#" class="flux-button flux-remove-button" title="Remove image">-</a>
+
+          <% img.each do |key, value| %>
+            <% case key %>
+            <%  when "description" %>
+              <textarea class="flux-caption" name="<%= "#{obj}[#{attribute}][][#{key}]"%>"><%= value %></textarea>
+            <% else %>
+              <input type="hidden" name="<%= "#{obj}[#{attribute}][][#{key}]"%>" value="<%= value %>">              
+            <% end %>     
+          <% end %>
+
+        </li>
+
+      <% end %>
+    <% end %>
+    
+      <li class="flux-item flux-item-add">
+        <a href="<%= flux_assets_url %>" class="flux-button flux-add-button" title="Add image">+</a>
+      </li>
+
+      <li class="flux-item flux-image-template">
+        <img src="" alt="">
+        <a href="#" class="flux-button flux-remove-button" title="Remove image">-</a>        
+        <textarea class="flux-caption" name=""></textarea>
+        <input class="flux-public-url" type="hidden" name="" value="">         
+      </li>
+
+    </ul>
+  
+  </fieldset>
+</li>
