@@ -1,6 +1,0 @@
-<ol id="selectable">
-<% @assets.each do |asset| %>
-  <% next unless asset.public_url %>
-	<li class="ui-state-default <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>"><img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>"></li>
-<% end %>	  
-</ol>
