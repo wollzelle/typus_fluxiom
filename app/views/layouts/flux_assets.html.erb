@@ -1,1 +1,12 @@
-<%= yield %>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fluxiom > Asset Browser</title>
+  <%= yield :stylesheets %>  
+  <%= yield :javascripts %>    
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

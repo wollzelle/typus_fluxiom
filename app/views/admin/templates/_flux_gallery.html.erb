@@ -8,246 +8,165 @@
 
 <% content_for :stylesheets do %>
 
-  <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">   -->
-  <style type="text/css" media="screen">
+<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">   -->
+<style type="text/css" media="screen">
+
+/* flux-gallery
+------------------------------------- */
+
+.flux-gallery {
+  margin: 0 !important;
+  padding: 0;
+  overflow: hidden;
+  width: 690px;
+  zoom: 1;
+}
+
+.flux-item {
+  position: relative;
+  float: left;
+  margin: 5px !important;
+  list-style: none;
+  width:<%= width %>px;
+  height: <%= height %>px;
+  border: 1px solid transparent;
+  -moz-user-select: none;
+  overflow: hidden;
+  padding-bottom: 19px;
+}
+
+.flux-image-template {
+  display: none;
+}
+.flux-image:hover {
+  cursor: move;
+}
+
+.ui-sortable-placeholder {
+  visibility: visible !important;
+  border: 1px dashed #ccc;
+}    
+
+.flux-caption {
+  font-family: verdana;
+  font-size: 8px !important;
+  color: #666;
+  position: absolute;
+  bottom: 0;
+  padding: 3px !important;
+  width: <%= width-8 %>px !important;
+  height: 10px;
+  border: 1px solid #fff;
+}     
+.flux-caption:hover {
+  background-color: #fffce1;
+  border-color: #fffce1;    
+}
+.flux-caption:focus {
+  background: #fff !important;
+  color: #000;
+  border-color: #999;
+  height: <%= height + 10 %>px;
+}
+
+.flux-button {
+  line-height: 1em;
+  text-decoration: none !important;
+  font-weight: bold;
+  background: #fff;
+  display: block;     
   
-    /* flux-gallery
-    ------------------------------------- */
-  
-    .flux-gallery {
-      margin: 0 !important;
-      padding: 0;
-      overflow: hidden;
-      width: 690px;
-      zoom: 1;
-    }
+}
+.flux-remove-button {
+  padding: 3px 5px;     
+  position: absolute;
+  right: 0;
+  top: 0; 
+  color: #333;
+}
+.flux-add-button {
+  background: #eee;   
+  text-align: center;
+  width:<%= width %>px;
+  height: <%= height %>px;      
+  line-height: <%= height %>px;    
+  color: #999;
+  font-size: 20px;
+}
 
-    .flux-item {
-      position: relative;
-      float: left;
-      margin: 5px !important;
-      list-style: none;
-      width:<%= width %>px;
-      height: <%= height %>px;
-      border: 1px solid transparent;
-      -moz-user-select: none;
-      overflow: hidden;
-      padding-bottom: 19px;
-    }
-
-    .flux-image-template {
-      display: none;
-    }
-    .flux-image:hover {
-      cursor: move;
-    }
-    
-    .ui-sortable-placeholder {
-      visibility: visible !important;
-      border: 1px dashed #ccc;
-    }    
-  
-    .flux-caption {
-      font-family: verdana;
-      font-size: 8px !important;
-      color: #666;
-      position: absolute;
-      bottom: 0;
-      padding: 3px !important;
-      width: <%= width-8 %>px !important;
-      height: 10px;
-      border: 1px solid #fff;
-    }     
-    .flux-caption:hover {
-      background-color: #fffce1;
-      border-color: #fffce1;    
-    }
-    .flux-caption:focus {
-      background: #fff !important;
-      color: #000;
-      border-color: #999;
-      height: <%= height + 10 %>px;
-    }
-    
-    .flux-button {
-      line-height: 1em;
-      text-decoration: none !important;
-      font-weight: bold;
-      background: #fff;
-      display: block;     
-      
-    }
-    .flux-remove-button {
-      padding: 3px 5px;     
-      position: absolute;
-      right: 0;
-      top: 0; 
-      color: #333;
-/*      -moz-border-radius: 8px;*/
-    }
-    .flux-add-button {
-      background: #eee;   
-      text-align: center;
-      width:<%= width %>px;
-      height: <%= height %>px;      
-      line-height: <%= height %>px;    
-      color: #999;
-      font-size: 20px;
-    }
-
-
-    /* flux-asset-browser
-    ------------------------------------- */
-
-    #flux-asset-browser {
-      position: relative;
-    }
-
-    .ui-widget{
-      font-size: 0.6em;
-    }
-  	#feedback { font-size: 1.4em; }
-  	
-  	#selectable .ui-selecting { background: #FECA40; }
-  	#selectable .ui-selected { background: #F39814; color: white; }
-  	#selectable { list-style-type: none; margin: 0; padding: 0; }
-  	#selectable li { 
-  	  margin: 0px; 
-  	  padding: 0px; 
-      float: left; 
-      width: 256px;
-      line-height: 256px;
-      height: 256px;
-      font-size: 4em; 
-      text-align: center; 
-    }
-    #selectable li img { 
-     vertical-align:middle;
-   }
-    
-    #flux-assets {
-     margin-top:30px;
-   }
-
-    #flux-tags{
-/*         position:fixed;*/
-     position: absolute;
-     top:0px;
-     background: #ccc;
-/*         width:100%;*/
-     padding: 5px;
-   }
-    #flux-tags .filter-tag {
-     background-color:yellow;
-   }
-
-    #flux-actions {
-  /*         position:fixed;*/
-       position: absolute;
-       bottom:0px;
-       background: #ccc;
-  /*         width:100%;*/
-       padding: 5px;
-     }
-
-  </style>
+</style>
 
 <% end %>
 
 <% content_for :javascripts do %>
 
-  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
-  <script>
+<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
+<script>
 
-    $(function() { 
+$(function() { 
 
-      /* flux-gallery
-      ------------------------------------- */
+  /* flux-gallery
+  ------------------------------------- */
 
-      $(".flux-gallery").sortable({ 
-        items: '.flux-image',
-        cursor: 'move',
-        helper: 'clone',
-        containment: 'parent',
-        revert: 50
-      }); 
-      
-      $('.flux-caption').live('keyup', function(e) {
-        if (e.keyCode == 13 || e.keyCode == 27) this.blur();
-      });
-      
-      $('.flux-add-button').fancybox({        
-        'titleShow' : false,
-        'type' : 'ajax',
-        'margin': 100,
-        'onComplete': setupAssetBrowser        
-        // window.open('<%= flux_assets_url %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600');                
-      });        
-      
-      $('.flux-remove-button').live('click', function(e){        
-        var el = $(this);        
-        el.parent().remove();        
+  $(".flux-gallery").sortable({ 
+    items: '.flux-image',
+    cursor: 'move',
+    helper: 'clone',
+    containment: 'parent',
+    revert: 50
+  }); 
+  
+  $('.flux-caption').live('keyup', function(e) {
+    if (e.keyCode == 13 || e.keyCode == 27) this.blur();
+  });
+  
+  $('.flux-add-button').fancybox({        
+    'titleShow' : false,        
+    'type' : 'iframe',
+    'width' : '75%',
+    'height' : '75%'
+    // 'padding' : 0,
+    // 'margin' : 0
+    // window.open('<%= flux_assets_url %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600');                
+  });        
+  
+  $('.flux-remove-button').live('click', function(e){        
+    var el = $(this);        
+    el.parent().remove();        
 
-        // TODO: clean up
-        if ($(".flux-gallery .flux-image").length == 0) { //no more assets availabe
-          var name  = '<%= "#{obj}[#{attribute}]" %>'; 
-          var input = '<input id="flux-gallery-empty" type="hidden" name="' + name + '" value="">';
-          $(".flux-gallery .flux-item").before(input);
-        }
-        return false;
-      });      
+    // TODO: clean up
+    if ($(".flux-gallery .flux-image").length == 0) { //no more assets availabe
+      var name  = '<%= "#{obj}[#{attribute}]" %>'; 
+      var input = '<input id="flux-gallery-empty" type="hidden" name="' + name + '" value="">';
+      $(".flux-gallery .flux-item").before(input);
+    }
+    return false;
+  });      
 
-
-      /* flux-asset-browser
-      ------------------------------------- */
-
-      function setupAssetBrowser() {
-
-        $("#flux-tags").buttonset();
-        // $("#flux-actions button, ¢input:submit").button();          
-        $("#flux-assets").selectable();
-                        
-        $('#flux-use-button').click(function(e){
-
-          e.preventDefault();
-
-          var selected = $('#flux-assets .ui-selected img');
-
-          selected.each(function(idx, item) {
-
-            var item        = $(item);
-            var public_url  = item.attr('data-public-url');
-            var img_src     = public_url.replace(/_.*/,'_f<%= geometry %>.jpg');
-            var description = item.attr('data-description');
-            var obj         = '<%= "#{obj}[#{attribute}][]" %>';
-            var template = $('.flux-image-template').clone();
-
-            template.removeClass('flux-image-template').addClass('flux-image');
-            template.children('img').attr('src', img_src).attr('alt', description);
-            template.children('.flux-caption').attr('name', obj + '[description]').val(description);
-            template.children('.flux-public-url').attr('name', obj + '[public_url]').val(public_url);
-            
-            template.insertBefore('.flux-item-add');   
-            
-            $.fancybox.close();                                 
-          });
-          
-        });
+  $(document).bind('flux:updateGallery', function(event, images){
+  
+    $(images).each(function(idx, item) {
         
-        $( "#flux-tags input" ).click(function(e){
-          var tag = $(e.target).attr('value');
-          $('#flux-assets li').hide();
-          $('#flux-assets li.' + tag ).show();
-          // $( "#selectable" ).selectable('destroy');
-          // $( "#selectable" ).selectable();
-        });
-                
-      }
-
+      var img_src     = item.public_url.replace(/_.*/,'_f<%= geometry %>.jpg');
+      var obj         = '<%= "#{obj}[#{attribute}][]" %>';
+      var template = $('.flux-image-template').clone();
+      
+      template.removeClass('flux-image-template').addClass('flux-image');
+      template.children('img').attr('src', img_src).attr('alt', item.description);
+      template.children('.flux-caption').attr('name', obj + '[description]').val(item.description);
+      template.children('.flux-public-url').attr('name', obj + '[public_url]').val(item.public_url);
+      
+      template.insertBefore('.flux-item-add');   
+      
+      $.fancybox.close();                                 
     });
 
+  });
 
-  </script>
+});
+
+
+</script>
 
 <% end %>
 

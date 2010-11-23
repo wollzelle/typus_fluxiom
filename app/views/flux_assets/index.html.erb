@@ -1,6 +1,179 @@
+<% content_for :stylesheets do %>    
+<style>
+
+/* flux-asset-browser
+------------------------------------- */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lucida Grande', sans-serif;
+}
+
+#flux-asset-browser {
+  position: relative;
+}
+
+#flux-toolbar {
+  position:fixed;
+  top:0px;
+  width:100%;
+  padding: 20px;
+/*  height: 40px;*/
+  background-color: #EBEBEB;
+  background-image: -moz-linear-gradient(center top , #EBEBEB, #CCCCCC);
+  border-bottom:1px solid #999999; 
+  -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
+}
+
+.flux-asset {
+  -moz-border-radius:4px 4px 4px 4px;
+  border:3px solid #FFFFFF;
+  margin:5px;
+  overflow:hidden;
+  padding: 5px;
+  width: 20%;
+  float: left;
+  text-align: center;
+}
+
+#flux-tags {
+  float: left;
+}
+
+.flux-tag {
+  background: #6B7B86;
+  color: #FFF;
+  font-size:10px;
+  margin:0 10px 0 0;
+  padding: 3px 4px;
+  
+}
+.flux-tag input {
+  display: none;
+}
+
+
+#flux-actions {
+/*  position: absolute;*/
+  float: right;
+  margin-right: 40px;
+}
+
+#flux-actions button {
+  color: #fff;
+  border: 0;
+  background: green;
+  font-weight: bold;
+  -moz-border-radius: 5px;
+  padding: 5px;
+}
+
+
+#flux-assets .ui-selecting {
+  border-color: #eee;
+}
+
+#flux-assets .ui-selected {
+  -moz-box-shadow:0 0 4px #99CCFF;
+  border:3px solid #3366CC;
+}
+
+
+
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; }
+#selectable li { 
+  margin: 0px; 
+  padding: 0px; 
+  float: left; 
+  width: 256px;
+  line-height: 256px;
+  height: 256px;
+  font-size: 4em; 
+  text-align: center; 
+}
+#selectable li img { 
+ vertical-align:middle;
+}
+
+#flux-assets {
+ margin-top:80px;
+}
+
+
+#flux-tags .filter-tag {
+ background-color:yellow;
+}
+
+
+
+</style>
+
+<% end %>
+
+<% content_for :javascripts do %>
+<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" %>
+<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>
+<script>
+  
+  $(function() {
+    
+    /* tag filter
+    ------------------------------------- */
+    $( "#flux-tags input" ).click(function(e){
+      var tag = $(e.target).attr('value');
+      $('#flux-assets li').hide();
+      $('#flux-assets li.' + tag ).show();
+      // $( "#selectable" ).selectable('destroy');
+      // $( "#selectable" ).selectable();
+    });
+
+    
+    /* make images selectable
+    ------------------------------------- */  
+    $("#flux-assets ol").selectable({
+      filter: '.flux-asset'
+    });
+
+                        
+    /* return selected images to gallery
+    ------------------------------------- */
+    $('#flux-use-button').click(function(e){
+    
+      e.preventDefault();
+    
+      var data = [];
+      var selected = $('#flux-assets .ui-selected img');
+
+      selected.each(function(idx, item) {
+
+        var item = $(item);
+        var img = {};
+
+        img.public_url = item.attr('data-public-url');
+        img.description = item.attr('data-description');        
+
+        data.push(img)        
+      });        
+            
+      parent.$(parent.document).trigger('flux:updateGallery', [data]);
+          
+    });            
+
+  });
+  
+</script>
+
+<% end %>
+
 <div id="flux-asset-browser">
 
-  <form action="<%= url_for(:action => 'list') %>" method="GET">
+  <form id="flux-form" action="<%= url_for(:action => 'list') %>" method="GET">
+
+
+  <div id="flux-toolbar">
 
     <div id="flux-tags">  
   	  <% @tags.each do |tag| 
@@ -8,23 +181,33 @@
   	    is_filter = (tag.tag == FluxAsset::FILTER_TAG)
   	    class_name = (is_filter ? 'filter-tag' : '')
   	  %>
-  		<input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>"><label for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>"><%= tagname %></label>
+      <label class="flux-tag" for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
+  		  <input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>">
+  		  <%= tagname %>
+  		</label>
   		<% end %>
     </div>
+    
+    <div id="flux-actions">
+      <button id="flux-use-button">Use selected images</button>
+      <!-- <input type="submit" value="Refresh"> -->
+    </div>
+
+  </div>    
 
     <div id="flux-assets">  
-      <ol id="selectable">
+      <ol>
       <% @assets.each do |asset| %>
         <% next unless asset.public_url %>
-      	<li class="ui-state-default <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>"><img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>"></li>
+      	<li class="flux-asset <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>">
+          <!-- <input type="checkbox" value="<%= asset.image_url %>" name="assets"> -->
+      	  <img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>">
+      	</li>
       <% end %>	  
       </ol>
     </div>
   
-    <div id="flux-actions">
-      <button id="flux-use-button">Use selected images</button>
-      <input type="submit" value="Refresh">
-    </div>
+
 
   </form>
 
