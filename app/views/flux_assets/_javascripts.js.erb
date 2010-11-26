@@ -8,7 +8,7 @@ $(function() {
   /* tag filter
   ------------------------------------- */
 
-  $( "#flux-tags input" ).click(function(e){      
+  $('#flux-tags input').click(function(e){      
     var el = $(e.target);
     var tag = $(e.target).attr('value');
 
@@ -22,9 +22,14 @@ $(function() {
   /* make images selectable
   ------------------------------------- */  
 
-  $("#flux-assets ol").selectable({
-    filter: '.flux-asset:visible',
-    stop:   updateSelectedCount
+  // $('#flux-assets ol').selectable({
+  //   filter: '.flux-asset:visible',
+  //   stop:   updateSelectedCount
+  // });
+  
+  $('.flux-asset').click(function(e){
+    $(this).toggleClass('ui-selected');
+    updateSelectedCount();
   });
 
   $('#flux-clear-button').click(function(e){      
@@ -50,7 +55,7 @@ $(function() {
     var data = [];
     var selected = $('#flux-assets .ui-selected img');
 
-    selected.each(function(idx, item) {
+    selected.each(function(idx, item){
 
       var item = $(item);
       var img = {};

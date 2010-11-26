@@ -4,7 +4,7 @@
 
 <% content_for :javascripts do %>
 <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" %>
-<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>
+<%# javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>
 <script><%= render "javascripts.js.erb" %></script>
 <% end %>
 
@@ -29,7 +29,6 @@
     
       <div id="flux-actions">
         <a href="#" id="flux-clear-button">clear selection</a>
-        <!-- <button id="flux-use-button" data-default-text="Use selected images">Use selected images</button> -->
         <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
       </div>
 
@@ -42,13 +41,14 @@
       	<li class="flux-asset <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>">
           <!-- <input type="checkbox" value="<%= asset.image_url %>" name="assets"> -->
       	  <img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>">
+      	  <% if asset.description %>
+      	  <span class="caption"><%= asset.description %></span>
+      	  <% end %>
       	</li>
       <% end %>	  
       </ol>
     </div>
   
-
-
   </form>
 
 </div>
