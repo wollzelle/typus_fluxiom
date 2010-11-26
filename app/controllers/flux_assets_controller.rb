@@ -1,5 +1,7 @@
 class FluxAssetsController < ApplicationController
 
+  before_filter :set_cache
+
   if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
     include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
     before_filter :authenticate
@@ -44,6 +46,10 @@ class FluxAssetsController < ApplicationController
 
   def tags
     render :text => FluxTag.allTags.to_json, :layout => false
+  end
+
+  def set_cache
+    response.headers['Cache-Control'] = 'public, max-age=300'
   end
 
 end

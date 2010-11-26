@@ -1,0 +1,133 @@
+/*! ----------------------------------------------------------------------------
+* _stylesheets.css.erb
+* Copyright 2010 wollzelle GmbH (http://wollzelle.com). All rights reserved.
+* --------------------------------------------------------------------------- */
+
+/* reset
+------------------------------------- */
+
+html, body {
+  margin      : 0;
+  padding     : 0;
+  font-family : 'Lucida Grande', sans-serif;
+  font-size   : 80%;
+  line-height : 1em;
+}
+
+/* flux-toolbar
+------------------------------------- */
+
+#flux-toolbar {
+  position      : fixed;
+  top           : 0px;
+  width         : 100%;
+  padding       : 5px 0;
+  background    : #eee;
+  border-bottom : 1px solid #999;
+}
+
+#flux-tags {  
+  float       : left;
+  margin-left : 20px;
+  width       : 65%;
+}
+
+.flux-tag {
+  float       : left;
+  background  : #bbb;
+  color       : #fff;
+  margin      : 5px;
+  padding     : 6px 8px;
+  cursor      : pointer;  
+  white-space : nowrap;
+  
+  -webkit-border-radius : 15px;
+     -moz-border-radius : 15px;
+          border-radius : 15px;
+}
+
+.flux-tag input { 
+  display : none; 
+}
+
+.flux-tag.active, .filter-tag {
+  background : #666;
+}
+
+#flux-actions {
+  float        : right;
+  padding      : 5px 0;
+  margin-right : 20px;
+  width        : 28%;
+  text-align   : right;
+}
+
+#flux-use-button {
+  color       : #fff;
+  border      : 0;
+  background  : #333;
+  font-weight : bold;
+  padding     : 3px 6px;
+  cursor      : pointer;	
+  margin-left : 10px;
+
+  -webkit-border-radius : 5px;
+     -moz-border-radius : 5px;
+          border-radius : 5px;
+}
+
+/* flux-assets
+------------------------------------- */
+
+#flux-assets {
+  width  : 90%;
+  margin : 80px auto 0 auto;
+}
+
+#flux-assets ol {
+  margin     : 0;
+  padding    : 0;
+  list-style : none;
+}
+
+.flux-asset {
+  border      : 3px solid #fff;
+  margin      : 5px;
+  padding     : 5px;
+  float       : left;
+  text-align  : center;
+  width       : 256px;
+  height      : 256px;  
+  line-height : 256px;
+
+  -webkit-user-select : none;  
+     -moz-user-select : none;
+          user-select : none;    
+  
+  -webkit-border-radius : 4px;
+     -moz-border-radius : 4px;
+          border-radius : 4px;
+}
+
+.flux-asset img {
+  vertical-align : middle;
+}
+
+.ui-selecting {
+  border-color : #eee;
+}
+
+.ui-selected {
+  border : 3px solid #3366cc;
+
+  -webkit-box-shadow : 0 0 4px #99ccff;
+     -moz-box-shadow : 0 0 4px #99ccff;
+          box-shadow : 0 0 4px #99ccff;
+}
+
+.ui-selectable-helper { 
+  position   : absolute; 
+  z-index    : 100; 
+  background : #000;
+  opacity    : 0.2;
+}

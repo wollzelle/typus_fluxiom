@@ -1,0 +1,115 @@
+/*! ----------------------------------------------------------------------------
+* _flux_gallery_stylesheets.css.erb
+* Copyright 2010 wollzelle GmbH (http://wollzelle.com). All rights reserved.
+* --------------------------------------------------------------------------- */
+
+/* fancybox overlay
+------------------------------------- */
+
+.fancy-bg {
+  display : none !important;
+}
+
+#fancybox-outer {
+  background : none;
+  border     : 10px solid rgba(0,0,0,0.4);
+
+  -webkit-border-radius : 1em;  
+     -moz-border-radius : 1em;
+          border-radius : 1em;
+}
+
+#fancybox-inner {
+  background : #fff;
+  border     : 1px solid #999;
+}
+
+/* flux-gallery
+------------------------------------- */
+
+.flux-gallery {
+  margin   : 0 !important;
+  padding  : 0;
+  overflow : hidden;
+  width    : 690px;
+  zoom     : 1;
+}
+
+.flux-item {
+  position         : relative;
+  float            : left;
+  list-style       : none;
+  margin           : 5px !important;
+  padding-bottom   : 19px;
+  width            : <%= width %>px;
+  height           : <%= height %>px;
+  border           : 1px solid transparent;
+  overflow         : hidden;
+
+  -webkit-user-select : none;
+     -moz-user-select : none;
+          user-select : none;
+}
+
+.flux-image-template {
+  display : none;
+}
+
+.flux-image:hover {
+  cursor : move;
+}
+
+.ui-sortable-placeholder {
+  visibility : visible !important;
+  border     : 1px dashed #ccc;
+}    
+
+.flux-caption {
+  font-family : verdana;
+  font-size   : 8px !important;
+  color       : #666;
+  position    : absolute;
+  bottom      : 0;
+  padding     : 3px !important;
+  width       : <%= width-8 %>px !important;
+  height      : 10px;
+  border      : 1px solid #fff;
+}     
+
+.flux-caption:hover {
+  background-color : #fffce1;
+  border-color     : #fffce1;    
+}
+
+.flux-caption:focus {
+  background   : #fff !important;
+  color        : #000;
+  border-color : #999;
+  height       : <%= height + 10 %>px;
+}
+
+.flux-button {
+  line-height    : 1em;
+  text-decoration: none !important;
+  font-weight    : bold;
+  background     : #fff;
+  display        : block;  
+}
+
+.flux-remove-button {
+  padding  : 3px 5px;     
+  position : absolute;
+  right    : 0;
+  top      : 0; 
+  color    : #333;
+}
+
+.flux-add-button {
+  background  : #eee;   
+  text-align  : center;
+  width       : <%= width %>px;
+  height      : <%= height %>px;      
+  line-height : <%= height %>px;    
+  color       : #999;
+  font-size   : 20px;
+}
