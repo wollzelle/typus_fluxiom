@@ -7,167 +7,12 @@
 %>
 
 <% content_for :stylesheets do %>
-
-<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css">   -->
-<style type="text/css" media="screen">
-
-/* flux-gallery
-------------------------------------- */
-
-.flux-gallery {
-  margin: 0 !important;
-  padding: 0;
-  overflow: hidden;
-  width: 690px;
-  zoom: 1;
-}
-
-.flux-item {
-  position: relative;
-  float: left;
-  margin: 5px !important;
-  list-style: none;
-  width:<%= width %>px;
-  height: <%= height %>px;
-  border: 1px solid transparent;
-  -moz-user-select: none;
-  overflow: hidden;
-  padding-bottom: 19px;
-}
-
-.flux-image-template {
-  display: none;
-}
-.flux-image:hover {
-  cursor: move;
-}
-
-.ui-sortable-placeholder {
-  visibility: visible !important;
-  border: 1px dashed #ccc;
-}    
-
-.flux-caption {
-  font-family: verdana;
-  font-size: 8px !important;
-  color: #666;
-  position: absolute;
-  bottom: 0;
-  padding: 3px !important;
-  width: <%= width-8 %>px !important;
-  height: 10px;
-  border: 1px solid #fff;
-}     
-.flux-caption:hover {
-  background-color: #fffce1;
-  border-color: #fffce1;    
-}
-.flux-caption:focus {
-  background: #fff !important;
-  color: #000;
-  border-color: #999;
-  height: <%= height + 10 %>px;
-}
-
-.flux-button {
-  line-height: 1em;
-  text-decoration: none !important;
-  font-weight: bold;
-  background: #fff;
-  display: block;     
-  
-}
-.flux-remove-button {
-  padding: 3px 5px;     
-  position: absolute;
-  right: 0;
-  top: 0; 
-  color: #333;
-}
-.flux-add-button {
-  background: #eee;   
-  text-align: center;
-  width:<%= width %>px;
-  height: <%= height %>px;      
-  line-height: <%= height %>px;    
-  color: #999;
-  font-size: 20px;
-}
-
-</style>
-
+<style><%= render :partial => "admin/templates/flux_gallery_stylesheets.css.erb", :locals => { :width => width, :height => height } %></style>
 <% end %>
 
 <% content_for :javascripts do %>
-
 <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
-<script>
-
-$(function() { 
-
-  /* flux-gallery
-  ------------------------------------- */
-
-  $(".flux-gallery").sortable({ 
-    items: '.flux-image',
-    cursor: 'move',
-    helper: 'clone',
-    containment: 'parent',
-    revert: 50
-  }); 
-  
-  $('.flux-caption').live('keyup', function(e) {
-    if (e.keyCode == 13 || e.keyCode == 27) this.blur();
-  });
-  
-  $('.flux-add-button').fancybox({        
-    'titleShow' : false,        
-    'type' : 'iframe',
-    'width' : '75%',
-    'height' : '75%'
-    // 'padding' : 0,
-    // 'margin' : 0
-    // window.open('<%= flux_assets_url %>?callback=setGallery&multiple=true', 'Asset Selector', 'toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,height=400,width=600');                
-  });        
-  
-  $('.flux-remove-button').live('click', function(e){        
-    var el = $(this);        
-    el.parent().remove();        
-
-    // TODO: clean up
-    if ($(".flux-gallery .flux-image").length == 0) { //no more assets availabe
-      var name  = '<%= "#{obj}[#{attribute}]" %>'; 
-      var input = '<input id="flux-gallery-empty" type="hidden" name="' + name + '" value="">';
-      $(".flux-gallery .flux-item").before(input);
-    }
-    return false;
-  });      
-
-  $(document).bind('flux:updateGallery', function(event, images){
-  
-    $(images).each(function(idx, item) {
-        
-      var img_src     = item.public_url.replace(/_.*/,'_f<%= geometry %>.jpg');
-      var obj         = '<%= "#{obj}[#{attribute}][]" %>';
-      var template = $('.flux-image-template').clone();
-      
-      template.removeClass('flux-image-template').addClass('flux-image');
-      template.children('img').attr('src', img_src).attr('alt', item.description);
-      template.children('.flux-caption').attr('name', obj + '[description]').val(item.description);
-      template.children('.flux-public-url').attr('name', obj + '[public_url]').val(item.public_url);
-      
-      template.insertBefore('.flux-item-add');   
-      
-      $.fancybox.close();                                 
-    });
-
-  });
-
-});
-
-
-</script>
-
+<script><%= render :partial => "admin/templates/flux_gallery_javascripts.js.erb", :locals => { :obj => obj, :attribute => attribute, :geometry => geometry } %></script>
 <% end %>
 
 <li>
@@ -183,7 +28,7 @@ $(function() {
 
           <img src="<%= flux_image_for(img['public_url'], format) %>" alt="img['description']">
       
-          <a href="#" class="flux-button flux-remove-button" title="Remove image">-</a>
+          <a href="#" class="flux-button flux-remove-button" title="Remove image">&#215;</a>
 
           <% img.each do |key, value| %>
             <% case key %>
@@ -205,7 +50,7 @@ $(function() {
 
       <li class="flux-item flux-image-template">
         <img src="" alt="">
-        <a href="#" class="flux-button flux-remove-button" title="Remove image">-</a>        
+        <a href="#" class="flux-button flux-remove-button" title="Remove image">&#215;</a>        
         <textarea class="flux-caption" name=""></textarea>
         <input class="flux-public-url" type="hidden" name="" value="">         
       </li>
