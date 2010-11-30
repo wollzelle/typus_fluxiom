@@ -36,11 +36,16 @@ html, body {
 .flux-tag {
   float       : left;
   background  : #bbb;
+  border      : 2px solid #bbb;  
   color       : #fff;
   margin      : 5px;
-  padding     : 6px 8px;
+  padding     : 4px 6px;
   cursor      : pointer;  
   white-space : nowrap;
+
+  -webkit-user-select: none;  
+     -moz-user-select: none;
+          user-select: none;  
   
   -webkit-border-radius : 15px;
      -moz-border-radius : 15px;
@@ -51,8 +56,17 @@ html, body {
   display : none; 
 }
 
-.flux-tag.active, .filter-tag {
-  background : #666;
+.flux-tag.active {
+  background : #777;
+  border-color: #777;
+  color: #fff;
+}
+
+.filter-tag {
+  background   : none;
+  border-color : #777;
+  color        : #777;
+  cursor       : default;
 }
 
 #flux-actions {
@@ -66,15 +80,19 @@ html, body {
 #flux-use-button {
   color       : #fff;
   border      : 0;
-  background  : #333;
+  background  : #777;
   font-weight : bold;
-  padding     : 3px 6px;
+  padding     : 4px 6px;
   cursor      : pointer;	
   margin-left : 10px;
 
   -webkit-border-radius : 5px;
      -moz-border-radius : 5px;
           border-radius : 5px;
+}
+
+#flux-use-button.active {
+  background: #55B51A;
 }
 
 /* flux-assets

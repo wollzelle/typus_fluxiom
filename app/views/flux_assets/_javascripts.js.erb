@@ -9,14 +9,22 @@ $(function() {
   ------------------------------------- */
 
   $('#flux-tags input').click(function(e){      
-    var el = $(e.target);
-    var tag = $(e.target).attr('value');
+    var el    = $(e.target),
+        label = el.parent('label'),
+        tag   = el.attr('value');
 
-    $('#flux-tags label').removeClass('active');
-    el.parent('label').addClass('active');      
+    if (el.hasClass('filter-tag')) return;
 
-    $('#flux-assets li').hide();
-    $('#flux-assets li.' + tag ).show();
+    if (label.hasClass('active')) {
+      $('#flux-tags label').removeClass('active');
+      $('#flux-assets li').show();
+    }
+    else {
+      $('#flux-tags label').removeClass('active');      
+      label.addClass('active');            
+      $('#flux-assets li').hide();
+      $('#flux-assets li.' + tag).show();      
+    }
   });
 
   /* make images selectable
@@ -36,13 +44,19 @@ $(function() {
     e.preventDefault();      
     var button = $('#flux-use-button');
     $('.flux-asset').removeClass('ui-selected');
-    button.val(button.data('default-text'));
+    updateSelectedCount();
   });
 
   function updateSelectedCount() {
-    var button = $('#flux-use-button');
-    var count = $('#flux-assets .ui-selected').size();
-    button.val(button.data('default-text') + ' (' + count + ')');
+    var 
+      button     = $('#flux-use-button'),
+      buttonText = button.data('default-text'),
+      count      = $('#flux-assets .ui-selected').size();
+
+    if (count > 0)
+      button.val(buttonText + ' (' + count + ')').addClass('active');
+    else
+      button.val(buttonText).removeClass('active');
   }
 
   /* return selected images to gallery
