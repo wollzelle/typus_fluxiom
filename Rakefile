@@ -7,7 +7,7 @@ begin
     gem.name = "typus_fluxiom"
     gem.summary = %Q{fluxiom loves typus}
     gem.description = %Q{typus loves fluxiom}
-    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
+    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*", "{public}/**/*"]
     gem.email = "t.koenig@wollzelle.com"
     gem.homepage = "http://wollzelle.com"
     gem.authors = ["T Koenig"]
