@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{typus_flux_assets}
-  s.version = "1.0.1"
+  s.version = "1.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["T Koenig"]
-  s.date = %q{2010-11-10}
+  s.date = %q{2010-12-01}
   s.description = %q{the fluxiom assets browser for typus}
   s.email = %q{t.koenig@wollzelle.com}
   s.extra_rdoc_files = [
@@ -23,9 +23,11 @@ Gem::Specification.new do |s|
      "app/models/flux_tag.rb",
      "app/models/flux_user.rb",
      "app/views/admin/templates/_flux_gallery.html.erb",
+     "app/views/admin/templates/_flux_gallery_javascripts.js.erb",
+     "app/views/admin/templates/_flux_gallery_stylesheets.css.erb",
+     "app/views/flux_assets/_javascripts.js.erb",
+     "app/views/flux_assets/_stylesheets.css.erb",
      "app/views/flux_assets/index.html.erb",
-     "app/views/flux_assets/list.html.erb",
-     "app/views/flux_assets/list.json.erb",
      "app/views/layouts/flux_assets.html.erb",
      "config/routes.rb",
      "lib/flux_assets/configuration.rb",
