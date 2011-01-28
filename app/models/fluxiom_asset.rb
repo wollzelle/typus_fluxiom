@@ -1,11 +1,11 @@
-class FluxAsset < FluxResource
-  self.site = FluxResource::FLUXIOM_SITE
+class FluxiomAsset < FluxiomResource
+  self.site = FluxiomResource::FLUXIOM_SITE
   #self.format = :json
   set_element_name 'asset'
   set_collection_name 'assets'
   
-  FILTER_TAG = FluxAssets::Configuration.config['filter_tag'] || ''
-  CDN = FluxAssets::Configuration.config['cdn']
+  FILTER_TAG = Fluxiom::Configuration.config['filter_tag'] || ''
+  CDN = Fluxiom::Configuration.config['cdn']
   
   def self.recent(count = 10)
     sort_by_date(find(:all, :params => {:tags => FLUXIOM_API['tag'] })).first(count)
@@ -19,7 +19,7 @@ class FluxAsset < FluxResource
   end
   
   def user
-    FluxUser.find(self.user_id)
+    FluxiomUser.find(self.user_id)
   end
   
   def medium_thumbnail_url

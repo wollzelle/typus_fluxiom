@@ -4,9 +4,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "typus_flux_assets"
-    gem.summary = %Q{the fluxiom assets browser for typus}
-    gem.description = %Q{the fluxiom assets browser for typus}
+    gem.name = "typus_fluxiom"
+    gem.summary = %Q{fluxiom loves typus}
+    gem.description = %Q{typus loves fluxiom}
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
     gem.email = "t.koenig@wollzelle.com"
     gem.homepage = "http://wollzelle.com"
@@ -48,7 +48,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "typus_flux_assets #{version}"
+  rdoc.title = "typus_fluxiom #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

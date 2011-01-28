@@ -1,5 +1,5 @@
-class FluxUser < FluxResource
-  self.site = FluxResource::FLUXIOM_SITE
+class FluxiomUser < FluxiomResource
+  self.site = FluxiomResource::FLUXIOM_SITE
   set_element_name 'user'
   set_collection_name 'users'
   

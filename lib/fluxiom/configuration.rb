@@ -1,6 +1,6 @@
 require "rails"
 
-module FluxAssets
+module Fluxiom
 
   module Configuration
 

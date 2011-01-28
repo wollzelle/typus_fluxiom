@@ -1,4 +1,4 @@
-class FluxAssetsController < ApplicationController
+class FluxiomController < ApplicationController
 
   before_filter :set_cache
 
@@ -7,12 +7,12 @@ class FluxAssetsController < ApplicationController
     before_filter :authenticate
   end
 
-  layout 'flux_assets', :except => :list
+  layout 'fluxiom', :except => :list
 
   protect_from_forgery :only => [:create, :update, :destroy] 
 
-  FLUXIOM_CONFIG = FluxAssets::Configuration.config
-  DEFAULT_TAGS = FluxAssets::Configuration.config['default_tags'] || {}
+  FLUXIOM_CONFIG = Fluxiom::Configuration.config
+  DEFAULT_TAGS = Fluxiom::Configuration.config['default_tags'] || {}
 
 
   #Show the asset chooser
@@ -20,7 +20,7 @@ class FluxAssetsController < ApplicationController
     #
     @multiple   = params[:multiple] || false
     @callback_function = params[:callback] || "Fluxiom.insertImage"
-    @assets ||= FluxAsset.search('')#, params[:term], params[:tags])
+    @assets ||= FluxiomAsset.search('')#, params[:term], params[:tags])
     
     #select tags
     @tags ||= begin
@@ -35,8 +35,8 @@ class FluxAssetsController < ApplicationController
   def list
 
     tags = "images" + (params[:tags] ? " #{params[:tags]}" : '')
-    @alltags = FluxTag.allTags
-    @assets = FluxAsset.search('', tags)#, params[:term], params[:tags])
+    @alltags = FluxiomTag.allTags
+    @assets = FluxiomAsset.search('', tags)#, params[:term], params[:tags])
     @baseURL = "#{(FLUXIOM_CONFIG['ssl'] ? 'http' : 'http')}://#{FLUXIOM_CONFIG['host']}"
     respond_to do |format|
         format.json
@@ -45,7 +45,7 @@ class FluxAssetsController < ApplicationController
   end
 
   def tags
-    render :text => FluxTag.allTags.to_json, :layout => false
+    render :text => FluxiomTag.allTags.to_json, :layout => false
   end
 
   def set_cache

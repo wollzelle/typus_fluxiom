@@ -1,7 +1,7 @@
-require "typus_flux_assets"
+require "typus_fluxiom"
 require "rails"
 
-module FluxAssets
+module Fluxiom
  class Engine < Rails::Engine
 
    initializer "static assets" do |app|
@@ -9,9 +9,9 @@ module FluxAssets
    end     
    
    def initialize
-     FluxAssets::Configuration.config!
+     Fluxiom::Configuration.config!
      # Cms::FormBuilder.send(:include, Cms::Fluxiom::FormBuilder)
-     ActionView::Base.send(:include, FluxAssets::ApplicationHelper)
+     ActionView::Base.send(:include, Fluxiom::ApplicationHelper)
    end
   end
 end

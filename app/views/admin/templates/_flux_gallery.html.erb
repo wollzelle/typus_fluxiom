@@ -1,17 +1,21 @@
 <% 
-  width    = FluxAssets::Configuration.config['preview_width'] || 100
-  height   = FluxAssets::Configuration.config['preview_height'] || 100
+  width    = Fluxiom::Configuration.config['preview_width'] || 100
+  height   = Fluxiom::Configuration.config['preview_height'] || 100
   geometry = "#{width}x#{height}"  
   format   = "f#{geometry}.jpg"    
   obj      = @item.class.to_s.downcase
 %>
 
 <% content_for :stylesheets do %>
-<style><%= render :partial => "admin/templates/flux_gallery_stylesheets.css.erb", :locals => { :width => width, :height => height } %></style>
+<%= stylesheet_link_tag "/admin/vendor/fluxiom/gallery.css" %>
+<style><%= render :partial => "admin/templates/flux_gallery_stylesheets.css.erb", :locals => { :width => width, :height => height } %>
+
+</style>
 <% end %>
 
 <% content_for :javascripts do %>
 <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>  
+<%= javascript_include_tag  "/admin/vendor/fluxiom/gallery.js" %>  
 <script><%= render :partial => "admin/templates/flux_gallery_javascripts.js.erb", :locals => { :obj => obj, :attribute => attribute, :geometry => geometry } %></script>
 <% end %>
 
@@ -45,7 +49,7 @@
     <% end %>
     
       <li class="flux-item flux-item-add">
-        <a href="<%= flux_assets_url %>" class="flux-button flux-add-button" title="Add image">+</a>
+        <a href="<%= admin_fluxiom_index_url %>" class="flux-button flux-add-button" title="Add image">+</a>
       </li>
 
       <li class="flux-item flux-image-template">

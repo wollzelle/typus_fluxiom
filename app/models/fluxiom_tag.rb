@@ -1,5 +1,5 @@
-class FluxTag < FluxResource
-  self.site = FluxResource::FLUXIOM_SITE
+class FluxiomTag < FluxiomResource
+  self.site = FluxiomResource::FLUXIOM_SITE
   set_element_name 'tag'
   set_collection_name 'tags'
   
