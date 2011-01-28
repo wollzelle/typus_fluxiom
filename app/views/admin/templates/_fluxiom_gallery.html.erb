@@ -1,0 +1,85 @@
+<% 
+  width    = Fluxiom::Configuration.config['preview_width'] || 100
+  height   = Fluxiom::Configuration.config['preview_height'] || 100
+  geometry = "#{width}x#{height}"  
+  format   = "f#{geometry}.jpg"    
+  obj      = @item.class.to_s.downcase
+%>
+
+<% content_for :stylesheets do %>
+
+  <%= stylesheet_link_tag "/admin/vendor/fluxiom/gallery.css" %>  
+
+  <!-- fluxiom config -->
+  <style>    
+    .flux-item          { width: <%= width %>; height: <%= height %>; }
+    .flux-caption       { width: <%= width-8 %>px !important; }    
+    .flux-caption:focus { height: <%= height / 2 %>px; }    
+    .flux-add-button    { line-height: <%= height %>px; }
+  </style>
+
+<% end %>
+
+<% content_for :javascripts do %>
+
+  <!-- fluxiom config -->
+  <script>
+    var fluxConfig = {
+      width     : <%= width %>,
+      height    : <%= height %>,
+      geometry  : '<%= geometry %>',      
+      format    : '<%= format %>',
+      obj       : '<%= obj %>',
+      attribute : '<%= attribute %>',
+      name      : '<%= "#{obj}[#{attribute}]" %>'
+    };
+  </script>
+
+  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js",
+                              "/admin/vendor/fluxiom/jquery.tmpl.js", 
+                              "/admin/vendor/fluxiom/gallery.js" %>
+
+<% end %>
+
+<li id="<%= attribute %>">
+
+    <%= form.label attribute, label_text %>
+
+    <ul class="flux-gallery">
+      <% if @item[attribute].is_a? Array  %>
+        <% @item[attribute].each do |img| %>    
+          <li class="flux-item flux-image">      
+            <img src="<%= flux_image_for(img['public_url'], format) %>" alt="img['description']">      
+            <a href="#" class="flux-button flux-remove-button" title="Remove image">&#215;</a>
+            <% img.each do |key, value| %>
+              <% case key %>
+              <%  when "description" %>
+                <textarea class="flux-caption" name="<%= "#{obj}[#{attribute}][][#{key}]"%>"><%= value %></textarea>
+              <% else %>
+                <input type="hidden" name="<%= "#{obj}[#{attribute}][][#{key}]"%>" value="<%= value %>">              
+              <% end %>     
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    
+      <li class="flux-item flux-item-add">
+        <a href="<%= admin_fluxiom_index_url %>" class="flux-button flux-add-button" title="Add image">+</a>
+      </li>
+
+    </ul>
+  
+    <script id="flux-empty-tmpl" type="text/html">
+      <input id="flux-empty" type="hidden" name="${name}" value="">
+    </script>
+    
+    <script id="flux-image-tmpl" type="text/html">
+      <li class="flux-item flux-image">
+        <img src="${img_src}" alt="${description}">
+        <a href="#" class="flux-button flux-remove-button" title="Remove image">&#215;</a>        
+        <textarea class="flux-caption" name="${description_name}">${description}</textarea>
+        <input class="flux-public-url" type="hidden" name="${public_url_name}" value="${public_url}">         
+      </li>    
+    </script>
+
+</li>

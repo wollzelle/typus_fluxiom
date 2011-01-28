@@ -1,5 +1,5 @@
 /*! ----------------------------------------------------------------------------
-* _flux_gallery_javascripts.js.erb
+* gallery.js
 * Copyright 2010 wollzelle GmbH (http://wollzelle.com). All rights reserved.
 * --------------------------------------------------------------------------- */
 
@@ -41,10 +41,9 @@ $(function() {
 
     el.parent().remove();        
 
-    // if no more assets available
+    // if no more assets available // fixme: only add once
     if ($(".flux-gallery .flux-image").length == 0) { 
-      var name  = '<%= "#{obj}[#{attribute}]" %>'; 
-      var input = '<input id="flux-gallery-empty" type="hidden" name="' + name + '" value="">';
+      var input = $('#flux-empty-tmpl').tmpl(fluxConfig);      
       $(".flux-gallery .flux-item").before(input);
     }
   });   
@@ -61,16 +60,20 @@ $(function() {
   
   $(document).bind('flux:updateGallery', function(event, images){
   
+    var format = fluxConfig.format,
+        name   = fluxConfig.name;
+  
     $(images).each(function(idx, item) {
-        
-      var img_src  = item.public_url.replace(/_.*/,'_f<%= geometry %>.jpg');
-      var obj      = '<%= "#{obj}[#{attribute}][]" %>';
-      var template = $('.flux-image-template').clone();
+
+      var data = {
+        img_src           : item.public_url.replace(/_.*/, '_' + format),
+        description       : item.description,
+        description_name  : name + '[][description]',        
+        public_url        : item.public_url,
+        public_url_name   : name + '[][public_url]'
+      };
       
-      template.removeClass('flux-image-template').addClass('flux-image');
-      template.children('img').attr('src', img_src).attr('alt', item.description);
-      template.children('.flux-caption').attr('name', obj + '[description]').val(item.description);
-      template.children('.flux-public-url').attr('name', obj + '[public_url]').val(item.public_url);
+      var template = $('#flux-image-tmpl').tmpl(data);
       
       template.insertBefore('.flux-item-add');   
       

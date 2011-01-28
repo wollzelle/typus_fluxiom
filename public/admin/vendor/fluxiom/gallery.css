@@ -1,5 +1,5 @@
 /*! ----------------------------------------------------------------------------
-* _flux_gallery_stylesheets.css.erb
+* gallery.css
 * Copyright 2010 wollzelle GmbH (http://wollzelle.com). All rights reserved.
 * --------------------------------------------------------------------------- */
 
@@ -19,7 +19,7 @@
           border-radius : 1em;
 }
 
-#fancybox-inner {
+#fancybox-content {
   background : #fff;
   border     : 1px solid #999;
 }
@@ -41,8 +41,8 @@
   list-style       : none;
   margin           : 5px !important;
   padding-bottom   : 19px;
-  width            : <%= width %>px;
-  height           : <%= height %>px;
+  width            : 170px;
+  height           : 100px;
   border           : 1px solid transparent;
   overflow         : hidden;
 
@@ -70,7 +70,7 @@
   color       : #666;
   position    : absolute;
   bottom      : 0;
-  width       : <%= width-8 %>px !important;
+  width       : 162px !important;
   height      : 1.2em;
   border      : 1px solid #fff;
   resize      : none;  
@@ -90,7 +90,7 @@
   background   : #fff !important;
   color        : #000;
   border-color : #999;
-  height       : <%= height / 2 %>px;
+  height       : 50px;
 }
 
 .flux-button {
@@ -112,9 +112,7 @@
 .flux-add-button {
   background  : #eee;   
   text-align  : center;
-  width       : <%= width %>px;
-  height      : <%= height %>px;      
-  line-height : <%= height %>px;    
+  line-height : 100px;    
   color       : #999;
   font-size   : 20px;
 }

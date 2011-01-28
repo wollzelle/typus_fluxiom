@@ -7,40 +7,34 @@ class FluxiomController < ApplicationController
     before_filter :authenticate
   end
 
-  layout 'fluxiom', :except => :list
-
   protect_from_forgery :only => [:create, :update, :destroy] 
 
   FLUXIOM_CONFIG = Fluxiom::Configuration.config
   DEFAULT_TAGS = Fluxiom::Configuration.config['default_tags'] || {}
 
 
-  #Show the asset chooser
+  # show the asset chooser
   def index
-    #
     @multiple   = params[:multiple] || false
     @callback_function = params[:callback] || "Fluxiom.insertImage"
     @assets ||= FluxiomAsset.search('')#, params[:term], params[:tags])
     
-    #select tags
+    # select tags
     @tags ||= begin
       tags = []
       @assets.each { |a| tags = tags | a.tags }
       tags
-    end
-    
+    end    
   end
 
-
   def list
-
     tags = "images" + (params[:tags] ? " #{params[:tags]}" : '')
     @alltags = FluxiomTag.allTags
     @assets = FluxiomAsset.search('', tags)#, params[:term], params[:tags])
     @baseURL = "#{(FLUXIOM_CONFIG['ssl'] ? 'http' : 'http')}://#{FLUXIOM_CONFIG['host']}"
     respond_to do |format|
         format.json
-        format.html# render :template => '/admin/flux_assets/list', :layout => false
+        format.html
     end
   end
 

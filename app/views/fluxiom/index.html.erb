@@ -1,54 +1,58 @@
-<% content_for :stylesheets do %>
-<style><%= render "stylesheets.css.erb" %></style>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fluxiom Assets</title>
 
-<% content_for :javascripts do %>
-<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" %>
-<%# javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>
-<script><%= render "javascripts.js.erb" %></script>
-<% end %>
+  <%= stylesheet_link_tag     "/admin/vendor/fluxiom/chooser.css" %>  
+  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js",
+                              "/admin/vendor/fluxiom/chooser.js" %>
+</head>
+<body>
 
-<div id="flux-asset-browser">
+  <div id="flux-asset-browser">
 
-  <form id="flux-form" action="<%= url_for(:action => 'list') %>" method="GET">
+    <form id="flux-form" action="<%= url_for(:action => 'list') %>" method="GET">
 
-    <div id="flux-toolbar">
+      <div id="flux-toolbar">
 
-      <div id="flux-tags">  
-    	  <% @tags.each do |tag| 
-    	    tagname = tag.tag
-    	    is_filter = (tag.tag == FluxiomAsset::FILTER_TAG)
-    	    class_name = (is_filter ? 'filter-tag' : '')
-    	  %>
-        <label class="flux-tag <%= class_name %>" for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
-    		  <input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>">
-    		  <%= tagname %>
-    		</label>
-    		<% end %>
-      </div>
-    
-      <div id="flux-actions">
-        <a href="#" id="flux-clear-button">clear selection</a>
-        <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
-      </div>
+        <div id="flux-tags">  
+      	  <% @tags.each do |tag| 
+      	    tagname = tag.tag
+      	    is_filter = (tag.tag == FluxiomAsset::FILTER_TAG)
+      	    class_name = (is_filter ? 'filter-tag' : '')
+      	  %>
+          <label class="flux-tag <%= class_name %>" for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
+      		  <input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>">
+      		  <%= tagname %>
+      		</label>
+      		<% end %>
+        </div>
 
-    </div>    
+        <div id="flux-actions">
+          <a href="#" id="flux-clear-button">clear selection</a>
+          <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
+        </div>
 
-    <div id="flux-assets">  
-      <ol>
-      <% @assets.each do |asset| %>
-        <% next unless asset.public_url %>
-      	<li class="flux-asset <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>">
-          <!-- <input type="checkbox" value="<%= asset.image_url %>" name="assets"> -->
-      	  <img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>">
-      	  <% if asset.description %>
-      	  <span class="caption"><%= asset.description %></span>
-      	  <% end %>
-      	</li>
-      <% end %>	  
-      </ol>
-    </div>
-  
-  </form>
+      </div><!--/flux-toolbar-->    
 
-</div>
+      <div id="flux-assets">  
+        <ol>
+        <% @assets.each do |asset| %>
+          <% next unless asset.public_url %>
+        	<li class="flux-asset <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>">
+        	  <img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>">
+        	  <% if asset.description %>
+        	  <span class="caption"><%= asset.description %></span>
+        	  <% end %>
+        	</li>
+        <% end %>	  
+        </ol>
+      </div><!--/flux-assets-->
+
+    </form>
+
+  </div>    
+
+</body>
+</html>
