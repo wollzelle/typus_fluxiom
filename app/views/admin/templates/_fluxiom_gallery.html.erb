@@ -49,7 +49,7 @@
       <% if @item[attribute].is_a? Array  %>
         <% @item[attribute].each do |img| %>    
           <li class="flux-item flux-image">      
-            <img src="<%= flux_image_for(img['public_url'], format) %>" alt="img['description']">      
+            <img src="<%= flux_image_for(img['public_url'], format) %>" alt="<%= img['description'] %>">      
             <a href="#" class="flux-button flux-remove-button" title="Remove image">&#215;</a>
             <% img.each do |key, value| %>
               <% case key %>
