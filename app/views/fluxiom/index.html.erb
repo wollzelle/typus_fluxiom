@@ -17,14 +17,18 @@
       <div id="flux-toolbar">
 
         <div id="flux-tags">  
-      	  <% @tags.each do |tag| 
-      	    tagname = tag.tag
-      	    is_filter = (tag.tag == FluxiomAsset::FILTER_TAG)
-      	    class_name = (is_filter ? 'filter-tag' : '')
-      	  %>
-          <label class="flux-tag <%= class_name %>" for="radio-<%= tagname.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
-      		  <input type="radio" id="radio-<%= tagname.parameterize %>" <%= "checked" if is_filter  %> class="<%= class_name %>" name="radio" value="tag_<%= tag.id %>">
-      		  <%= tagname %>
+          <% if @filter_tag 
+            tag = @filter_tag
+          %>
+          <label class="flux-tag filter-tag" for="radio-<%= tag.tag.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
+      		  <input type="radio" id="radio-<%= tag.tag.parameterize %>" "checked" class="filter-tag" name="radio" value="tag_<%= tag.id %>">
+      		  <%= tag.tag %>
+      		</label>
+          <% end %>
+      	  <% @tags.each do |tag| %>
+          <label class="flux-tag" for="radio-<%= tag.tag.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
+      		  <input type="radio" id="radio-<%= tag.tag.parameterize %>" name="radio" value="tag_<%= tag.id %>">
+      		  <%= tag.tag %>
       		</label>
       		<% end %>
         </div>
