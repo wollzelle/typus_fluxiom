@@ -5,7 +5,7 @@
   format        = "f#{geometry}.jpg"    
   obj           = @item.class.to_s.downcase
   base_name     = "#{obj}[#{attribute}]"
-  translations  = Typus::Globalize::Configuration.config["locales"] rescue nil  
+  translations  = Typus::Translate::Configuration.config["locales"] rescue nil  
   gallery_items = @item[attribute].delete_if {|x| x == ""} rescue nil
 %>
 
@@ -29,7 +29,7 @@
     var fluxConfig = {
       format        : '<%= format %>',
       base_name     : '<%= base_name %>',
-      translatable  : <%= !translations.nil? %>
+      translate     : <%= !translations.nil? %>
     };
   </script>
   <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js",

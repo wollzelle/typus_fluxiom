@@ -29,6 +29,7 @@ $(function() {
     'transitionIn'   : 'none',
     'transitionOut'  : 'none'    
   }
+
   var galleryIdx = $(".flux-gallery .flux-image").length;
   
   $('.flux-add-button').fancybox(fancyboxOptions);        
@@ -62,7 +63,7 @@ $(function() {
     
     var format       = fluxConfig.format,
         base_name    = fluxConfig.base_name,
-        translatable = fluxConfig.translatable,
+        translate    = fluxConfig.translate,
         count        = $(".flux-gallery .flux-image").length;
   
     $(images).each(function(idx, item) {
@@ -82,8 +83,8 @@ $(function() {
 
     });
 
-    if (translatable)
-      $(document).trigger('translatable:refresh');
+    if (translate)
+      $(document).trigger('translate:refresh');
 
     $.fancybox.close();                                 
 

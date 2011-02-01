@@ -7,7 +7,7 @@
     <textarea class="flux-caption" name="<%= "${base_name}[description]"%>">${description}</textarea>    
   <% else %>
   <% translations.each do |locale, title| %>
-     <textarea class="flux-caption translatable lang-<%= locale %>" name="<%= "${base_name}[description][#{locale}]" %>">${description}</textarea>
+     <textarea class="flux-caption translation lang-<%= locale %>" name="<%= "${base_name}[description][#{locale}]" %>">${description}</textarea>
     <% end %>
   <% end %>
   
