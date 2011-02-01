@@ -1,0 +1,15 @@
+<li class="flux-item flux-image">      
+
+  <img src="<%= flux_image_for(img['public_url'], format) %>">      
+  <a href="#" class="flux-button flux-remove-button" title="Remove image">&#215;</a>
+  
+    <input type="hidden" name="<%= "#{base_name}[public_url]"%>" value="<%= img["public_url"] %>">              
+    <% if translations.nil? %>
+      <textarea class="flux-caption" name="<%= "#{base_name}[description]"%>"><%= img["description"] %></textarea>
+    <% else %>
+      <% translations.each do |locale, title| %>
+        <textarea class="flux-caption translatable lang-<%= locale %>" name="<%= "#{base_name}[description][#{locale}]"%>"><%= img["description"]["#{locale}"] %></textarea>
+      <% end %>
+    <% end %>
+
+</li>

@@ -80,7 +80,7 @@ $(function() {
       data.push(img);        
     });        
 
-    parent.$(parent.document).trigger('flux:updateGallery', [data]);
+    parent.$(parent.document).trigger('flux:gallery:update', [data]);
 
   });            
 

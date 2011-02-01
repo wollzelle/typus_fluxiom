@@ -29,6 +29,7 @@ $(function() {
     'transitionIn'   : 'none',
     'transitionOut'  : 'none'    
   }
+  var galleryIdx = $(".flux-gallery .flux-image").length;
   
   $('.flux-add-button').fancybox(fancyboxOptions);        
 
@@ -37,15 +38,14 @@ $(function() {
     
   $('.flux-remove-button').live('click', function(e){        
     e.preventDefault();          
-    var el = $(this);        
-
-    el.parent().remove();        
+    
+    $(this).parent().remove();        
 
     // if no more assets available // fixme: only add once
     if ($(".flux-gallery .flux-image").length == 0) { 
-      var input = $('#flux-empty-tmpl').tmpl(fluxConfig);      
+      var input = $('#flux-empty-template').tmpl();      
       $(".flux-gallery .flux-item").before(input);
-    }
+    }  
   });   
    
   /* edit captions 
@@ -58,27 +58,34 @@ $(function() {
   /* update gallery with new images
   ------------------------------------- */  
   
-  $(document).bind('flux:updateGallery', function(event, images){
-  
-    var format = fluxConfig.format,
-        name   = fluxConfig.name;
+  $(document).bind('flux:gallery:update', function(event, images){
+    
+    var format       = fluxConfig.format,
+        base_name    = fluxConfig.base_name,
+        translatable = fluxConfig.translatable,
+        count        = $(".flux-gallery .flux-image").length;
   
     $(images).each(function(idx, item) {
 
       var data = {
-        img_src           : item.public_url.replace(/_.*/, '_' + format),
-        description       : item.description,
-        description_name  : name + '[][description]',        
-        public_url        : item.public_url,
-        public_url_name   : name + '[][public_url]'
+        img_src     : item.public_url.replace(/_.*/, '_' + format),
+        public_url  : item.public_url,
+        description : item.description,
+        base_name   : base_name + '[' + (galleryIdx++) + ']'
       };
-      
-      var template = $('#flux-image-tmpl').tmpl(data);
+
+      var template = $('#flux-image-template').tmpl(data);
       
       template.insertBefore('.flux-item-add');   
       
-      $.fancybox.close();                                 
+      $('#flux-empty').remove();
+
     });
+
+    if (translatable)
+      $(document).trigger('translatable:refresh');
+
+    $.fancybox.close();                                 
 
   });
 
