@@ -84,7 +84,7 @@ $(function() {
     });
 
     if (translate)
-      $(document).trigger('translate:refresh');
+      $(window).trigger('translate:refresh');
 
     $.fancybox.close();                                 
 
