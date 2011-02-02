@@ -12,7 +12,7 @@
 <% content_for :stylesheets do %>
 
   <!-- fluxiom css -->
-  <%= stylesheet_link_tag "/admin/vendor/fluxiom/gallery.css" %>  
+  <%= stylesheet_link_tag "/vendor/typus/fluxiom/gallery.css" %>  
   <style>    
     .flux-item          { width: <%= width %>; height: <%= height %>; }
     .flux-caption       { width: <%= width-8 %>px; }    
@@ -32,9 +32,7 @@
       translate     : <%= !translations.nil? %>
     };
   </script>
-  <%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js",
-                              "/admin/vendor/fluxiom/jquery.tmpl.js", 
-                              "/admin/vendor/fluxiom/gallery.js" %>
+  <%= javascript_include_tag  "/vendor/typus/fluxiom/jquery.tmpl.js", "/vendor/typus/fluxiom/gallery.js" %>
 
 <% end %>
 

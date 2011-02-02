@@ -34,6 +34,7 @@ class FluxiomController < ApplicationController
       tags
     end    
     
+    render :layout => false
     
   end
 

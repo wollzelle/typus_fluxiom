@@ -9,12 +9,13 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["T Koenig"]
-  s.date = %q{2011-01-28}
+  s.date = %q{2011-02-02}
   s.description = %q{typus loves fluxiom}
   s.email = %q{t.koenig@wollzelle.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.rdoc"
+    "README.rdoc",
+    "TODO"
   ]
   s.files = [
     "app/controllers/fluxiom_controller.rb",
@@ -22,20 +23,20 @@ Gem::Specification.new do |s|
     "app/models/fluxiom_resource.rb",
     "app/models/fluxiom_tag.rb",
     "app/models/fluxiom_user.rb",
-    "app/views/admin/templates/_flux_gallery.html.erb",
-    "app/views/admin/templates/_flux_gallery_javascripts.js.erb",
-    "app/views/admin/templates/_flux_gallery_stylesheets.css.erb",
-    "app/views/fluxiom/_javascripts.js.erb",
-    "app/views/fluxiom/_stylesheets.css.erb",
+    "app/views/admin/templates/_fluxiom_gallery.html.erb",
+    "app/views/admin/templates/_fluxiom_gallery_item.erb",
+    "app/views/admin/templates/_fluxiom_gallery_item_template.erb",
     "app/views/fluxiom/index.html.erb",
-    "app/views/layouts/fluxiom.html.erb",
     "config/routes.rb",
     "lib/fluxiom/configuration.rb",
     "lib/fluxiom/engine.rb",
     "lib/fluxiom/helpers.rb",
     "lib/typus_fluxiom.rb",
-    "public/admin/vendor/fluxiom/gallery.css",
-    "public/admin/vendor/fluxiom/gallery.js"
+    "public/vendor/typus/fluxiom/chooser.css",
+    "public/vendor/typus/fluxiom/chooser.js",
+    "public/vendor/typus/fluxiom/gallery.css",
+    "public/vendor/typus/fluxiom/gallery.js",
+    "public/vendor/typus/fluxiom/jquery.tmpl.js"
   ]
   s.homepage = %q{http://wollzelle.com}
   s.require_paths = ["lib"]
