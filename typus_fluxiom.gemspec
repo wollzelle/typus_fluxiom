@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{typus_fluxiom}
-  s.version = "2.0.0"
+  s.version = "2.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["T Koenig"]
-  s.date = %q{2011-02-02}
+  s.date = %q{2011-04-22}
   s.description = %q{typus loves fluxiom}
   s.email = %q{t.koenig@wollzelle.com}
   s.extra_rdoc_files = [

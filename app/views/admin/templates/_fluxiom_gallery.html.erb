@@ -3,7 +3,7 @@
   height        = Fluxiom::Configuration.config['preview_height'] || 100
   geometry      = "#{width}x#{height}"  
   format        = "f#{geometry}.jpg"    
-  obj           = @item.class.to_s.downcase
+  obj           = dom_class(@item.class)
   base_name     = "#{obj}[#{attribute}]"
   translations  = Typus::Translate::Configuration.config["locales"] rescue nil  
   gallery_items = @item[attribute].delete_if {|x| x == ""} rescue nil
