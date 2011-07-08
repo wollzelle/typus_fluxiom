@@ -15,25 +15,23 @@ class FluxiomController < ApplicationController
 
   # show the asset chooser
   def index
-    @multiple   = params[:multiple] || false
-    @callback_function = params[:callback] || "Fluxiom.insertImage"
-    @assets ||= FluxiomAsset.search('')#, params[:term], params[:tags])
-    
-    # select tags
-    @tags ||= begin
-      tags = []
-      @assets.each do |a| 
-        #get the asset tags – if there is a filter tag defined in the config, remove it from the main tags and assign it to @filter_tag
-        asset_tags = a.tags.delete_if { |t|
-          is_filter_tag = t.tag == FluxiomAsset::FILTER_TAG
-          @filter_tag = t if is_filter_tag
-          is_filter_tag
-        } if FluxiomAsset::FILTER_TAG
-        tags = tags | asset_tags
-      end
-      tags
-    end    
-    
+    # @assets ||= FluxiomAsset.search('')#, params[:term], params[:tags])
+    # 
+    # # select tags
+    # @tags ||= begin
+    #   tags = []
+    #   @assets.each do |a| 
+    #     #get the asset tags – if there is a filter tag defined in the config, remove it from the main tags and assign it to @filter_tag
+    #     asset_tags = a.tags.delete_if { |t|
+    #       is_filter_tag = t.tag == FluxiomAsset::FILTER_TAG
+    #       @filter_tag = t if is_filter_tag
+    #       is_filter_tag
+    #     } if FluxiomAsset::FILTER_TAG
+    #     tags = tags | asset_tags
+    #   end
+    #   tags
+    # end    
+    # 
     render :layout => false
     
   end

@@ -5,8 +5,12 @@
   <title>Fluxiom Assets</title>
 
   <%= stylesheet_link_tag     "/vendor/typus/fluxiom/chooser.css" %>  
-  <%= javascript_include_tag  "http://code.jquery.com/jquery-1.6.1.min.js",
-                              "/vendor/typus/fluxiom/chooser.js" %>
+    <script>
+  var fluxiom_url="<%= Fluxiom::Configuration.config['host'] %>";
+  </script>
+  <%= javascript_include_tag  "http://code.jquery.com/jquery-1.6.1.min.js", "http://documentcloud.github.com/underscore/underscore-min.js",  "/vendor/typus/fluxiom/backbone.js",
+                             "/vendor/typus/fluxiom/fluxiom.js", "/vendor/typus/fluxiom/chooser.js"
+                     %>
 </head>
 <body>
 
@@ -17,20 +21,8 @@
       <div id="flux-toolbar">
 
         <div id="flux-tags">  
-          <% if @filter_tag 
-            tag = @filter_tag
-          %>
-          <label class="flux-tag filter-tag" for="radio-<%= tag.tag.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
-      		  <input type="radio" id="radio-<%= tag.tag.parameterize %>" "checked" class="filter-tag" name="radio" value="tag_<%= tag.id %>">
-      		  <%= tag.tag %>
-      		</label>
-          <% end %>
-      	  <% @tags.each do |tag| %>
-          <label class="flux-tag" for="radio-<%= tag.tag.parameterize %>" data-tag-filter="tag_<%= tag.id %>">
-      		  <input type="radio" id="radio-<%= tag.tag.parameterize %>" name="radio" value="tag_<%= tag.id %>">
-      		  <%= tag.tag %>
-      		</label>
-      		<% end %>
+      	  <%# @tags.each do |tag| %>
+      		<%# end %>
         </div>
 
         <div id="flux-actions">
@@ -42,16 +34,8 @@
 
       <div id="flux-assets">  
         <ol>
-        <% @assets.each do |asset| %>
-          <% next unless asset.public_url %>
-        	<li class="flux-asset <%= asset.tags.collect { |t| "tag_#{t.id}"}.join(' ') %>">
-        	  <img src="<%= asset.large_thumbnail_url %>" data-public-url="<%= asset.image_url %>" data-description="<%= asset.description %>">
-        	  <% if asset.description %>
-        	  <span class="caption"><%= asset.description %></span>
-        	  <% end %>
-        	</li>
-        <% end %>	  
         </ol>
+        <div id="flux-assets-more"> Load more items </div>
       </div><!--/flux-assets-->
 
     </form>

@@ -35,7 +35,7 @@ $(function() {
   //   stop:   updateSelectedCount
   // });
   
-  $('.flux-asset').click(function(e){
+  $('.flux-asset').live('click', function(e){
     $(this).toggleClass('ui-selected');
     updateSelectedCount();
   });
