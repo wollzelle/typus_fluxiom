@@ -23,7 +23,9 @@
   <!-- fluxiom css -->
   <%= stylesheet_link_tag "/vendor/typus/fluxiom/gallery.css" %>  
   <style>    
-    .flux-item          { width: <%= width %>px; height: <%= height %>px; line-height: <%= height %>px !important; <%= css %>}
+    .flux-item          { width: <%= width %>px; height: <%= height %>px;}
+    .flux-image          { line-height: <%= height %>px !important; <%= css %>}
+    
         .flux-caption       { width: <%= width-8 %>px; }    
     .flux-caption:focus { height: <%= height / 2 %>px; }    
     .flux-add-button    { line-height: <%= height %>px; }
