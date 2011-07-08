@@ -1,8 +1,17 @@
 <% 
   width         = Fluxiom::Configuration.config['preview_width'] || 100
   height        = Fluxiom::Configuration.config['preview_height'] || 100
+  use_fit       = Fluxiom::Configuration.config['fit'] || false
+  fill          = "f"
+  border        = ""
+
+  if use_fit
+    fill        = "" 
+    css      = "border: 1px dashed #ddd; !important;"
+  end
+  
   geometry      = "#{width}x#{height}"  
-  format        = "f#{geometry}.jpg"    
+  format        = "#{fill}#{geometry}.jpg"    
   obj           = dom_class(@item.class)
   base_name     = "#{obj}[#{attribute}]"
   translations  = Typus::Translate::Configuration.config["locales"] rescue nil  
@@ -14,8 +23,8 @@
   <!-- fluxiom css -->
   <%= stylesheet_link_tag "/vendor/typus/fluxiom/gallery.css" %>  
   <style>    
-    .flux-item          { width: <%= width %>; height: <%= height %>; }
-    .flux-caption       { width: <%= width-8 %>px; }    
+    .flux-item          { width: <%= width %>px; height: <%= height %>px; line-height: <%= height %>px !important; <%= css %>}
+        .flux-caption       { width: <%= width-8 %>px; }    
     .flux-caption:focus { height: <%= height / 2 %>px; }    
     .flux-add-button    { line-height: <%= height %>px; }
   </style>

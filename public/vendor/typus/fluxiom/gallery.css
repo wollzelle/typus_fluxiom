@@ -46,9 +46,14 @@
   border           : 1px solid transparent;
   overflow         : hidden;
 
+  text-align: center; 
   -webkit-user-select : none;
      -moz-user-select : none;
           user-select : none;
+}
+
+.flux-item img {
+  vertical-align:middle;
 }
 
 .flux-image-template {
@@ -71,7 +76,7 @@
   position    : absolute;
   bottom      : 0;
   left        : 0;
-  width       : 162px !important;
+  width       : 96% !important;
   height      : 1.2em;
   border      : 1px solid #fff;
   resize      : none;  
