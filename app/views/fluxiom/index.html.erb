@@ -3,44 +3,51 @@
 <head>
   <meta charset="utf-8">
   <title>Fluxiom Assets</title>
-
-  <%= stylesheet_link_tag     "/vendor/typus/fluxiom/chooser.css" %>  
-    <script>
-  var fluxiom_url="<%= Fluxiom::Configuration.config['host'] %>";
-  </script>
-  <%= javascript_include_tag  "http://code.jquery.com/jquery-1.6.1.min.js", "http://documentcloud.github.com/underscore/underscore-min.js",  "/vendor/typus/fluxiom/backbone.js",
-                             "/vendor/typus/fluxiom/fluxiom.js", "/vendor/typus/fluxiom/chooser.js"
-                     %>
+  <%= stylesheet_link_tag "/vendor/typus/fluxiom/chooser/chooser.css" %>  
 </head>
 <body>
-
-  <div id="flux-asset-browser">
-
+  <div id="flux-asset-chooser">
     <form id="flux-form" action="<%= url_for(:action => 'list') %>" method="GET">
-
       <div id="flux-toolbar">
-
         <div id="flux-tags">  
-      	  <%# @tags.each do |tag| %>
-      		<%# end %>
+          <!-- tags... -->
         </div>
-
         <div id="flux-actions">
           <a href="#" id="flux-clear-button">clear selection</a>
           <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
         </div>
-
-      </div><!--/flux-toolbar-->    
-
+      </div>
       <div id="flux-assets">  
         <ol>
+          <!-- assets... -->
         </ol>
-        <div id="flux-assets-more"> Load more items </div>
-      </div><!--/flux-assets-->
-
+      </div>
     </form>
+  </div>
 
-  </div>    
+  <!-- // <script> var fluxiomUrl = "<%= Fluxiom::Configuration.config['host'] %>"; </script> -->
+  <script> var fluxiomUrl = "http://api:api1234@tho.flux.local:2000"; </script>
+
+  <%= javascript_include_tag  "/vendor/typus/fluxiom/vendor/jquery.js",
+                              "/vendor/typus/fluxiom/vendor/jquery.inview.js",
+                              "/vendor/typus/fluxiom/vendor/underscore.js",
+                              "/vendor/typus/fluxiom/vendor/backbone.js",
+                              "/vendor/typus/fluxiom/fluxiom.js",
+                              "/vendor/typus/fluxiom/chooser/asset.js",
+                              "/vendor/typus/fluxiom/chooser/tag.js",
+                              "/vendor/typus/fluxiom/chooser/chooser.js"
+  %>
+
+  <script id="flux-tag-template" type="text/template">
+    <a class="flux-tag" data-tag-id="{{ id }}">{{ tag }}</a>
+  </script>
+
+  <script id="flux-asset-template" type="text/template">
+    <li class="flux-asset {{ classes }}">
+      <img src="{{ img_url }}" data-public-url="{{ public_url }}" data-description="{{ description }}">
+      <span class="caption">{{ description }}</span>
+    </li>
+  </script>
 
 </body>
 </html>

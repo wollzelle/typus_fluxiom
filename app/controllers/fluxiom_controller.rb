@@ -2,10 +2,10 @@ class FluxiomController < ApplicationController
 
   before_filter :set_cache
 
-  if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
-    include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
-    before_filter :authenticate
-  end
+  # if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
+  #   include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
+  #   before_filter :authenticate
+  # end
 
   protect_from_forgery :only => [:create, :update, :destroy] 
 
@@ -33,7 +33,6 @@ class FluxiomController < ApplicationController
     # end    
     # 
     render :layout => false
-    
   end
 
   def list

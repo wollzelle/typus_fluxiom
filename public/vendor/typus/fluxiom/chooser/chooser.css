@@ -50,6 +50,10 @@ html, body {
   -webkit-border-radius : 15px;
      -moz-border-radius : 15px;
           border-radius : 15px;
+
+  -webkit-transition: all .3s;
+     -moz-transition: all .3s;
+          transition: all .3s;
 }
 
 .flux-tag input { 
@@ -127,6 +131,11 @@ html, body {
   -webkit-border-radius : 4px;
      -moz-border-radius : 4px;
           border-radius : 4px;
+
+
+  -webkit-transition : border .1s linear;
+     -moz-transition : border .1s linear;  
+          transition : border .1s linear;          
 }
 
 .flux-asset img {
@@ -153,30 +162,19 @@ html, body {
      -moz-border-radius : 10px;
           border-radius : 10px;
 
-  -webkit-transition : opacity .2s linear;
-     -moz-transition : opacity .2s linear;  
-          transition : opacity .2s linear;
+  -webkit-transition : opacity .1s linear;
+     -moz-transition : opacity .1s linear;  
+          transition : opacity .1s linear;
 }
 
-.flux-asset.ui-selected .caption {
+.flux-asset.has-caption.selected .caption {
   opacity: 1;
 }
 
-.ui-selecting {
-  border-color : #eee;
-}
-
-.ui-selected {
+.selected {
   border : 3px solid #3366cc;
 
   -webkit-box-shadow : 0 0 4px #99ccff;
      -moz-box-shadow : 0 0 4px #99ccff;
           box-shadow : 0 0 4px #99ccff;
-}
-
-.ui-selectable-helper { 
-  position   : absolute; 
-  z-index    : 100; 
-  background : #000;
-  opacity    : 0.2;
 }
