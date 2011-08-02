@@ -1,6 +1,6 @@
 <% 
-  width         = Fluxiom::Configuration.config['preview_width'] || 100
-  height        = Fluxiom::Configuration.config['preview_height'] || 100
+  width         = Fluxiom.config.preview_width || 100
+  height        = Fluxiom.config.preview_height || 100
   geometry      = "#{width}x#{height}"  
   format        = "f#{geometry}.jpg"    
   obj           = dom_class(@item.class)

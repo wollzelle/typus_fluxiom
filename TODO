@@ -1,7 +1,7 @@
-Refactor:
+TODO:
 
-- use typus jQuery UI
-	http://goo.gl/24SBh
-	
-- use new namespace (admin/vendor > vendor/typus)
-	http://goo.gl/Eyrcv
+- Port gallery code to Backbone
+
+- Refactor selected assets 
+
+- Remove wrapper divs from Backbone views?

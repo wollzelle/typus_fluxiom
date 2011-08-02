@@ -13,7 +13,7 @@ Flux.Views.Chooser = Backbone.View.extend({
   },
     
   initialize: function(){
-    Flux.selectedAssets.bind('all', _.bind(this.updateSelectedCount, this));
+    Flux.selectedAssets.bind('all', _.bind(this.updateSelectedCount, this));    
   },
 
   updateSelectedCount: function(){

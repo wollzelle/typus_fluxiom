@@ -10,7 +10,7 @@ module Fluxiom
       file = Rails.root.join("config/fluxiom.yml")
       raise "Error make sure the configuration file (#{file}) exists!" unless File.exists?(file)
       if data = YAML::load_file(file)
-        @@config = data
+        @@config = OpenStruct.new data
       end
 
       return @@config
@@ -20,6 +20,10 @@ module Fluxiom
 
 
 
+  end
+  
+  def self.config
+    Fluxiom::Configuration.config
   end
 
 end

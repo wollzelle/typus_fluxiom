@@ -6,17 +6,35 @@
 // Models
 // ------
 
-Flux.Models.Tag = Backbone.Model.extend();
+Flux.Models.Tag = Backbone.Model.extend({
+  
+  defaults: {
+    selected: false
+  },
+  
+  initialize: function(){
+    Flux.assets.bind('reset', _.bind(this.handleReset, this));
+  },
+
+  handleReset: function(){
+    this.set({ selected:false });
+  }
+  
+});
 
 Flux.Models.Tags = Backbone.Collection.extend({ 
 
   model: Flux.Models.Tag,
-
-  url: Flux.Config.url + '/api/tags.json',
+  
+  url: Flux.Config.apiUrl + '/tags.json',
   
   initialize: function(){
-    this.fetch({ dataType:'jsonp' });
+    this.fetch({ dataType:Flux.Config.dataType });
     Flux.tagList = new Flux.Views.TagList({ collection: this });    
+  },
+  
+  parse: function(res, xhr) {
+    return _.reject(res, function(tag){ return tag.documents_count == 0; });
   }
 
 });
@@ -39,48 +57,60 @@ Flux.Views.TagList = Backbone.View.extend({
   
   addAll: function(asset){
     this.collection.each(_.bind(this.addOne, this));
-  },
-  
-  clearSelection: function(){
-    this.$('a').removeClass('active');
   }
-  
+
 });
 
 
 Flux.Views.Tag = Backbone.View.extend({
     
   events: {
-    'click' : 'filter'
+    'click .flux-tag' : 'filter'
   },
-      
+  
+  paused: false,
+
   initialize: function() {
+    this.model.bind('change', _.bind(this.render, this));
     this.render();
   },
   
-  render: function() {
+  render: function(){
     var data = {
-      id  : this.model.get('id'),
-      tag : this.model.escape('tag')
-    };    
+      id: this.model.get('id'),
+      tag: this.model.escape('tag'),
+      classes: this.model.get('selected') ? 'active' : ''
+    };  
     var template = _.template( $("#flux-tag-template").html(), data);
     $(this.el).html(template);
   },
   
   filter: function(e){
-    var el = $(e.target);
+    if (this.paused) return;
+
+    var el = $(e.currentTarget);
     var tag = el.data('tag-id');
 
-    if (el.hasClass('active')) {      
-      Flux.tagList.clearSelection();
-      Flux.assets.fetchAssets();
+    if (!this.model.get('selected')) {
+      // fetch assets for tag
+      Flux.assets.bind('loaded', _.bind(this.onLoaded, this));
+      Flux.assets.fetchTag(tag);
+      this.paused = true;      
+    } else {
+      // clear filter
+      Flux.assets.fetchTag();
+      this.model.set({ selected: false });
+      this.paused = false;
     }
-    else {
-      Flux.tagList.clearSelection();
-      el.addClass('active');
-      Flux.assets.fetchAssets({ tag: tag });
-    }
+    
     e.preventDefault();
+  },
+  
+  onLoaded: function(collection){
+    Flux.assets.unbind('loaded');
+    this.model.set({ selected: true });
+    this.paused = false;
   }
+  
 
 });

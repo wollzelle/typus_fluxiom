@@ -1,57 +1,60 @@
 class FluxiomController < ApplicationController
 
   before_filter :set_cache
-
-  # if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
-  #   include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
-  #   before_filter :authenticate
-  # end
-
-  protect_from_forgery :only => [:create, :update, :destroy] 
-
-  FLUXIOM_CONFIG = Fluxiom::Configuration.config
-  DEFAULT_TAGS = Fluxiom::Configuration.config['default_tags'] || {}
+  before_filter :prepare_params
 
 
   # show the asset chooser
   def index
-    # @assets ||= FluxiomAsset.search('')#, params[:term], params[:tags])
-    # 
-    # # select tags
-    # @tags ||= begin
-    #   tags = []
-    #   @assets.each do |a| 
-    #     #get the asset tags – if there is a filter tag defined in the config, remove it from the main tags and assign it to @filter_tag
-    #     asset_tags = a.tags.delete_if { |t|
-    #       is_filter_tag = t.tag == FluxiomAsset::FILTER_TAG
-    #       @filter_tag = t if is_filter_tag
-    #       is_filter_tag
-    #     } if FluxiomAsset::FILTER_TAG
-    #     tags = tags | asset_tags
-    #   end
-    #   tags
-    # end    
-    # 
     render :layout => false
   end
 
-  def list
-    tags = "images" + (params[:tags] ? " #{params[:tags]}" : '')
-    @alltags = FluxiomTag.allTags
-    @assets = FluxiomAsset.search('', tags)#, params[:term], params[:tags])
-    @baseURL = "#{(FLUXIOM_CONFIG['ssl'] ? 'http' : 'http')}://#{FLUXIOM_CONFIG['host']}"
+  def assets
     respond_to do |format|
-        format.json
-        format.html
+      format.json { render :json => proxy_call("/assets.json?#{request.query_string}") }
     end
   end
 
   def tags
-    render :text => FluxiomTag.allTags.to_json, :layout => false
+    respond_to do |format|
+      format.json { render :json => proxy_call('/tags.json') }
+    end
   end
 
+
+
+  private
+
+  def prepare_params
+    return if @base_url
+    @use_proxy ||= Fluxiom.config.proxy
+    @ssl ||= Fluxiom.config.ssl
+    @scheme ||= @ssl ? 'https' : 'http'
+    @host = Fluxiom.config.host 
+    @url ||= begin
+      if @use_proxy
+        "#{@scheme}://#{Fluxiom.config.user}:#{Fluxiom.config.password}@#{Fluxiom.config.host}/api"
+      else
+        "#{@scheme}://#{Fluxiom.config.host}/api"
+      end
+    end
+    @api_url ||= @use_proxy ? '/fluxiom' : @url
+    @base_url = "#{@scheme}://#{@host}"
+    
+  end
+
+  def proxy_call(path)
+    u = URI.parse(@url)
+    http = Net::HTTP.new(u.host,u.port)
+    req = Net::HTTP::Get.new(u.path + path)
+    http.use_ssl = @ssl
+    req.basic_auth Fluxiom.config.user, Fluxiom.config.password
+    response = http.request(req)
+    return response.body
+  end
+  
   def set_cache
-    response.headers['Cache-Control'] = 'public, max-age=300' unless Rails.env.development?
+    response.headers['Cache-Control'] = 'public, max-age=30' unless Rails.env.development?
   end
-
+  
 end

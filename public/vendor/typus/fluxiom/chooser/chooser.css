@@ -178,3 +178,19 @@ html, body {
      -moz-box-shadow : 0 0 4px #99ccff;
           box-shadow : 0 0 4px #99ccff;
 }
+
+#flux-loader {
+  clear: both;
+  display: block;
+  float: right;
+  width: 50px;
+  padding: 15px 15px 15px 40px;
+  background: #fff9d8 url('spinner.gif') no-repeat 15px 50%;
+  border-radius: 5px 5px 0 0;
+  opacity: 0;
+/*  -webkit-transition: opacity .5s;*/
+}
+
+#flux-loader.active {
+  opacity: 1;
+}

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :fluxiom, :only => [:index] do
-    get :list, :on => :collection
+    get :assets, :on => :collection
+    get :tags, :on => :collection
   end
 end

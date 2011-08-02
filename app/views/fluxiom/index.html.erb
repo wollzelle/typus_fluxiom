@@ -7,29 +7,31 @@
 </head>
 <body>
   <div id="flux-asset-chooser">
-    <form id="flux-form" action="<%= url_for(:action => 'list') %>" method="GET">
-      <div id="flux-toolbar">
-        <div id="flux-tags">  
-          <!-- tags... -->
-        </div>
-        <div id="flux-actions">
-          <a href="#" id="flux-clear-button">clear selection</a>
-          <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
-        </div>
+    <div id="flux-toolbar">
+      <div id="flux-tags">  
+        <!-- tags... -->
       </div>
-      <div id="flux-assets">  
-        <ol>
-          <!-- assets... -->
-        </ol>
+      <div id="flux-actions">
+        <a href="#" id="flux-clear-button">clear selection</a>
+        <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
       </div>
-    </form>
+    </div>
+    <div id="flux-assets">  
+      <ol>
+        <!-- assets... -->
+      </ol>
+      <a id="flux-loader">Loading</a>
+    </div>
   </div>
 
-  <!-- // <script> var fluxiomUrl = "<%= Fluxiom::Configuration.config['host'] %>"; </script> -->
-  <script> var fluxiomUrl = "http://api:api1234@tho.flux.local:2000"; </script>
+  <script> 
+  var fluxApiUrl = "<%= @api_url %>"; 
+  var fluxBaseUrl = "<%= @base_url %>";
+  var fluxUseProxy = <%= @use_proxy %>;
+  </script>
 
   <%= javascript_include_tag  "/vendor/typus/fluxiom/vendor/jquery.js",
-                              "/vendor/typus/fluxiom/vendor/jquery.inview.js",
+                              "/vendor/typus/fluxiom/vendor/jquery.viewport.js",
                               "/vendor/typus/fluxiom/vendor/underscore.js",
                               "/vendor/typus/fluxiom/vendor/backbone.js",
                               "/vendor/typus/fluxiom/fluxiom.js",
@@ -39,7 +41,7 @@
   %>
 
   <script id="flux-tag-template" type="text/template">
-    <a class="flux-tag" data-tag-id="{{ id }}">{{ tag }}</a>
+    <a class="flux-tag {{classes}}" data-tag-id="{{ id }}"><strong>{{ tag }}</strong> </a>
   </script>
 
   <script id="flux-asset-template" type="text/template">
@@ -48,6 +50,5 @@
       <span class="caption">{{ description }}</span>
     </li>
   </script>
-
 </body>
 </html>
