@@ -2,6 +2,4 @@ TODO:
 
 - Port gallery code to Backbone
 
-- Refactor selected assets 
-
 - Remove wrapper divs from Backbone views

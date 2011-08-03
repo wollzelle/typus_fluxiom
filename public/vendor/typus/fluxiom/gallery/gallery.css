@@ -6,6 +6,11 @@
 /* fancybox overlay
 ------------------------------------- */
 
+/* prevent scrolling parent window while overlay is open */
+body.fancybox-overlay {
+  overflow: hidden;
+}
+
 .fancy-bg {
   display : none !important;
 }

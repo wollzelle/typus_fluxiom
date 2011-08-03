@@ -25,14 +25,23 @@ $(function() {
     'height'         : '80%',
     'padding'        : 0,
     'margin'         : 0,
-    'overlayOpacity' : .3,
+    'overlayOpacity' : 0.3,
     'transitionIn'   : 'none',
-    'transitionOut'  : 'none'    
-  }
+    'transitionOut'  : 'none',
+    'onStart'        : function(){
+      $('body').addClass('fancybox-overlay');
+    },
+    'onClosed'       : function(){
+      $('body').removeClass('fancybox-overlay');
+    }
+  };
 
   var galleryIdx = $(".flux-gallery .flux-image").length;
-  
-  $('.flux-add-button').fancybox(fancyboxOptions);        
+    
+  $('.flux-add-button').bind('click', function(e){
+    $.fancybox(fancyboxOptions);
+    e.preventDefault();
+  });
 
   /* remove item
   ------------------------------------- */
@@ -88,8 +97,7 @@ $(function() {
     if (translate)
       $(window).trigger('translate:refresh');
 
-    $.fancybox.close();                                 
-
+    $.fancybox.close();
   });
 
 });

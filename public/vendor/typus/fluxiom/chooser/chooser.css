@@ -6,6 +6,11 @@
 /* reset
 ------------------------------------- */
 
+html {
+  /* force a scrollbar, less jumpy */
+  overflow-y: scroll;
+}
+
 html, body {
   margin      : 0;
   padding     : 0;
@@ -31,6 +36,7 @@ html, body {
   float       : left;
   margin-left : 20px;
   width       : 65%;
+  white-space : nowrap;
 }
 
 .flux-tag {
@@ -64,13 +70,6 @@ html, body {
   background : #777;
   border-color: #777;
   color: #fff;
-}
-
-.filter-tag {
-  background   : none;
-  border-color : #777;
-  color        : #777;
-  cursor       : default;
 }
 
 #flux-actions {
