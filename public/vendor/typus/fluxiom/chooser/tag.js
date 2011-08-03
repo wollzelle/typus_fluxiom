@@ -47,7 +47,6 @@ Flux.Views.TagList = Backbone.View.extend({
   el: $('#flux-tags'),
   
   initialize: function(){
-    // this.collection.bind('add', _.bind(this.addOne, this));
     this.collection.bind('reset', _.bind(this.addAll, this));
   },
   
@@ -111,6 +110,5 @@ Flux.Views.Tag = Backbone.View.extend({
     this.model.set({ selected: true });
     this.paused = false;
   }
-  
 
 });

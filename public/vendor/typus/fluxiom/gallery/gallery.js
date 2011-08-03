@@ -68,7 +68,7 @@ $(function() {
 
     $(images).each(function(idx, item) {
     
-      var item = item.attributes; // FIXME: temporary, replace with Backbone
+      var item = item.attributes;
     
       var data = {
         img_src     : item.public_url.replace(/_.*/, '_' + format),

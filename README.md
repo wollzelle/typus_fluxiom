@@ -6,11 +6,13 @@ https://github.com/wollzelle/typus_fluxiom
 
 ## Installation
 
-  gem 'typus_fluxiom'
+In your `Gemfile`:
+
+    gem 'typus_fluxiom'
 
 ## Configuration
 
-`config/fluxiom.yml`:
+In `config/fluxiom.yml`:
 
     host: account.fluxiom.com
     user: user

@@ -8,8 +8,8 @@ Flux.Views.Chooser = Backbone.View.extend({
   el: '#flux-asset-chooser',
   
   events: {
-    'click #flux-clear-button'  : 'clearSelection',
-    'click #flux-use-button'    : 'useAssets'
+    'click #flux-clear-button' : 'clearSelection',
+    'click #flux-use-button'   : 'useAssets'
   },
     
   initialize: function(){
@@ -17,9 +17,9 @@ Flux.Views.Chooser = Backbone.View.extend({
   },
 
   updateSelectedCount: function(){
-    var button     = $('#flux-use-button'),
-        buttonText = button.data('default-text'),
-        count      = Flux.selectedAssets.length;
+    var button     = $('#flux-use-button');
+    var buttonText = button.data('default-text');
+    var count      = Flux.selectedAssets.length;
     
     if (count > 0)
       button.val(buttonText + ' (' + count + ')').addClass('active');
