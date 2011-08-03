@@ -5,24 +5,20 @@
 
 Gem::Specification.new do |s|
   s.name = %q{typus_fluxiom}
-  s.version = "2.1.0"
+  s.version = "3.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["T Koenig"]
-  s.date = %q{2011-05-31}
+  s.authors = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
+  s.date = %q{2011-08-03}
   s.description = %q{typus loves fluxiom}
-  s.email = %q{t.koenig@wollzelle.com}
+  s.email = %q{team@wollzelle.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.rdoc",
+    "README.md",
     "TODO"
   ]
   s.files = [
     "app/controllers/fluxiom_controller.rb",
-    "app/models/fluxiom_asset.rb",
-    "app/models/fluxiom_resource.rb",
-    "app/models/fluxiom_tag.rb",
-    "app/models/fluxiom_user.rb",
     "app/views/admin/templates/_fluxiom_gallery.html.erb",
     "app/views/admin/templates/_fluxiom_gallery_item.erb",
     "app/views/admin/templates/_fluxiom_gallery_item_template.erb",
@@ -32,15 +28,23 @@ Gem::Specification.new do |s|
     "lib/fluxiom/engine.rb",
     "lib/fluxiom/helpers.rb",
     "lib/typus_fluxiom.rb",
-    "public/vendor/typus/fluxiom/chooser.css",
-    "public/vendor/typus/fluxiom/chooser.js",
-    "public/vendor/typus/fluxiom/gallery.css",
-    "public/vendor/typus/fluxiom/gallery.js",
-    "public/vendor/typus/fluxiom/jquery.tmpl.js"
+    "public/vendor/typus/fluxiom/chooser/asset.js",
+    "public/vendor/typus/fluxiom/chooser/chooser.css",
+    "public/vendor/typus/fluxiom/chooser/chooser.js",
+    "public/vendor/typus/fluxiom/chooser/spinner.gif",
+    "public/vendor/typus/fluxiom/chooser/tag.js",
+    "public/vendor/typus/fluxiom/fluxiom.js",
+    "public/vendor/typus/fluxiom/gallery/gallery.css",
+    "public/vendor/typus/fluxiom/gallery/gallery.js",
+    "public/vendor/typus/fluxiom/vendor/backbone.js",
+    "public/vendor/typus/fluxiom/vendor/jquery.js",
+    "public/vendor/typus/fluxiom/vendor/jquery.tmpl.js",
+    "public/vendor/typus/fluxiom/vendor/jquery.viewport.js",
+    "public/vendor/typus/fluxiom/vendor/underscore.js"
   ]
   s.homepage = %q{http://wollzelle.com}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{fluxiom loves typus}
   s.test_files = [
     "test/helper.rb",
@@ -48,6 +52,7 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then

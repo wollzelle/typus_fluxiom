@@ -10,7 +10,7 @@ begin
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*", "{public}/**/*"]
     gem.email = "team@wollzelle.com"
     gem.homepage = "http://wollzelle.com"
-    gem.authors = ["Thomas König", "William Meleyal", "I.C. Wiener"]
+    gem.authors = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
