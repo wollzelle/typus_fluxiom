@@ -33,9 +33,9 @@ class FluxiomController < ApplicationController
     @host = Fluxiom.config.host 
     @url ||= begin
       if @use_proxy
-        "#{@scheme}://#{Fluxiom.config.user}:#{Fluxiom.config.password}@#{Fluxiom.config.host}/api"
-      else
         "#{@scheme}://#{Fluxiom.config.host}/api"
+      else
+        "#{@scheme}://#{Fluxiom.config.user}:#{Fluxiom.config.password}@#{Fluxiom.config.host}/api"
       end
     end
     @api_url ||= @use_proxy ? '/fluxiom' : @url

@@ -113,8 +113,7 @@ Flux.Views.Asset = Backbone.View.extend({
   initialize: function() {
     this.render();
     var id = this.model.get('id');
-    var selected = Flux.selectedAssets.pluck('id');
-    var present = _.include(selected, id);
+    var present = Flux.selectedAssets.get(id);
     if (present) this.select();
   },
 
@@ -132,8 +131,7 @@ Flux.Views.Asset = Backbone.View.extend({
   
   select: function(e){    
     var id = this.model.get('id');
-    var selected = Flux.selectedAssets.pluck('id');
-    var present = _.include(selected, id);
+    var present = Flux.selectedAssets.get(id);
 
     if (this.model.get('selected')) {
       $(this.el).find('.flux-asset').removeClass('selected');

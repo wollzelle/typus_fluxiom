@@ -8,9 +8,9 @@ begin
     gem.summary = %Q{fluxiom loves typus}
     gem.description = %Q{typus loves fluxiom}
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*", "{public}/**/*"]
-    gem.email = "t.koenig@wollzelle.com"
+    gem.email = "team@wollzelle.com"
     gem.homepage = "http://wollzelle.com"
-    gem.authors = ["T Koenig"]
+    gem.authors = ["Thomas König", "William Meleyal", "I.C. Wiener"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
