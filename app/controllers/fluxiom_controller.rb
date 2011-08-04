@@ -8,7 +8,6 @@ class FluxiomController < ApplicationController
   before_filter :set_cache
   before_filter :prepare_params
 
-
   # show the asset chooser
   def index
     render :layout => false
@@ -25,8 +24,6 @@ class FluxiomController < ApplicationController
       format.json { render :json => proxy_call('/tags.json') }
     end
   end
-
-
 
   private
 
@@ -45,7 +42,6 @@ class FluxiomController < ApplicationController
     end
     @api_url ||= @use_proxy ? '/fluxiom' : @url
     @base_url = "#{@scheme}://#{@host}"
-    
   end
 
   def proxy_call(path)
