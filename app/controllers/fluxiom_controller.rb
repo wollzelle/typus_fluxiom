@@ -1,5 +1,10 @@
 class FluxiomController < ApplicationController
 
+  if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
+    include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
+    before_filter :authenticate
+  end
+
   before_filter :set_cache
   before_filter :prepare_params
 
