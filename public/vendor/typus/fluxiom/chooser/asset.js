@@ -37,7 +37,7 @@ Flux.Models.Assets = Backbone.Collection.extend({
   
   fetchAssets: function(){
     var page = this.page++; // page = 1, this.page = 2
-    var data = { page: page, per_page: Flux.Config.perPage};
+    var data = { page: page, per_page: Flux.Config.perPage };
 
     if (this.tag) data.tags = this.tag;
       

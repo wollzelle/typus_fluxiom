@@ -1,5 +1,9 @@
 TODO:
 
+- Refactor selected assets (invert)
+
+- Pause click events while loading (tags)
+
 - Port gallery code to Backbone
 
 - Remove wrapper divs from Backbone views
