@@ -12,80 +12,79 @@ body.fancybox-overlay {
 }
 
 .fancy-bg {
-  display : none !important;
+  display: none !important;
 }
 
 #fancybox-outer {
-  background : none;
-  border     : 10px solid rgba(0,0,0,0.4);
+  background: none;
+  border: 10px solid rgba(0,0,0,0.4);
 
-  -webkit-border-radius : 1em;  
-     -moz-border-radius : 1em;
-          border-radius : 1em;
+  -webkit-border-radius: 1em;  
+     -moz-border-radius: 1em;
+          border-radius: 1em;
 }
 
 #fancybox-content {
-  background : #fff;
-  border     : 1px solid #999;
+  background: #fff;
+  border: 1px solid #999;
 }
 
 /* flux-gallery
 ------------------------------------- */
 
 .flux-gallery {
-  margin   : 0 !important;
-  padding  : 0;
-  overflow : hidden;
-  width    : 690px;
-  zoom     : 1;
+  margin: 0 !important;
+  padding: 0;
+  overflow: hidden;
+  width: 690px;
+  zoom: 1;
 }
 
 .flux-item {
-  position         : relative;
-  float            : left;
-  list-style       : none;
-  margin           : 5px !important;
-  padding-bottom   : 19px;
-  width            : 170px;
-  height           : 100px;
-  border           : 1px solid transparent;
-  overflow         : hidden;
-
+  position: relative;
+  float: left;
+  list-style: none;
+  margin: 5px !important;
+  padding-bottom: 19px;
+  width: 170px;
+  height: 100px;
+  border: 1px solid transparent;
+  overflow: hidden;
   text-align: center; 
-  -webkit-user-select : none;
-     -moz-user-select : none;
-          user-select : none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .flux-item img {
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .flux-image-template {
-  display : none;
+  display: none;
 }
 
 .flux-image:hover {
-  cursor : move;
+  cursor: move;
 }
 
 .ui-sortable-placeholder {
-  visibility : visible !important;
-  border     : 1px dashed #ccc;
+  visibility: visible !important;
+  border: 1px dashed #ccc;
 }    
 
 .flux-caption {
-  font-family : verdana;
-  font-size   : 8px !important;
-  color       : #666;
-  position    : absolute;
-  bottom      : 0;
-  left        : 0;
-  width       : 96% !important;
-  height      : 1.2em;
-  border      : 1px solid #fff;
-  resize      : none;  
-  overflow    : hidden;
+  font-family: verdana;
+  font-size: 8px !important;
+  color: #666;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 96% !important;
+  height: 1.2em;
+  border: 1px solid #fff;
+  resize: none;  
+  overflow: hidden;
 
   -webkit-transition: height .2s;
      -moz-transition: height .2s;  
@@ -93,15 +92,15 @@ body.fancybox-overlay {
 }     
 
 .flux-caption:hover {
-  background-color : #fffce1;
-  border-color     : #fffce1;    
+  background-color: #fffce1;
+  border-color: #fffce1;    
 }
 
 .flux-caption:focus {
-  background   : #fff !important;
-  color        : #000;
-  border-color : #999;
-  height       : 50px;
+  background: #fff !important;
+  color: #000;
+  border-color: #999;
+  height: 50px;
 }
 
 .flux-button {
@@ -113,17 +112,17 @@ body.fancybox-overlay {
 }
 
 .flux-remove-button {
-  padding  : 3px 5px;     
-  position : absolute;
-  right    : 0;
-  top      : 0; 
-  color    : #333;
+  padding: 3px 5px;     
+  position: absolute;
+  right: 0;
+  top: 0; 
+  color: #333;
 }
 
 .flux-add-button {
-  background  : #eee;   
-  text-align  : center;
-  line-height : 100px;    
-  color       : #999;
-  font-size   : 20px;
+  background: #eee;   
+  text-align: center;
+  line-height: 100px;    
+  color: #999;
+  font-size: 20px;
 }

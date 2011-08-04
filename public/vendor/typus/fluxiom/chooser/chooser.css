@@ -12,50 +12,50 @@ html {
 }
 
 html, body {
-  margin      : 0;
-  padding     : 0;
-  font-family : 'Lucida Grande', sans-serif;
-  font-size   : 80%;
-  line-height : 1em;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lucida Grande', sans-serif;
+  font-size: 80%;
+  line-height: 1em;
 }
 
 /* flux-toolbar
 ------------------------------------- */
 
 #flux-toolbar {
-  position      : fixed;
-  top           : 0px;
-  width         : 100%;
-  padding       : 5px 0;
-  background    : #eee;
-  border-bottom : 1px solid #999;
-  z-index       : 20;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  padding: 5px 0;
+  background: #eee;
+  border-bottom: 1px solid #999;
+  z-index: 20;
 }
 
 #flux-tags {  
-  float       : left;
-  margin-left : 20px;
-  width       : 65%;
-  white-space : nowrap;
+  float: left;
+  margin-left: 20px;
+  width: 65%;
+  white-space: nowrap;
 }
 
 .flux-tag {
-  float       : left;
-  background  : #bbb;
-  border      : 2px solid #bbb;  
-  color       : #fff;
-  margin      : 5px;
-  padding     : 4px 6px;
-  cursor      : pointer;  
-  white-space : nowrap;
+  float: left;
+  background: #bbb;
+  border: 2px solid #bbb;  
+  color: #fff;
+  margin: 5px;
+  padding: 4px 6px;
+  cursor: pointer;  
+  white-space: nowrap;
 
   -webkit-user-select: none;  
      -moz-user-select: none;
           user-select: none;  
   
-  -webkit-border-radius : 15px;
-     -moz-border-radius : 15px;
-          border-radius : 15px;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
 
   -webkit-transition: all .3s;
      -moz-transition: all .3s;
@@ -63,35 +63,35 @@ html, body {
 }
 
 .flux-tag input { 
-  display : none; 
+  display: none; 
 }
 
 .flux-tag.active {
-  background : #777;
+  background: #777;
   border-color: #777;
   color: #fff;
 }
 
 #flux-actions {
-  float        : right;
-  padding      : 5px 0;
-  margin-right : 20px;
-  width        : 28%;
-  text-align   : right;
+  float: right;
+  padding: 5px 0;
+  margin-right: 20px;
+  width: 28%;
+  text-align: right;
 }
 
 #flux-use-button {
-  color       : #fff;
-  border      : 0;
-  background  : #777;
-  font-weight : bold;
-  padding     : 4px 6px;
-  cursor      : pointer;	
-  margin-left : 10px;
+  color: #fff;
+  border: 0;
+  background: #777;
+  font-weight: bold;
+  padding: 4px 6px;
+  cursor: pointer;	
+  margin-left: 10px;
 
-  -webkit-border-radius : 5px;
-     -moz-border-radius : 5px;
-          border-radius : 5px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
 
 #flux-use-button.active {
@@ -102,68 +102,68 @@ html, body {
 ------------------------------------- */
 
 #flux-assets {
-  width  : 90%;
-  margin : 80px auto 0 auto;
+  width: 90%;
+  margin: 80px auto 0 auto;
 }
 
 #flux-assets ol {
-  margin     : 0;
-  padding    : 0;
-  list-style : none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .flux-asset {
-  border      : 3px solid #fff;
-  margin      : 5px;
-  padding     : 5px;
-  float       : left;
-  text-align  : center;
-  position    : relative;
-  width       : 256px;
-  height      : 256px;  
-  line-height : 256px;
+  border: 3px solid #fff;
+  margin: 5px;
+  padding: 5px;
+  float: left;
+  text-align: center;
+  position: relative;
+  width: 256px;
+  height: 256px;  
+  line-height: 256px;
 
-  -webkit-user-select : none;  
-     -moz-user-select : none;
-          user-select : none;    
+  -webkit-user-select: none;  
+     -moz-user-select: none;
+          user-select: none;    
   
-  -webkit-border-radius : 4px;
-     -moz-border-radius : 4px;
-          border-radius : 4px;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
 
 
-  -webkit-transition : border .1s linear;
-     -moz-transition : border .1s linear;  
-          transition : border .1s linear;          
+  -webkit-transition: border .1s linear;
+     -moz-transition: border .1s linear;  
+          transition: border .1s linear;          
 }
 
 .flux-asset img {
-  vertical-align : middle;
+  vertical-align: middle;
 }
 
 .flux-asset .caption {
-  position      : absolute;
-  left          : 50%;
-  bottom        : 20%;
-  margin-left   : -115px;
-  width         : 80%;
-  padding       : 5px;
-  line-height   : 1em;
-  overflow      : hidden;
-  white-space   : nowrap;
-  text-overflow : ellipsis; 
-  text-align    : center;
-  background    : rgba(0,0,0,.5);
-  color         : #fff;
-  opacity       : 0;
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  margin-left: -115px;
+  width: 80%;
+  padding: 5px;
+  line-height: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  text-align: center;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  opacity: 0;
 
-  -webkit-border-radius : 10px;
-     -moz-border-radius : 10px;
-          border-radius : 10px;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
 
-  -webkit-transition : opacity .1s linear;
-     -moz-transition : opacity .1s linear;  
-          transition : opacity .1s linear;
+  -webkit-transition: opacity .1s linear;
+     -moz-transition: opacity .1s linear;  
+          transition: opacity .1s linear;
 }
 
 .flux-asset.has-caption.selected .caption {
@@ -171,11 +171,11 @@ html, body {
 }
 
 .selected {
-  border : 3px solid #3366cc;
+  border: 3px solid #3366cc;
 
-  -webkit-box-shadow : 0 0 4px #99ccff;
-     -moz-box-shadow : 0 0 4px #99ccff;
-          box-shadow : 0 0 4px #99ccff;
+  -webkit-box-shadow: 0 0 4px #99ccff;
+     -moz-box-shadow: 0 0 4px #99ccff;
+          box-shadow: 0 0 4px #99ccff;
 }
 
 #flux-loader {
@@ -187,7 +187,6 @@ html, body {
   background: #fff9d8 url('spinner.gif') no-repeat 15px 50%;
   border-radius: 5px 5px 0 0;
   opacity: 0;
-/*  -webkit-transition: opacity .5s;*/
 }
 
 #flux-loader.active {
