@@ -37,11 +37,8 @@ $(function() {
   };
 
   var galleryIdx = $(".flux-gallery .flux-image").length;
-    
-  $('.flux-add-button').bind('click', function(e){
-    $.fancybox(fancyboxOptions);
-    e.preventDefault();
-  });
+
+  $('.flux-add-button').fancybox(fancyboxOptions);
 
   /* remove item
   ------------------------------------- */
