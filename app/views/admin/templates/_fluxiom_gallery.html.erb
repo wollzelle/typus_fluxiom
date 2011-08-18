@@ -1,5 +1,5 @@
 <%
-  width         = Fluxiom.config.preview_width || 100
+  width         = Fluxiom.config.preview_width || 170
   height        = Fluxiom.config.preview_height || 100
   use_fit       = Fluxiom.config.fit || false
   fill          = "f"
@@ -23,8 +23,7 @@
   <style>    
     .flux-item          { width: <%= width %>px; height: <%= height %>px;}
     .flux-image          { line-height: <%= height %>px !important; <%= css %>}
-    
-        .flux-caption       { width: <%= width-8 %>px; }    
+    .flux-caption       { width: <%= width-8 %>px; }
     .flux-caption:focus { height: <%= height / 2 %>px; }    
     .flux-add-button    { line-height: <%= height %>px; }
   </style>
@@ -41,7 +40,9 @@
       translate     : <%= !translations.nil? %>
     };
   </script>
-  <%= javascript_include_tag  "/vendor/typus/fluxiom/vendor/jquery.tmpl.js", "/vendor/typus/fluxiom/gallery/gallery.js" %>
+  <%= javascript_include_tag  "/vendor/typus/fluxiom/vendor/jquery.ui.js",
+                              "/vendor/typus/fluxiom/vendor/jquery.tmpl.js",
+                              "/vendor/typus/fluxiom/gallery/gallery.js" %>
 
 <% end %>
 
