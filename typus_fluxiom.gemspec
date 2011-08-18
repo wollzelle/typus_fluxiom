@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{typus_fluxiom}
-  s.version = "3.0.3"
+  s.version = "3.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
-  s.date = %q{2011-08-04}
+  s.authors = [%q{Thomas Koenig}, %q{William Meleyal}, %q{I.C. Wiener}]
+  s.date = %q{2011-08-18}
   s.description = %q{typus loves fluxiom}
   s.email = %q{team@wollzelle.com}
   s.extra_rdoc_files = [
@@ -39,12 +39,13 @@ Gem::Specification.new do |s|
     "public/vendor/typus/fluxiom/vendor/backbone.js",
     "public/vendor/typus/fluxiom/vendor/jquery.js",
     "public/vendor/typus/fluxiom/vendor/jquery.tmpl.js",
+    "public/vendor/typus/fluxiom/vendor/jquery.ui.js",
     "public/vendor/typus/fluxiom/vendor/jquery.viewport.js",
     "public/vendor/typus/fluxiom/vendor/underscore.js"
   ]
   s.homepage = %q{http://wollzelle.com}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.7}
   s.summary = %q{fluxiom loves typus}
   s.test_files = [
     "test/helper.rb",
@@ -52,7 +53,6 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
