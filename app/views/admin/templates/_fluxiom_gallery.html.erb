@@ -1,85 +1,45 @@
 <%
-  width         = Fluxiom.config.preview_width || 170
-  height        = Fluxiom.config.preview_height || 100
-  use_fit       = Fluxiom.config.fit || false
-  fill          = "f"
-  border        = ""
-  if use_fit
-    fill        = "" 
-    css         = "border: 1px dashed #ddd; !important;"
-  end
-  geometry      = "#{width}x#{height}"  
-  format        = "#{fill}#{geometry}.jpg"    
-  obj           = dom_class(@item.class)
-  base_name     = "#{obj}[#{attribute}]"
-  translations  = Typus::Translate::Configuration.config["locales"] rescue nil  
-  gallery_items = @item[attribute].delete_if {|x| x == ""} rescue nil
+  # helpers
+  @format       = get_format
+  @base_name    = get_base_name(@item, attribute)
+  @gallery_json = get_json(@item, attribute)
+  @translations = get_translations
 %>
 
-<% content_for :stylesheets do %>
+<% unless @fluxiom_assets_loaded # only load assets once %>
 
-  <!-- fluxiom css -->
-  <%= stylesheet_link_tag "/vendor/typus/fluxiom/gallery/gallery.css" %>  
-  <style>    
-    .flux-item          { width: <%= width %>px; height: <%= height %>px;}
-    .flux-image          { line-height: <%= height %>px !important; <%= css %>}
-    .flux-caption       { width: <%= width-8 %>px; }
-    .flux-caption:focus { height: <%= height / 2 %>px; }    
-    .flux-add-button    { line-height: <%= height %>px; }
-  </style>
+  <% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "fluxiom-gallery" %>
+  <% end %>
+
+  <% content_for :javascripts do %>
+  <%= javascript_include_tag "fluxiom-gallery" %>
+  <% end %>
+
+  <% @fluxiom_assets_loaded = true %>
 
 <% end %>
-
+  
 <% content_for :javascripts do %>
-
-  <!-- fluxiom js -->
-  <script>
-    var fluxConfig = {
-      format        : '<%= format %>',
-      base_name     : '<%= base_name %>',
-      translate     : <%= !translations.nil? %>
-    };
-  </script>
-  <%= javascript_include_tag  "/vendor/typus/fluxiom/vendor/jquery.ui.js",
-                              "/vendor/typus/fluxiom/vendor/jquery.tmpl.js",
-                              "/vendor/typus/fluxiom/gallery/gallery.js" %>
-
+<script>
+  $(document).ready(function(){
+    $('#<%= attribute_id %>').fluxiomGallery({
+      data: <%= @gallery_json %>,
+      format: '<%= @format %>',
+      baseName: '<%= @base_name %>'
+    });
+  });
+</script>
 <% end %>
 
-<li id="<%= attribute %>">
+<li id="<%= attribute_id %>">
 
     <%= form.label attribute, label_text %>
 
-    <ul class="flux-gallery">
-
-      <% if gallery_items %>
-        <% gallery_items.each_with_index do |img, i| %>    
-        
-        <%= render  :partial  =>  'admin/templates/fluxiom_gallery_item.erb', 
-                    :locals   =>  { :img => img[1], 
-                                    :format => format, 
-                                    :translations => translations, 
-                                    :base_name => "#{base_name}[#{i}]" } %>
-
-              
-        <% end %>
-      <% end %>
-
-    
+    <ul class="flux-gallery">    
       <li class="flux-item flux-item-add">
-        <a href="<%= fluxiom_index_url %>" class="flux-button flux-add-button" title="Add image">+</a>
+        <a href="<%= fluxiom_index_url %>?gallery_id=<%= attribute_id %>" class="flux-button flux-add-button" title="Add <%= attribute %>">+</a>
       </li>
-
     </ul>
-  
-    <script id="flux-empty-template" type="text/html">
-      <input id="flux-empty" type="hidden" name="<%= base_name %>" value="">
-    </script>
-
-    <script id="flux-image-template" type="text/html">    
-
-      <%= render  :partial  =>  'admin/templates/fluxiom_gallery_item_template.erb', 
-                  :locals   =>  { :translations => translations, :base_name => base_name } %>  
-    </script>
 
 </li>

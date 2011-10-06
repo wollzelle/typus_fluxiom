@@ -11,6 +11,7 @@ begin
     gem.email = "team@wollzelle.com"
     gem.homepage = "http://wollzelle.com"
     gem.authors = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
+    gem.add_dependency "ejs", "~> 1.0.0"
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -40,13 +41,11 @@ rescue LoadError
 end
 
 task :test => :check_dependencies
-
 task :default => :test
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "typus_fluxiom #{version}"
   rdoc.rdoc_files.include('README*')

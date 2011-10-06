@@ -1,4 +1,5 @@
 module Fluxiom
+
   if defined?(Rails)
     require 'fluxiom/engine' 
     require "fluxiom/helpers"
@@ -8,4 +9,3 @@ module Fluxiom
   autoload :Helpers, "fluxiom/helpers"
 
 end
-

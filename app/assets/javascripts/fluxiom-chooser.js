@@ -1,9 +1,20 @@
-/*! ----------------------------------------------------------------------------
-* fluxiom.js
-* Copyright 2011 wollzelle GmbH (http://wollzelle.com). All rights reserved.
-* --------------------------------------------------------------------------- */
+/* 
+*= require jquery
+*= require underscore
+*= require backbone
+*= require jquery.viewport
+*= require_self
+*= require_tree ./lib
+*= require_tree ./chooser
 
-var Flux = {
+* require_tree ./gallery/models
+* require_tree ./gallery/collections
+* require_tree ./gallery/templates
+* require_tree ./gallery/views
+*/
+
+
+window.Flux = {
 
   Views : {}, 
   Models : {},

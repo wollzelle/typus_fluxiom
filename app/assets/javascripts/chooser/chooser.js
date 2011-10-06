@@ -34,8 +34,13 @@ Flux.Views.Chooser = Backbone.View.extend({
   },
   
   useAssets: function(e){
-    var data = Flux.selectedAssets.models;
-    parent.$(parent.document).trigger('flux:gallery:update', [data]);
+    var data = Flux.selectedAssets.models,
+        galleryId = _.getQueryString()['gallery_id'],
+        gallery = parent.$(parent.document).find('#' + galleryId);    
+
+    console.log(data);
+    console.log(gallery);
+    gallery.trigger('flux:gallery:update', [data]);
     e.preventDefault();    
   }
   

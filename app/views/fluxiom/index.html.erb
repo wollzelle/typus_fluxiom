@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Fluxiom Assets</title>
-  <%= stylesheet_link_tag "/vendor/typus/fluxiom/chooser/chooser.css" %>  
+  <%= stylesheet_link_tag "fluxiom-chooser" %>  
 </head>
 <body>
   <div id="flux-asset-chooser">
@@ -30,15 +30,7 @@
   var fluxUseProxy = <%= @use_proxy %>;
   </script>
 
-  <%= javascript_include_tag  "/vendor/typus/fluxiom/vendor/jquery.js",
-                              "/vendor/typus/fluxiom/vendor/jquery.viewport.js",
-                              "/vendor/typus/fluxiom/vendor/underscore.js",
-                              "/vendor/typus/fluxiom/vendor/backbone.js",
-                              "/vendor/typus/fluxiom/fluxiom.js",
-                              "/vendor/typus/fluxiom/chooser/asset.js",
-                              "/vendor/typus/fluxiom/chooser/tag.js",
-                              "/vendor/typus/fluxiom/chooser/chooser.js"
-  %>
+  <%= javascript_include_tag "fluxiom-chooser" %>
 
   <script id="flux-tag-template" type="text/template">
     <a class="flux-tag {{ classes }}" data-tag-id="{{ id }}"><strong>{{ tag }}</strong> </a>

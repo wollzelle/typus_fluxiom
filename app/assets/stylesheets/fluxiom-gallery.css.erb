@@ -3,11 +3,27 @@
 * Copyright 2010 wollzelle GmbH (http://wollzelle.com). All rights reserved.
 * --------------------------------------------------------------------------- */
 
-/* fancybox overlay
-------------------------------------- */
+/*
+*= require_self
+* require_tree .
+*/
 
-/* prevent scrolling parent window while overlay is open */
+<%
+
+width         = Fluxiom.config.preview_width || 170
+height        = Fluxiom.config.preview_height || 100
+use_fit       = Fluxiom.config.fit || false
+border        = ""
+if use_fit
+  css         = "border: 1px dashed #ddd; !important;"
+end
+
+%>
+
+/* fancybox overlay ----------------- */
+
 body.fancybox-overlay {
+  /* prevent scrolling parent window while overlay is open */
   overflow: hidden;
 }
 
@@ -29,8 +45,7 @@ body.fancybox-overlay {
   border: 1px solid #999;
 }
 
-/* flux-gallery
-------------------------------------- */
+/* flux-gallery ----------------- */
 
 .flux-gallery {
   margin: 0 !important;
@@ -126,3 +141,12 @@ body.fancybox-overlay {
   color: #999;
   font-size: 20px;
 }
+
+/* overrides */
+
+.flux-item          { width: <%= width %>px; height: <%= height %>px;}
+.flux-image          { line-height: <%= height %>px !important; }
+.flux-caption       { width: <%= width-8 %>px; }
+.flux-caption:focus { height: <%= height / 2 %>px; }    
+.flux-add-button    { line-height: <%= height %>px; }
+

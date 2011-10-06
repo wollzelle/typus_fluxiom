@@ -25,7 +25,7 @@ class FluxiomController < ApplicationController
     end
   end
 
-  private
+private
 
   def prepare_params
     return if @base_url

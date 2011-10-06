@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Thomas Koenig}, %q{William Meleyal}, %q{I.C. Wiener}]
-  s.date = %q{2011-08-18}
+  s.date = %q{2011-10-06}
   s.description = %q{typus loves fluxiom}
   s.email = %q{team@wollzelle.com}
   s.extra_rdoc_files = [
@@ -18,49 +18,48 @@ Gem::Specification.new do |s|
     "TODO"
   ]
   s.files = [
+    "app/assets/images/spinner.gif",
+    "app/assets/javascripts/chooser/asset.js",
+    "app/assets/javascripts/chooser/chooser.js",
+    "app/assets/javascripts/chooser/tag.js",
+    "app/assets/javascripts/fluxiom-chooser.js",
+    "app/assets/javascripts/fluxiom-gallery.js",
+    "app/assets/javascripts/gallery.js",
+    "app/assets/javascripts/gallery/collections/gallery-collection.js",
+    "app/assets/javascripts/gallery/models/gallery-item-model.js",
+    "app/assets/javascripts/gallery/templates/image.jst.ejs",
+    "app/assets/javascripts/gallery/views/flux-image.tmp",
+    "app/assets/javascripts/gallery/views/gallery-item-view.js",
+    "app/assets/javascripts/gallery/views/gallery-list-view.js",
+    "app/assets/javascripts/lib/underscore.more.js",
+    "app/assets/stylesheets/chooser.css",
+    "app/assets/stylesheets/fluxiom-gallery.css.erb",
     "app/controllers/fluxiom_controller.rb",
     "app/views/admin/templates/_fluxiom_gallery.html.erb",
-    "app/views/admin/templates/_fluxiom_gallery_item.erb",
-    "app/views/admin/templates/_fluxiom_gallery_item_template.erb",
     "app/views/fluxiom/index.html.erb",
     "config/routes.rb",
     "lib/fluxiom/configuration.rb",
     "lib/fluxiom/engine.rb",
     "lib/fluxiom/helpers.rb",
-    "lib/typus_fluxiom.rb",
-    "public/vendor/typus/fluxiom/chooser/asset.js",
-    "public/vendor/typus/fluxiom/chooser/chooser.css",
-    "public/vendor/typus/fluxiom/chooser/chooser.js",
-    "public/vendor/typus/fluxiom/chooser/spinner.gif",
-    "public/vendor/typus/fluxiom/chooser/tag.js",
-    "public/vendor/typus/fluxiom/fluxiom.js",
-    "public/vendor/typus/fluxiom/gallery/gallery.css",
-    "public/vendor/typus/fluxiom/gallery/gallery.js",
-    "public/vendor/typus/fluxiom/vendor/backbone.js",
-    "public/vendor/typus/fluxiom/vendor/jquery.js",
-    "public/vendor/typus/fluxiom/vendor/jquery.tmpl.js",
-    "public/vendor/typus/fluxiom/vendor/jquery.ui.js",
-    "public/vendor/typus/fluxiom/vendor/jquery.viewport.js",
-    "public/vendor/typus/fluxiom/vendor/underscore.js"
+    "lib/typus_fluxiom.rb"
   ]
   s.homepage = %q{http://wollzelle.com}
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.7}
+  s.rubygems_version = %q{1.8.6}
   s.summary = %q{fluxiom loves typus}
-  s.test_files = [
-    "test/helper.rb",
-    "test/test_flux_assets.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<ejs>, ["~> 1.0.0"])
       s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
     else
+      s.add_dependency(%q<ejs>, ["~> 1.0.0"])
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
     end
   else
+    s.add_dependency(%q<ejs>, ["~> 1.0.0"])
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
   end
 end
