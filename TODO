@@ -2,12 +2,6 @@ TODO:
 
 
 
-- chooser asset pipeline / refactor
-
-- chooser integration (see gallery.js)
-
-- allow multiple instances on same page
-	only return assets to clicked instance
 
 
 
@@ -22,28 +16,15 @@ TODO:
 
 
 
-✓ make plus always last item
 
-✓ remove items, insert empty template if last item is removed
 
-✓ remove items
 
-✓ Make gallery saveable (same form attributes / names)
 
-✓ new model / collection for gallery
 
-✓ populate on load with gallery json
 
-✓ render new gallery list / item views
 
-✓ add model name to field id
 
 - translations for captions
-
-- Refactor selected assets (invert)
-
 - Pause click events while loading (tags)
-
 - Remove wrapper divs from Backbone views
-
-- Move fluxiom to admin namespace
+- Move fluxiom to admin namespace (routes)

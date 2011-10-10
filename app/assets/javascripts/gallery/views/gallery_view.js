@@ -1,9 +1,8 @@
-var GalleryListView = Backbone.View.extend({
-
-  el: '.flux-gallery',
+Fluxiom.Views.Gallery = Backbone.View.extend({
     
   initialize: function(options){
     this.collection = options.collection;
+    this.gallery = this.$('.flux-gallery');
     this.addButton = this.$('.flux-item-add');
     this.collection.bind('add',   _.bind(this.addOne, this));
     this.collection.bind('remove',_.bind(this.onRemove, this));    
@@ -12,14 +11,9 @@ var GalleryListView = Backbone.View.extend({
     this.setupPopup();
     this.addAll();
   },
-  
-  render: function(model){
-    // console.log(model);
-  },
-  
+
   addOne: function(model){
-    var item = new GalleryItemView({ model: model }).el;
-    // $(this.el).append(item);
+    var item = new Fluxiom.Views.GalleryItem({ model: model }).el;
     this.addButton.before(item);
   },
   
@@ -30,7 +24,7 @@ var GalleryListView = Backbone.View.extend({
   onRemove: function(model){
     if (this.collection.length == 0) {
       var template = JST['gallery/templates/empty'];
-      $(this.el).append(template({ base_name: this.collection.baseName }));
+      $(this.gallery).append(template({ base_name: this.collection.baseName }));
     }
   },
   
@@ -44,7 +38,7 @@ var GalleryListView = Backbone.View.extend({
   },
   
   setupPopup: function(){
-    var fancyboxOptions = {        
+    var options = {        
       'titleShow'      : false,        
       'type'           : 'iframe',
       'width'          : '80%',
@@ -62,7 +56,7 @@ var GalleryListView = Backbone.View.extend({
       }
     };
 
-    $('.flux-add-button').fancybox(fancyboxOptions);
+    $('.flux-add-button').fancybox(options);
   }
   
 });

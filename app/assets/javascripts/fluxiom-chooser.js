@@ -1,47 +1,60 @@
 /* 
 *= require jquery
+*= require jquery.ui
 *= require underscore
 *= require backbone
 *= require jquery.viewport
 *= require_self
 *= require_tree ./lib
-*= require_tree ./chooser
-
-* require_tree ./gallery/models
-* require_tree ./gallery/collections
-* require_tree ./gallery/templates
-* require_tree ./gallery/views
+*= require_tree ./chooser/models
+*= require_tree ./chooser/collections
+*= require_tree ./chooser/templates
+*= require_tree ./chooser/views
 */
 
+window.Fluxiom = {
+  Models: {},
+  Collections: {},
+  Views: {}
+};
 
-window.Flux = {
+Fluxiom.Chooser = function(options, element){
+  this.element = element;
+  this.options = options;
+  this.options.dataType = options.useProxy ? 'json' : 'jsonp';
+  this.initialize();
+};
 
-  Views : {}, 
-  Models : {},
-  Config : {
-    apiUrl: window.fluxApiUrl,
-    baseUrl: window.fluxBaseUrl,
-    dataType: window.fluxUseProxy ? 'json' : 'jsonp',
-    perPage: 100
+Fluxiom.Chooser.prototype = {
+
+  initialize: function(){
+    var assets = this.assets = new Fluxiom.Collections.Assets(null, this.options);
+    var selectedAssets = new Fluxiom.Collections.SelectedAssets();
+    var chooser = new Fluxiom.Views.Chooser({ collection: selectedAssets });
+    this.getTags = _.bind(this.getTags, this);
+    
+    // get tags when assets are ready
+    assets.bind('loaded', this.getTags);
+    
+    // add assets > selected assets
+    assets.bind('change:selected', _.bind(selectedAssets.toggleSelected, selectedAssets));
+
+    // add selected assets > assets
+    assets.bind('loaded', _.bind(assets.preSelect, assets, selectedAssets));
+
+    // clear selected assets
+    selectedAssets.bind('reset', _.bind(assets.clearSelected, assets));
   },
   
-  initialize: function(){
-    _.templateSettings = { interpolate : /\{\{(.+?)\}\}/g };
-    this.assets = new Flux.Models.Assets();
-    this._getTags = _.bind(this.getTags, this);
-    this.assets.bind('loaded', this._getTags);
-    this.selectedAssets = new Flux.Models.SelectedAssets();
-    this.chooser = new Flux.Views.Chooser();
-  },
-
   // this is needed for authorization in Firefox
   getTags: function(){
-    this.assets.unbind('loaded', this._getTags);
-    this.tags = new Flux.Models.Tags();
+    var assets = this.assets;
+    var tags   = new Fluxiom.Collections.Tags(null, this.options);
+
+    assets.unbind('loaded', this.getTags);
+    tags.bind('change:selected', _.bind(assets.filter, assets));
   }
 
 };
 
-$(document).ready(function(){ 
-  Flux.initialize();
-});
+$.widget.bridge("fluxiomChooser", Fluxiom.Chooser);

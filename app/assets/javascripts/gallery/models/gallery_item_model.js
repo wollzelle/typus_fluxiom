@@ -1,9 +1,5 @@
-window.GalleryItem = Backbone.Model.extend({
-  
-  initialize: function(){
-    // console.log('initialize');
-  },
-  
+Fluxiom.Models.GalleryItem = Backbone.Model.extend({
+
   baseName: function(){
     return this.collection.baseName + '[' + this.cid + ']';
   },

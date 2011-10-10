@@ -9,28 +9,40 @@
 *= require_tree ./gallery/views
 */
 
-window.Fluxiom = {};
+window.Fluxiom = {
+  Models: {},
+  Collections: {},
+  Views: {}  
+};
 
 Fluxiom.Gallery = function(options, element){
-  this.options = options;
   this.element = element;
-  this._init();
+  this.collection = new Fluxiom.Collections.Gallery(options.data, options);
+  this.view = new Fluxiom.Views.Gallery({ el: this.element, collection: this.collection });
+  this.initialize();
 };
 
 Fluxiom.Gallery.prototype = {
 
-  _init: function(){
-    
-    if (this.options.data.length) {
-      console.log('creating...');
-      var collection = new GalleryCollection(this.options);
-      new GalleryListView({ collection: collection });      
-    }
+  initialize: function(){    
+    $(this.element).bind('fluxiom:gallery:update', _.bind(this.updateGallery, this));    
+  },
+  
+  updateGallery: function(event, assets){
+    var collection = this.collection;
 
-    // $('#csclf_students_photos').bind('flux:gallery:update', function(event, images){
-    //   console.log(event);
-    //   console.log(images);
-    // });
+    assets.forEach(function(asset){
+      var data = {
+        public_url  : asset.get('public_url'),
+        description : asset.get('description')
+      };
+      collection.add(data);
+    });
+
+    $.fancybox.close();
+
+    //   if (translate)
+    //     $(window).trigger('translate:refresh');
   }
 
 };

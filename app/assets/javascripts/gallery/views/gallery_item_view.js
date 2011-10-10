@@ -1,4 +1,4 @@
-var GalleryItemView = Backbone.View.extend({
+Fluxiom.Views.GalleryItem = Backbone.View.extend({
   
   template: JST['gallery/templates/image'],
   

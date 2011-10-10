@@ -24,23 +24,18 @@
     </div>
   </div>
 
-  <script> 
-  var fluxApiUrl = "<%= @api_url %>"; 
-  var fluxBaseUrl = "<%= @base_url %>";
-  var fluxUseProxy = <%= @use_proxy %>;
-  </script>
-
   <%= javascript_include_tag "fluxiom-chooser" %>
-
-  <script id="flux-tag-template" type="text/template">
-    <a class="flux-tag {{ classes }}" data-tag-id="{{ id }}"><strong>{{ tag }}</strong> </a>
+  
+  <script>
+    $(document).ready(function(){
+      $('#flux-asset-chooser').fluxiomChooser({
+        apiUrl: '<%= @api_url %>',
+        baseUrl: '<%= @base_url %>',
+        useProxy: <%= @use_proxy %>,
+        perPage: 100
+      });
+    });
   </script>
-
-  <script id="flux-asset-template" type="text/template">
-    <li class="flux-asset {{ classes }}">
-      <img src="{{ img_url }}" data-public-url="{{ public_url }}" data-description="{{ description }}">
-      <span class="caption">{{ description }}</span>
-    </li>
-  </script>
+  
 </body>
 </html>
