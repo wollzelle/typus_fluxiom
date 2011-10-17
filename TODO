@@ -1,5 +1,7 @@
 TODO:
 
+- cleanup gemspec (see typus_serialize)
+
 - add tag/size (backend) configuration per instance
  	(predefined tag/don't show tags in the toolbar)
 
