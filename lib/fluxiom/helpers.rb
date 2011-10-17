@@ -32,7 +32,7 @@ module Fluxiom
       gallery_items = model[attribute].delete_if {|x| x == ""} rescue nil
       raw gallery_items.values.to_json rescue []
     end
-    
+        
     def get_translations
       Typus::Translate::Configuration.config["locales"] rescue nil
     end

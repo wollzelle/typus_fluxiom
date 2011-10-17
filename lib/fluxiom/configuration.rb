@@ -1,7 +1,6 @@
 require "rails"
 
 module Fluxiom
-
   module Configuration
 
     # Read configuration from <tt>config/typus/**/*.yml</tt>.
@@ -12,13 +11,10 @@ module Fluxiom
       if data = YAML::load_file(file)
         @@config = OpenStruct.new data
       end
-
       return @@config
     end
 
     mattr_accessor :config
-
-
 
   end
   

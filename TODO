@@ -1,8 +1,11 @@
 TODO:
 
+- add tag/size (backend) configuration per instance
+ 	(predefined tag/don't show tags in the toolbar)
 
 
 - translations for captions
+	see js/views/flux-image.tmp
 - Pause click events while loading (tags)
 - Remove wrapper divs from Backbone views
 - Move fluxiom to admin namespace (routes)
