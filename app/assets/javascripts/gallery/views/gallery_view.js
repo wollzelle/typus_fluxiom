@@ -13,6 +13,7 @@ Fluxiom.Views.Gallery = Backbone.View.extend({
   },
 
   addOne: function(model){
+    this.$('.flux-empty').remove();
     var item = new Fluxiom.Views.GalleryItem({ model: model }).el;
     this.addButton.before(item);
   },
