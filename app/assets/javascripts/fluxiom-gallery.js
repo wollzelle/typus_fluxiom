@@ -1,7 +1,7 @@
 /* 
 *= require underscore
 *= require backbone
-*= require jquery.ui
+*= require jquery-ui
 *= require_self
 *= require_tree ./gallery/models
 *= require_tree ./gallery/collections

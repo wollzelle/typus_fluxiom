@@ -1,6 +1,6 @@
 /* 
 *= require jquery
-*= require jquery.ui
+*= require jquery-ui
 *= require underscore
 *= require backbone
 *= require jquery.viewport

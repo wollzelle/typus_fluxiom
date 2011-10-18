@@ -1,5 +1,3 @@
-require "typus_fluxiom"
-
 module Fluxiom
   class Engine < ::Rails::Engine
     def initialize
