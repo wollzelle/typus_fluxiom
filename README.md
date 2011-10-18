@@ -1,11 +1,10 @@
 # typus_fluxiom
 
+Typus module for Fluxiom
+
+http://fluxiom.com
 https://github.com/wollzelle/typus_fluxiom
-
-Fluxiom plugin for Typus
-
-http://fluxiom.com/
-https://github.com/typus/typus
+https://github.com/fesplugas/typus
 
 ## Installation
 
@@ -41,7 +40,6 @@ In your `Gemfile`:
           templates:
             gallery: fluxiom_gallery
             ...
-
 
 ## Copyright
 

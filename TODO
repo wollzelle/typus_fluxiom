@@ -1,11 +1,17 @@
 TODO:
 
-- cleanup gemspec (see typus_serialize)
+✓ cleanup gemspec (see typus_serialize)
 
+
+
+
+
+
+- enable captions again
+- better handling of custom sizes for gallery thumbnails (fluxiom.yml)
 - add tag/size (backend) configuration per instance
  	(predefined tag/don't show tags in the toolbar)
-
-
+- move module under Typus namespace Fluxiom > Typus::Fluxiom
 - translations for captions
 	see js/views/flux-image.tmp
 - Pause click events while loading (tags)
