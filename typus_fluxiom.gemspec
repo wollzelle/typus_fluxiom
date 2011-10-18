@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "typus"
-  # s.add_runtime_dependency "jquery-rails"
-  # s.add_runtime_dependency "rails-backbone"
-  s.add_runtime_dependency "ejs"
+  s.add_dependency "rails", "~> 3.1.0"
+  s.add_dependency "typus"
+  s.add_dependency "jquery-rails"
+  s.add_dependency "rails-backbone"
+  s.add_dependency "ejs"
 end
