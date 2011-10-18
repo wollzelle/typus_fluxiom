@@ -1,8 +1,8 @@
 module Fluxiom
   if defined?(Rails)
-    require "fluxiom/configuration"
-    require "fluxiom/engine"
-    require "fluxiom/helpers"
-    require "fluxiom/version"
+    require "typus_fluxiom/configuration"
+    require "typus_fluxiom/engine"
+    require "typus_fluxiom/helpers"
+    require "typus_fluxiom/version"
   end
 end

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "fluxiom/version"
+require "typus_fluxiom/version"
 
 Gem::Specification.new do |s|
   s.name        = "typus_fluxiom"
