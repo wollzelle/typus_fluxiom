@@ -3,7 +3,6 @@ require "rails"
 module Fluxiom
   module Configuration
 
-    # Read configuration from <tt>config/typus/**/*.yml</tt>.
     def self.config!
       @@config = {}
       file = Rails.root.join("config/fluxiom.yml")
