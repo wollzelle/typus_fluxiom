@@ -14,7 +14,7 @@ In your `Gemfile`:
 
 ## Configuration
 
-**In `config/fluxiom.yml`:**
+**In `config/typus_fluxiom.yml`:**
 
     host: account.fluxiom.com
     user: user
@@ -38,7 +38,7 @@ In your `Gemfile`:
         form: title, gallery
         options:
           templates:
-            gallery: fluxiom_gallery
+            gallery: fluxiom
             ...
 
 ## Copyright

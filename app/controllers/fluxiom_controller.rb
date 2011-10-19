@@ -27,17 +27,17 @@ class FluxiomController < ApplicationController
 
 private
 
-  def prepare_params
+  def prepare_params    
     return if @base_url
-    @use_proxy ||= Fluxiom.config.proxy
-    @ssl ||= Fluxiom.config.ssl
+    @use_proxy ||= Typus::Fluxiom.config.proxy
+    @ssl ||= Typus::Fluxiom.config.ssl
     @scheme ||= @ssl ? 'https' : 'http'
-    @host = Fluxiom.config.host 
+    @host = Typus::Fluxiom.config.host 
     @url ||= begin
       if @use_proxy
-        "#{@scheme}://#{Fluxiom.config.host}/api"
+        "#{@scheme}://#{Typus::Fluxiom.config.host}/api"
       else
-        "#{@scheme}://#{Fluxiom.config.user}:#{Fluxiom.config.password}@#{Fluxiom.config.host}/api"
+        "#{@scheme}://#{Typus::Fluxiom.config.user}:#{Typus::Fluxiom.config.password}@#{Typus::Fluxiom.config.host}/api"
       end
     end
     @api_url ||= @use_proxy ? '/fluxiom' : @url
@@ -49,7 +49,7 @@ private
     http = Net::HTTP.new(u.host,u.port)
     req = Net::HTTP::Get.new(u.path + path)
     http.use_ssl = @ssl
-    req.basic_auth Fluxiom.config.user, Fluxiom.config.password
+    req.basic_auth Typus::Fluxiom.config.user, Typus::Fluxiom.config.password
     response = http.request(req)
     return response.body
   end

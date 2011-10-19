@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "typus_fluxiom/version"
+require "fluxiom/version"
 
 Gem::Specification.new do |s|
   s.name        = "typus_fluxiom"
-  s.version     = Fluxiom::VERSION
+  s.version     = Typus::Fluxiom::VERSION
   s.authors     = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
   s.email       = "team@wollzelle.com"
   s.homepage    = "http://wollzelle.com"

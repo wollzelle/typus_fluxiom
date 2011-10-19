@@ -1,19 +1,39 @@
 TODO:
 
-✓ use gems for vendor assets
 
-✓ cleanup gemspec (see typus_serialize)
-
-- move module under Typus namespace Fluxiom > Typus::Fluxiom
 
 - Update routes for rails 3 + move fluxiom to admin namespace (/admin/fluxiom)
 
 
+
+
+
+
+
+
+
+
+
+
+
 - enable captions again
+
 - better handling of custom sizes for gallery thumbnails (fluxiom.yml)
+
+- better fit / fill
+
 - add tag/size (backend) configuration per instance
  	(predefined tag/don't show tags in the toolbar)
+
 - translations for captions
 	see js/views/flux-image.tmp
+
 - Pause click events while loading (tags)
-- Remove wrapper divs from Backbone views
+
+
+
+✓ move module under Typus namespace Fluxiom > Typus::Fluxiom
+✓ Bug: Add at least 2 items, Drag one in front of the other, Click remove on either item, Both are removed <-- bug
+✓ Remove wrapper divs from Backbone views
+✓ use gems for vendor assets
+✓ cleanup gemspec (see typus_serialize)

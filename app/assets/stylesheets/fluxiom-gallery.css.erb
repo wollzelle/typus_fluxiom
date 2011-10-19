@@ -10,9 +10,9 @@
 
 <%
 
-width         = Fluxiom.config.preview_width || 170
-height        = Fluxiom.config.preview_height || 100
-use_fit       = Fluxiom.config.fit || false
+width         = Typus::Fluxiom.config.preview_width || 170
+height        = Typus::Fluxiom.config.preview_height || 100
+use_fit       = Typus::Fluxiom.config.fit || false
 border        = ""
 if use_fit
   css         = "border: 1px dashed #ddd; !important;"
