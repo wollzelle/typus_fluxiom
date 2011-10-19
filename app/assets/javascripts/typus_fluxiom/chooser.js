@@ -1,16 +1,14 @@
-/* 
-*= require jquery
-*= require jquery-ui
-*= require underscore
-*= require backbone
-*= require jquery.viewport
-*= require underscore.more
-*= require_self
-*= require_tree ./chooser/models
-*= require_tree ./chooser/collections
-*= require_tree ./chooser/templates
-*= require_tree ./chooser/views
-*/
+//= require jquery
+//= require jquery-ui
+//= require underscore
+//= require backbone
+//= require jquery.viewport
+//= require underscore.more
+//= require_self
+//= require_tree ./chooser/models
+//= require_tree ./chooser/collections
+//= require_tree ./chooser/templates
+//= require_tree ./chooser/views
 
 window.Fluxiom = {
   Models: {},

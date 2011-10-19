@@ -1,4 +1,4 @@
-/* reset
+/* Reset
 ------------------------------------- */
 
 html {
@@ -14,7 +14,7 @@ html, body {
   line-height: 1em;
 }
 
-/* flux-toolbar
+/* Toolbar
 ------------------------------------- */
 
 #flux-toolbar {
@@ -93,7 +93,7 @@ html, body {
   background: #55B51A;
 }
 
-/* flux-assets
+/* Assets
 ------------------------------------- */
 
 #flux-assets {

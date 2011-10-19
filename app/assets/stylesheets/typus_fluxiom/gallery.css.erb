@@ -1,16 +1,15 @@
-/*
-*= require_self
-*/
+/*= require_self */
 
 <%
 
-width   = Typus::Fluxiom.config.preview_width || 170
-height  = Typus::Fluxiom.config.preview_height || 100
-use_fit = Typus::Fluxiom.config.fit || false
+width   = Typus::Fluxiom.config.preview_width || 170 rescue nil
+height  = Typus::Fluxiom.config.preview_height || 100 rescue nil
+use_fit = Typus::Fluxiom.config.fit || false rescue nil
 
 %>
 
-/* Overlay ----------------- */
+/* Overlay
+------------------------------------- */
 
 body.fancybox-overlay {
   /* prevent scrolling parent window while overlay is open */
@@ -34,7 +33,8 @@ body.fancybox-overlay {
   border: 1px solid #999;
 }
 
-/* Gallery ----------------- */
+/* Gallery
+------------------------------------- */
 
 .flux-gallery {
   margin: 0;
@@ -140,7 +140,8 @@ body.fancybox-overlay {
   text-align: center;
 }
 
-/* Overrides ----------------- */
+/* Overrides
+------------------------------------- */
 
 .flux-item { 
   width: <%= width %>px; 
