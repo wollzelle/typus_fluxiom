@@ -1,21 +1,16 @@
 /*
 *= require_self
-* require_tree .
 */
 
 <%
 
-width         = Typus::Fluxiom.config.preview_width || 170
-height        = Typus::Fluxiom.config.preview_height || 100
-use_fit       = Typus::Fluxiom.config.fit || false
-border        = ""
-if use_fit
-  css         = "border: 1px dashed #ddd; !important;"
-end
+width   = Typus::Fluxiom.config.preview_width || 170
+height  = Typus::Fluxiom.config.preview_height || 100
+use_fit = Typus::Fluxiom.config.fit || false
 
 %>
 
-/* fancybox overlay ----------------- */
+/* Overlay ----------------- */
 
 body.fancybox-overlay {
   /* prevent scrolling parent window while overlay is open */
@@ -29,7 +24,6 @@ body.fancybox-overlay {
 #fancybox-outer {
   background: none;
   border: 10px solid rgba(0,0,0,0.4);
-
   -webkit-border-radius: 1em;  
      -moz-border-radius: 1em;
           border-radius: 1em;
@@ -40,7 +34,7 @@ body.fancybox-overlay {
   border: 1px solid #999;
 }
 
-/* flux-gallery ----------------- */
+/* Gallery ----------------- */
 
 .flux-gallery {
   margin: 0;
@@ -85,27 +79,19 @@ body.fancybox-overlay {
 }    
 
 .flux-caption {
-/*  background: none;*/
-  width: 170px;
+  width: 100%;
   height: 20px;
   padding: 0;
   min-height: 0 !important;
-
-/*  width: 96% !important;*/
-/*  height: 1.2em;*/
-
-/*  display: none;*/
   font-family: verdana;
   font-size: 8px !important;
   color: #666;
   position: absolute;
   bottom: 0;
   left: 0;
-
   border: 1px solid #fff;
   resize: none;  
   overflow: hidden;
-
   -webkit-transition: height .2s;
      -moz-transition: height .2s;  
           transition: height .2s;    
@@ -121,17 +107,16 @@ body.fancybox-overlay {
   color: #000;
   border-color: #999;
   height: 50px;
-
   -webkit-box-shadow: none;
      -moz-box-shadow: none;  
           box-shadow: none;    
 }
 
 .flux-button {
-  line-height    : 1em;
-  font-weight    : bold;
-  background     : #fff;
-  display        : block;  
+  line-height: 1em;
+  font-weight: bold;
+  background: #fff;
+  display: block;  
 }
 
 .flux-remove-button {
@@ -143,20 +128,25 @@ body.fancybox-overlay {
   color: #333;
 }
 
+.flux-item-add {
+  padding: 0;
+}
+
 .flux-add-button {
+  display: block;
+  line-height: 100px;
   background: #eee;
   background: #fafafa;  
   text-align: center;
-/*  line-height: 100px;    */
-  color: #999;
-/*  font-size: 20px;*/
 }
 
-/* overrides */
+/* Overrides ----------------- */
 
-/*.flux-item          { width: <%= width %>px; height: <%= height %>px;}*/
-/*.flux-image          { line-height: <%= height %>px !important; }*/
-/*.flux-caption       { width: <%= width-8 %>px; }*/
-/*.flux-caption:focus { height: <%= height / 2 %>px; }    */
-/*.flux-add-button    { line-height: <%= height %>px; }*/
+.flux-item { 
+  width: <%= width %>px; 
+  height: <%= height %>px;
+}
 
+.flux-add-button { 
+  line-height: <%= height %>px;
+}
