@@ -1,6 +1,6 @@
 Fluxiom.Views.Asset = Backbone.View.extend({
   
-  template: JST['chooser/templates/asset'],
+  template: JST['typus_fluxiom/chooser/templates/asset'],
 
   events: {
     'click .flux-asset' : 'select'

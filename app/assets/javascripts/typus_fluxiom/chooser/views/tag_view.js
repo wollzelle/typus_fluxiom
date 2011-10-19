@@ -1,6 +1,6 @@
 Fluxiom.Views.Tag = Backbone.View.extend({
   
-  template: JST['chooser/templates/tag'],
+  template: JST['typus_fluxiom/chooser/templates/tag'],
 
   events: {
     'click .flux-tag' : 'select'
