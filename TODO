@@ -1,21 +1,6 @@
 TODO:
 
 
-
-- Update routes for rails 3 + move fluxiom to admin namespace (/admin/fluxiom)
-
-
-
-
-
-
-
-
-
-
-
-
-
 - enable captions again
 
 - better handling of custom sizes for gallery thumbnails (fluxiom.yml)
@@ -31,7 +16,7 @@ TODO:
 - Pause click events while loading (tags)
 
 
-
+✓ Move fluxiom to admin namespace (/admin/fluxiom)
 ✓ move module under Typus namespace Fluxiom > Typus::Fluxiom
 ✓ Bug: Add at least 2 items, Drag one in front of the other, Click remove on either item, Both are removed <-- bug
 ✓ Remove wrapper divs from Backbone views
