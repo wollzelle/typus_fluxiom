@@ -1,5 +1,9 @@
 Fluxiom.Views.GalleryItem = Backbone.View.extend({
   
+  tagName: 'li',
+  
+  className: 'flux-item flux-image',
+  
   template: JST['gallery/templates/image'],
   
   events: {
