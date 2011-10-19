@@ -3,7 +3,7 @@ TODO:
 
 - enable captions again
 
-- better handling of custom sizes for gallery thumbnails (fluxiom.yml)
+- better handling of custom sizes for gallery thumbnails (typus_fluxiom.yml, fluxiom-gallery.css.erb)
 
 - better fit / fill
 
@@ -14,6 +14,8 @@ TODO:
 	see js/views/flux-image.tmp
 
 - Pause click events while loading (tags)
+
+- Limits (see typus_serialize)
 
 
 ✓ Move fluxiom to admin namespace (/admin/fluxiom)

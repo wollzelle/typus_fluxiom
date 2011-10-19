@@ -24,7 +24,7 @@ Fluxiom.Views.Gallery = Backbone.View.extend({
   
   onRemove: function(model){
     if (this.collection.length == 0) {
-      var template = JST['gallery/templates/empty'];
+      var template = JST['typus_fluxiom/gallery/templates/empty'];
       $(this.gallery).append(template({ base_name: this.collection.baseName }));
     }
   },

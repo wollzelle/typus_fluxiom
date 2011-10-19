@@ -1,8 +1,3 @@
-/*! ----------------------------------------------------------------------------
-* underscore.more.js
-* Copyright 2011 wollzelle GmbH (http://wollzelle.com). All rights reserved.
-* --------------------------------------------------------------------------- */
-
 _.mixin({
   
   getQueryString: function() {

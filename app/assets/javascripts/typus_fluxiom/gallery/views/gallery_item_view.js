@@ -4,7 +4,7 @@ Fluxiom.Views.GalleryItem = Backbone.View.extend({
   
   className: 'flux-item flux-image',
   
-  template: JST['gallery/templates/image'],
+  template: JST['typus_fluxiom/gallery/templates/image'],
   
   events: {
     'click .flux-remove-button': 'removeItem',

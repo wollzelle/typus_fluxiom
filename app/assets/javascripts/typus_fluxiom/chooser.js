@@ -4,8 +4,8 @@
 *= require underscore
 *= require backbone
 *= require jquery.viewport
+*= require underscore.more
 *= require_self
-*= require_tree ./lib
 *= require_tree ./chooser/models
 *= require_tree ./chooser/collections
 *= require_tree ./chooser/templates

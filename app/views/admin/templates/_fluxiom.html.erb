@@ -1,22 +1,22 @@
 <%
   # helpers
   @format       = get_format
-  @base_name    = get_base_name(@item, attribute)
-  @gallery_json = get_json(@item, attribute)
+  @name         = get_name(@item, attribute)
+  @data         = get_json(@item, attribute)
   @translations = get_translations
 %>
 
-<% unless @fluxiom_assets_loaded # only load assets once %>
+<% unless @typus_fluxiom_assets_loaded # only load assets once %>
 
   <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag "fluxiom-gallery" %>
+  <%= stylesheet_link_tag "typus_fluxiom/gallery" %>
   <% end %>
 
   <% content_for :javascripts do %>
-  <%= javascript_include_tag "fluxiom-gallery" %>
+  <%= javascript_include_tag "typus_fluxiom/gallery" %>
   <% end %>
 
-  <% @fluxiom_assets_loaded = true %>
+  <% @typus_fluxiom_assets_loaded = true %>
 
 <% end %>
   
@@ -24,9 +24,9 @@
 <script>
   $(document).ready(function(){
     $('#<%= attribute_id %>').fluxiomGallery({
-      data: <%= @gallery_json %>,
+      data: <%= @data %>,
       format: '<%= @format %>',
-      baseName: '<%= @base_name %>'
+      baseName: '<%= @name %>'
     });
   });
 </script>

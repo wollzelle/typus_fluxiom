@@ -24,7 +24,7 @@ module Typus
         format        = "#{fill}#{geometry}.jpg"
       end
     
-      def get_base_name(model, attribute)
+      def get_name(model, attribute)
         model = model.class.to_s.underscore
         base_name = "#{model}[#{attribute}]"
       end
