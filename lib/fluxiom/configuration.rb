@@ -1,4 +1,5 @@
 require "rails"
+require "ostruct"
 
 module Typus
   module Fluxiom

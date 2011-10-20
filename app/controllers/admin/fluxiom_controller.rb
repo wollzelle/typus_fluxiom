@@ -1,4 +1,4 @@
-class FluxiomController < ApplicationController
+class Admin::FluxiomController < ApplicationController
 
   if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
     include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
