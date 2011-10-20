@@ -1,25 +1,31 @@
 TODO:
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 - better handling of custom sizes for gallery thumbnails (typus_fluxiom.yml, fluxiom-gallery.css.erb)
-
-- better fit / fill
-
+- fit / fill
 - use Typus JS namespace
-
 - add tag/size (backend) configuration per instance
  	(predefined tag/don't show tags in the toolbar)
-
 - translations for captions
 	see js/views/flux-image.tmp
-
 - Pause click events while loading (tags)
-
 - Limits (see typus_serialize)
 
-
-✓ enable captions again
 ✓ make rake assets:precompile work
+✓ enable captions again
 ✓ Move fluxiom to admin namespace (/admin/fluxiom)
 ✓ move module under Typus namespace Fluxiom > Typus::Fluxiom
 ✓ Bug: Add at least 2 items, Drag one in front of the other, Click remove on either item, Both are removed <-- bug

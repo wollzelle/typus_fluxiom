@@ -1,11 +1,12 @@
 //= require underscore
 //= require backbone
 //= require jquery-ui
+
 //= require_self
-//= require_tree ./gallery/models
-//= require_tree ./gallery/collections
-//= require_tree ./gallery/templates
-//= require_tree ./gallery/views
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./templates
+//= require_tree ./views
 
 window.Fluxiom = {
   Models: {},

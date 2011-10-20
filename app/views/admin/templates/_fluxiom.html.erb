@@ -9,11 +9,11 @@
 <% unless @typus_fluxiom_assets_loaded # only load assets once %>
 
   <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag "typus_fluxiom/gallery" %>
+  <%= stylesheet_link_tag "typus_fluxiom/gallery/application" %>
   <% end %>
 
   <% content_for :javascripts do %>
-  <%= javascript_include_tag "typus_fluxiom/gallery" %>
+  <%= javascript_include_tag "typus_fluxiom/gallery/application" %>
   <% end %>
 
   <% @typus_fluxiom_assets_loaded = true %>
