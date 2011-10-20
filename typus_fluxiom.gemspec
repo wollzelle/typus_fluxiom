@@ -5,17 +5,15 @@ require "fluxiom/version"
 Gem::Specification.new do |s|
   s.name        = "typus_fluxiom"
   s.version     = Typus::Fluxiom::VERSION
-  s.authors     = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
+  s.authors     = ["Thomas Koenig", "William Meleyal"]
   s.email       = "team@wollzelle.com"
   s.homepage    = "http://wollzelle.com"
-  s.summary     = "Typus module for Fluxiom"
-  s.description = "Typus module for Fluxiom"
+  s.summary     = "Fluxiom module for Typus"
+  s.description = "Adds support for including media from Fluxiom.com"
 
   s.rubyforge_project = "typus_fluxiom"
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
   s.add_dependency "rails", "~> 3.1.0"
