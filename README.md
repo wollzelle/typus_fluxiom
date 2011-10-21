@@ -1,10 +1,10 @@
 # typus_fluxiom
 
-Typus module for Fluxiom
+Fluxiom module for Typus, adds support for including media from Fluxiom.com.
 
-http://fluxiom.com
-https://github.com/wollzelle/typus_fluxiom
-https://github.com/fesplugas/typus
+* http://fluxiom.com
+* https://github.com/wollzelle/typus_fluxiom
+* https://github.com/fesplugas/typus
 
 ## Installation
 
