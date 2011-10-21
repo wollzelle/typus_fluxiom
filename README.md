@@ -23,7 +23,7 @@ In your `Gemfile`:
     proxy: false 
     preview_width: 210
     preview_height: 210
-    fit: true
+    preview_crop: true
 
 **In your model:**
 

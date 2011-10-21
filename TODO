@@ -14,8 +14,8 @@ TODO:
 
 
 
-- better handling of custom sizes for gallery thumbnails (typus_fluxiom.yml, fluxiom-gallery.css.erb)
-- fit / fill
+
+
 - use Typus JS namespace
 - add tag/size (backend) configuration per instance
  	(predefined tag/don't show tags in the toolbar)
@@ -24,6 +24,7 @@ TODO:
 - Pause click events while loading (tags)
 - Limits (see typus_serialize)
 
+✓ image sizing (fit / fill?)
 ✓ make rake assets:precompile work
 ✓ enable captions again
 ✓ Move fluxiom to admin namespace (/admin/fluxiom)

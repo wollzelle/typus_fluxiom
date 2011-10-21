@@ -34,7 +34,7 @@ Fluxiom.Views.GalleryItem = Backbone.View.extend({
   },
   
   escapeEdit: function(e){
-    if (e.keyCode == 13 || e.keyCode == 27) e.target.blur();
+    if (e.keyCode == 27) e.target.blur();
   }
   
 });

@@ -13,15 +13,12 @@ module Typus
       alias :flux_preview_for :flux_capacitor_for
     
       def get_format      
-        width         = Typus::Fluxiom.config.preview_width || 170
-        height        = Typus::Fluxiom.config.preview_height || 100
-        use_fit       = Typus::Fluxiom.config.fit || false
-        fill          = "f"
-        if use_fit
-          fill        = "" 
-        end
-        geometry      = "#{width}x#{height}"  
-        format        = "#{fill}#{geometry}.jpg"
+        width    = Typus::Fluxiom.config.preview_width || 170
+        height   = Typus::Fluxiom.config.preview_height || 100
+        crop     = Typus::Fluxiom.config.preview_crop || false
+        fill     = crop ? "f" : ""
+        geometry = "#{width}x#{height}"
+        format   = "#{fill}#{geometry}.jpg"
       end
     
       def get_name(model, attribute)
