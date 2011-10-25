@@ -1,4 +1,19 @@
 <img src="<%= @thumbnail %>">
+
 <a href="#" class="flux-button flux-remove-button" title="Remove" tabindex="-1">&#215;</a>
-<textarea class="flux-caption" name="<%= @base_name %>[description]"><%= @description %></textarea>
+
 <input class="flux-public-url" type="hidden" name="<%= @base_name %>[public_url]" value="<%= @public_url %>">
+
+<% if @translations.length: %>
+
+  <% for locale in @translations: %>
+
+    <textarea class="flux-caption translation lang-<%= locale %>" name="<%= "#{@base_name}[description][#{locale}]" %>"><%= @description[locale] %></textarea>  
+
+  <% end %>
+
+<% else: %>
+
+  <textarea class="flux-caption" name="<%= @base_name %>[description]"><%= @description %></textarea>
+
+<% end %>

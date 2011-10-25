@@ -21,6 +21,7 @@ class Fluxiom.Views.GalleryItem extends Backbone.View
       thumbnail   : @model.thumbnail()
       public_url  : @model.get('public_url')
       description : @model.get('description')
+      translations : @collection.translations
       classes     : 'has-caption' if @model.escape('description').length
     }))
 

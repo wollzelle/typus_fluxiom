@@ -1,9 +1,10 @@
 TODO:
 
-- Test precompile assets with coffeescript
 - use Typus JS namespace
 - add tag/size (backend) configuration per instance
  		predefined tag/don't show tags in the toolbar
-- enable translations for captions again
 - Pause click events while loading (tags)
 - Limits (see typus_serialize)
+
+✓ Test precompile assets with coffeescript
+✓ enable translations for captions again

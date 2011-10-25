@@ -32,7 +32,8 @@ module Typus
       end
         
       def get_translations
-        Typus::Translate::Configuration.config["locales"] rescue nil
+        locales = Typus::Translate::Configuration.config["locales"] rescue nil
+        raw locales.keys.to_json rescue []
       end
     
     end
