@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = "team@wollzelle.com"
   s.homepage    = "http://wollzelle.com"
   s.summary     = "Fluxiom module for Typus"
-  s.description = "Adds support for including media from Fluxiom.com"
+  s.description = "Adds support for including media from Fluxiom"
 
   s.rubyforge_project = "typus_fluxiom"
 
@@ -18,7 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.1.0"
   s.add_dependency "typus"
+  s.add_dependency "coffee-rails", "~> 3.1.0"  
   s.add_dependency "jquery-rails"
   s.add_dependency "rails-backbone"
-  s.add_dependency "ejs"
+  s.add_dependency "eco"
 end

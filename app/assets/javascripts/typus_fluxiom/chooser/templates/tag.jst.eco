@@ -1,0 +1,1 @@
+<a class="flux-tag <%= @classes %>" data-tag-id="<%= @id %>"><strong><%= @tag %></strong></a>

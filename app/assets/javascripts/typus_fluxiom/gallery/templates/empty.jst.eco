@@ -1,0 +1,1 @@
+<input class="flux-empty" type="hidden" name="<%= @base_name %>" value="">
