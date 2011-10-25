@@ -8,9 +8,17 @@ Fluxiom module for Typus, adds support for including media from Fluxiom.com.
 
 ## Installation
 
+### Rails >= 3.1
+
 In your `Gemfile`:
 
     gem 'typus_fluxiom'
+
+### Rails <= 3.0
+
+In your `Gemfile`:
+
+    gem 'typus_fluxiom', '~> 3.0'
 
 ## Configuration
 
