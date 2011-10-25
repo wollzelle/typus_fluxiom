@@ -3,7 +3,7 @@ module Typus
     if defined?(Rails)
       require "jquery-rails"
       require "rails-backbone"
-      require "ejs"
+      require "eco"
       require "fluxiom/configuration"
       require "fluxiom/engine"
       require "fluxiom/helpers"
