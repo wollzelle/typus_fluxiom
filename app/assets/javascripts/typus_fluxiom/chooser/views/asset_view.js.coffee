@@ -11,12 +11,12 @@ class Fluxiom.Views.Asset extends Backbone.View
     @model.bind('change:selected', @renderSelected)
     @render()
 
-  render: ->      
+  render: ->   
     @el.html(@template({
       img_url     : @options.baseUrl + @model.get('url_to_medium_thumbnail')
       public_url  : @model.get('public_url')
-      description : @model.escape('description')
-      has_caption : 'has-caption' if @model.escape('description').length
+      caption     : @model.escape('caption')
+      has_caption : 'has-caption' if @model.escape('caption').length
     }))
   
   select: (e) ->

@@ -1,5 +1,8 @@
 TODO:
 
+- bring up to date with other typus modules (helper location, etc)
+- optional captions
+
 - use Typus JS namespace
 - add tag/size (backend) configuration per instance
  		predefined tag/don't show tags in the toolbar

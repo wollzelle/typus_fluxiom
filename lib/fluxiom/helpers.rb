@@ -22,7 +22,7 @@ module Typus
       end
     
       def get_name(model, attribute)
-        model = model.class.to_s.underscore
+        model = ActiveModel::Naming.param_key(model) # => model_name
         base_name = "#{model}[#{attribute}]"
       end
 

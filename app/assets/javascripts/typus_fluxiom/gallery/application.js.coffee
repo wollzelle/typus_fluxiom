@@ -33,7 +33,7 @@ Fluxiom.Gallery.prototype =
     assets.forEach((asset) =>
       @collection.add({
         public_url  : asset.get('public_url')
-        description : asset.get('description')
+        caption     : asset.get('caption')
       })
     )
     $.fancybox.close()

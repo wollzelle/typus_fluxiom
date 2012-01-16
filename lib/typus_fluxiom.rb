@@ -9,5 +9,11 @@ module Typus
       require "fluxiom/helpers"
       require "fluxiom/version"
     end
+
+    if defined?(ActiveRecord)
+      require 'fluxiom/class_methods'
+      ActiveRecord::Base.extend(Typus::Fluxiom::ClassMethods)
+    end
+    
   end
 end

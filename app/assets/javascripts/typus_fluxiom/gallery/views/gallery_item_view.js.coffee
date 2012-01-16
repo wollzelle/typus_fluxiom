@@ -16,13 +16,14 @@ class Fluxiom.Views.GalleryItem extends Backbone.View
     @render()
   
   render: ->
+    console.log @model.get('caption')
     @el.html(@template({
-      base_name   : @model.baseName()
-      thumbnail   : @model.thumbnail()
-      public_url  : @model.get('public_url')
-      description : @model.get('description')
-      translations : @collection.translations
-      classes     : 'has-caption' if @model.escape('description').length
+      base_name     : @model.baseName()
+      thumbnail     : @model.thumbnail()
+      public_url    : @model.get('public_url')
+      caption       : @model.get('caption')
+      translations  : @collection.translations
+      classes       : 'has-caption' if @model.escape('caption').length
     }))
 
   removeItem: (e) ->
