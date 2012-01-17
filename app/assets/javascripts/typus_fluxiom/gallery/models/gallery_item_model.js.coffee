@@ -1,4 +1,6 @@
 class Fluxiom.Models.GalleryItem extends Backbone.Model
+  defaults:
+    caption: []
 
   baseName: ->
     @collection.baseName + '[' + @cid + ']'

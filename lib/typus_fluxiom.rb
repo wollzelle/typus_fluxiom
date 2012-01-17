@@ -1,13 +1,12 @@
 module Typus
   module Fluxiom
     if defined?(Rails)
-      require "jquery-rails"
-      require "rails-backbone"
-      require "eco"
-      require "fluxiom/configuration"
-      require "fluxiom/engine"
-      require "fluxiom/helpers"
-      require "fluxiom/version"
+      require 'jquery-rails'
+      require 'backbone-on-rails'
+      require 'eco'
+      require 'fluxiom/configuration'
+      require 'fluxiom/engine'
+      require 'fluxiom/version'
     end
 
     if defined?(ActiveRecord)

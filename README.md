@@ -16,9 +16,7 @@ In your `Gemfile`:
 
 ### Rails <= 3.0
 
-In your `Gemfile`:
-
-    gem 'typus_fluxiom', '~> 3.0'
+use branch "3-0-stable"
 
 ## Configuration
 
@@ -28,7 +26,7 @@ In your `Gemfile`:
     user: user
     password: password
     ssl: false
-    proxy: false 
+    proxy: false
     preview_width: 210
     preview_height: 210
     preview_crop: true
@@ -36,18 +34,8 @@ In your `Gemfile`:
 **In your model:**
 
     class Post < ActiveRecord::Base
-      serialize :gallery
+      typus_fluxiom :gallery
       ...
-
-**In `config/typus/application.yml`**
-
-    Posts:
-      fields:
-        form: title, gallery
-        options:
-          templates:
-            gallery: fluxiom
-            ...
 
 ## Copyright
 

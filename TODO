@@ -1,7 +1,9 @@
 TODO:
 
-- bring up to date with other typus modules (helper location, etc)
+✓ bring up to date with other typus modules (helper location, etc)
+
 - optional captions
+- multiple accounts
 
 - use Typus JS namespace
 - add tag/size (backend) configuration per instance

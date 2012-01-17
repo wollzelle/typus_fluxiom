@@ -8,7 +8,7 @@
 
   <% for locale in @translations: %>
 
-    <textarea class="flux-caption translation lang-<%= locale %>" name="<%= "#{@base_name}[caption][#{locale}]" %>"><%= @caption %></textarea>  
+    <textarea class="flux-caption translation lang-<%= locale %>" name="<%= "#{@base_name}[caption][#{locale}]" %>"><%= @caption[locale] %></textarea>
 
   <% end %>
 
