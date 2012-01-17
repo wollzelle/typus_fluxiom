@@ -27,17 +27,26 @@ class Admin::FluxiomController < ApplicationController
 
 private
 
-  def prepare_params    
+  def prepare_params
+
     return if @base_url
-    @use_proxy ||= Typus::Fluxiom.config.proxy
-    @ssl ||= Typus::Fluxiom.config.ssl
+
+    @account = params[:account]
+    if @account
+      @config = Typus::Fluxiom.config[@account]
+    else
+      @config = Typus::Fluxiom.config
+    end
+    @config = OpenStruct.new(@config)
+    @use_proxy ||= @config.proxy
+    @ssl ||= @config.ssl
     @scheme ||= @ssl ? 'https' : 'http'
-    @host = Typus::Fluxiom.config.host 
+    @host = @config.host
     @url ||= begin
       if @use_proxy
-        "#{@scheme}://#{Typus::Fluxiom.config.host}/api"
+        "#{@scheme}://#{@config.host}/api"
       else
-        "#{@scheme}://#{Typus::Fluxiom.config.user}:#{Typus::Fluxiom.config.password}@#{Typus::Fluxiom.config.host}/api"
+        "#{@scheme}://#{@config.user}:#{@config.password}@#{@config.host}/api"
       end
     end
     @api_url ||= @use_proxy ? '/fluxiom' : @url
@@ -49,13 +58,13 @@ private
     http = Net::HTTP.new(u.host,u.port)
     req = Net::HTTP::Get.new(u.path + path)
     http.use_ssl = @ssl
-    req.basic_auth Typus::Fluxiom.config.user, Typus::Fluxiom.config.password
+    req.basic_auth @config.user, @config.password
     response = http.request(req)
     return response.body
   end
-  
+
   def set_cache
     response.headers['Cache-Control'] = 'public, max-age=30' unless Rails.env.development?
   end
-  
+
 end

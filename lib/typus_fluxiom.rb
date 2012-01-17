@@ -13,6 +13,6 @@ module Typus
       require 'fluxiom/class_methods'
       ActiveRecord::Base.extend(Typus::Fluxiom::ClassMethods)
     end
-    
+
   end
 end

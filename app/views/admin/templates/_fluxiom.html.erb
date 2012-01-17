@@ -1,9 +1,10 @@
 <%
   # helpers
-  @format       = get_format
+  @format       = get_format(@item, attribute)
   @name         = get_name(@item, attribute)
   @data         = get_json(@item, attribute)
   @translations = get_translations
+  @account      = get_account(@item, attribute)
 %>
 
 <% unless @typus_fluxiom_assets_loaded # only load assets once %>
@@ -19,13 +20,13 @@
   <% @typus_fluxiom_assets_loaded = true %>
 
 <% end %>
-  
+
 <% content_for :javascripts do %>
 <script>
   $(document).ready(function(){
     $('#<%= attribute_id %>').fluxiomGallery({
       data: <%= @data %>,
-      format: '<%= @format %>',
+      format: '<%= @format[:url] %>',
       baseName: '<%= @name %>',
       translations: <%= @translations %>
     });
@@ -37,10 +38,18 @@
 
     <%= form.label attribute, label_text %>
 
-    <ul class="flux-gallery">    
+    <ul class="flux-gallery">
       <li class="flux-item flux-item-add">
-        <a href="<%= admin_fluxiom_index_path %>?gallery_id=<%= attribute_id %>" class="flux-button flux-add-button">Add <%= attribute %> +</a>
+        <a href="<%= admin_fluxiom_index_path %>?gallery_id=<%= attribute_id %><%= "&account=#{@account}" if @account %>" class="flux-button flux-add-button">Add <%= attribute %> +</a>
       </li>
     </ul>
+
+<style>
+.flux-add-button {
+  width: <%= @format[:width] %>px;
+  height: <%= @format[:height] %>px;
+  line-height: <%= @format[:height] %>px;
+}
+</style>
 
 </li>

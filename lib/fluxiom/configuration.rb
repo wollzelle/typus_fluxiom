@@ -10,7 +10,7 @@ module Typus
         file = Rails.root.join("config/typus_fluxiom.yml")
         raise "Error make sure the configuration file (#{file}) exists!" unless File.exists?(file)
         if data = YAML::load_file(file)
-          @@config = OpenStruct.new data
+          @@config = data
         end
         return @@config
       end

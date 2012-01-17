@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Fluxiom Assets</title>
-  <%= stylesheet_link_tag "typus_fluxiom/chooser/application" %>  
+  <%= stylesheet_link_tag "typus_fluxiom/chooser/application" %>
 </head>
 <body>
   <div id="flux-asset-chooser">
     <div id="flux-toolbar">
-      <div id="flux-tags">  
+      <div id="flux-tags">
         <!-- tags... -->
       </div>
       <div id="flux-actions">
@@ -16,7 +16,7 @@
         <input type="submit" id="flux-use-button" data-default-text="Use selected images" value="Use selected images">
       </div>
     </div>
-    <div id="flux-assets">  
+    <div id="flux-assets">
       <ol>
         <!-- assets... -->
       </ol>
@@ -25,7 +25,7 @@
   </div>
 
   <%= javascript_include_tag "typus_fluxiom/chooser/application" %>
-  
+
   <script>
     $(document).ready(function(){
       $('#flux-asset-chooser').fluxiomChooser({
@@ -36,6 +36,6 @@
       });
     });
   </script>
-  
+
 </body>
 </html>
