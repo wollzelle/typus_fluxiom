@@ -1,5 +1,6 @@
 module Admin::FluxiomHelper
   @@default_preview_options = { width: 170, height: 100, crop: false}
+
   def flux_capacitor_for(path, format)
     return "#" if path.nil? || format.nil?
     path = path.match(/(.*\/([^_|.]*))/)[0] # returns the path without format

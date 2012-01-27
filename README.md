@@ -20,6 +20,8 @@ use branch "3-0-stable"
 
 ## Configuration
 
+### One account
+
 **In `config/typus_fluxiom.yml`:**
 
     host: account.fluxiom.com
@@ -27,15 +29,38 @@ use branch "3-0-stable"
     password: password
     ssl: false
     proxy: false
-    preview_width: 210
-    preview_height: 210
-    preview_crop: true
 
 **In your model:**
 
     class Post < ActiveRecord::Base
       typus_fluxiom :gallery
+      typus_fluxiom :photos {:preview => {:width => 400, :height => 300, :crop => true }} #Use different preview sizes
       ...
+
+### Multiple accounts
+
+**In `config/typus_fluxiom.yml`:**
+  account1:
+    host: account1.fluxiom.com
+    user: user
+    password: password
+    ssl: false
+    proxy: false
+
+  account2:
+    host: account2.fluxiom.com
+    user: user
+    password: password
+    ssl: false
+    proxy: false
+
+**In your model:**
+
+    class Post < ActiveRecord::Base
+      typus_fluxiom :gallery, :account => 'account1'
+      typus_fluxiom :photos,  :account => 'account2', {:preview => {:width => 400, :height => 300, :crop => true }} #Use different preview sizes
+      typus_fluxiom :other_images #Uses first account as default (account1)
+
 
 ## Copyright
 
