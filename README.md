@@ -41,19 +41,19 @@ use branch "3-0-stable"
 
 **In `config/typus_fluxiom.yml`:**
 
-  account1:
-    host: account1.fluxiom.com
-    user: user
-    password: password
-    ssl: false
-    proxy: false
+    account1:
+      host: account1.fluxiom.com
+      user: user
+      password: password
+      ssl: false
+      proxy: false
 
-  account2:
-    host: account2.fluxiom.com
-    user: user
-    password: password
-    ssl: false
-    proxy: false
+    account2:
+      host: account2.fluxiom.com
+      user: user
+      password: password
+      ssl: false
+      proxy: false
 
 **In your model:**
 
