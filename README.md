@@ -40,6 +40,7 @@ use branch "3-0-stable"
 ### Multiple accounts
 
 **In `config/typus_fluxiom.yml`:**
+
   account1:
     host: account1.fluxiom.com
     user: user
