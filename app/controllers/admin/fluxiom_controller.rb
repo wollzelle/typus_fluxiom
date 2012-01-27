@@ -34,9 +34,12 @@ private
     @account = params[:account]
     if @account
       @config = Typus::Fluxiom.config[@account]
+    elsif Typus::Fluxiom.config.first.last.is_a?(Hash) #new config - no account, use first account as default
+      @config = Typus::Fluxiom.config.first[1]
     else
       @config = Typus::Fluxiom.config
     end
+
     @config = OpenStruct.new(@config)
     @use_proxy ||= @config.proxy
     @ssl ||= @config.ssl
