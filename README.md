@@ -34,7 +34,7 @@ use branch "3-0-stable"
 
     class Post < ActiveRecord::Base
       typus_fluxiom :gallery
-      typus_fluxiom :photos {:preview => {:width => 400, :height => 300, :crop => true }} #Use different preview sizes
+      typus_fluxiom :photos, preview: { width: 400, height: 200, crop: true } #Use different preview sizes
       ...
 
 ### Multiple accounts
@@ -58,8 +58,8 @@ use branch "3-0-stable"
 **In your model:**
 
     class Post < ActiveRecord::Base
-      typus_fluxiom :gallery, :account => 'account1'
-      typus_fluxiom :photos,  :account => 'account2', {:preview => {:width => 400, :height => 300, :crop => true }} #Use different preview sizes
+      typus_fluxiom :gallery, account: 'account1'
+      typus_fluxiom :photos,  account: 'chinatalent', preview: { width: 400, height: 200, crop: true } #Use different preview sizes
       typus_fluxiom :other_images #Uses first account as default (account1)
 
 
