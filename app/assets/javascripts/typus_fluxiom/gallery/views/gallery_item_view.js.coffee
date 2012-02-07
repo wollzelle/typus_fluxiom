@@ -11,7 +11,7 @@ class Fluxiom.Views.GalleryItem extends Backbone.View
     'keyup .flux-caption': 'escapeEdit'
 
   initialize: ->
-    @el = $(@el)
+    @el = @$el
     @collection = @model.collection
     @render()
 

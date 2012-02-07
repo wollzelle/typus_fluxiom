@@ -8,7 +8,7 @@ class Fluxiom.Views.Tag extends Backbone.View
   paused: false
 
   initialize: ->
-    @el = $(@el)
+    @el = @$el
     @model.bind('change', @render)
     @render()
   

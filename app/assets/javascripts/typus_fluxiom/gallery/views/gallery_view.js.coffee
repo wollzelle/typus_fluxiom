@@ -1,7 +1,7 @@
 class Fluxiom.Views.Gallery extends Backbone.View
 
   initialize: (options) ->
-    @el = $(@el);
+    @el = @$el
     @collection = options.collection
     @gallery = @el.find('.flux-gallery')
     @addButton = @el.find('.flux-item-add')

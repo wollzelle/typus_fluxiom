@@ -4,7 +4,8 @@ class Fluxiom.Views.AssetList extends Backbone.View
   
   loader: $('#flux-loader')
     
-  initialize: (options) ->
+  initialize: (options) ->  
+    @el = @$el
     @baseUrl = options.baseUrl
     @collection.bind('reset', @reset)
     @collection.bind('add', @add)

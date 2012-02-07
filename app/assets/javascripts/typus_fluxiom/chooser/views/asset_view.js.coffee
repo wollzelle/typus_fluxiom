@@ -6,7 +6,7 @@ class Fluxiom.Views.Asset extends Backbone.View
     'click .flux-asset' : 'select'
     
   initialize: (options) ->
-    @el = $(@el)
+    @el = @$el
     @options = options
     @model.bind('change:selected', @renderSelected)
     @render()

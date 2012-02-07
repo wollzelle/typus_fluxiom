@@ -3,7 +3,7 @@ class Fluxiom.Views.TagList extends Backbone.View
   el: $('#flux-tags')
   
   initialize: ->
-    @el = $(@el)
+    @el = @$el
     @collection.bind('reset', @addAll)
   
   addOne: (model) =>
