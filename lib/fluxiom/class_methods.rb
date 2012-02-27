@@ -1,13 +1,16 @@
 module Typus
   module Fluxiom
     module ClassMethods
-      @@typus_fluxiom_fields = []
-      @@typus_fluxiom_options  = {}
 
-      mattr_accessor :typus_fluxiom_options, :typus_fluxiom_fields
+
 
       def typus_fluxiom(*args)
+        cattr_accessor :typus_fluxiom_options, :typus_fluxiom_fields
+        self.typus_fluxiom_fields = []
+        self.typus_fluxiom_options  = {}
+
         options = args.extract_options!
+
         args.each do |field|
           self.typus_fluxiom_fields << field
           self.typus_fluxiom_options[field] = options
