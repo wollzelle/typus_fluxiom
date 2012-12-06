@@ -2,7 +2,9 @@ module Typus
   module Fluxiom
     module ClassMethods
 
-
+      def extended_modules
+        (class << self; self end).included_modules
+      end
 
       def typus_fluxiom(*args)
         cattr_accessor :typus_fluxiom_options, :typus_fluxiom_fields
@@ -19,10 +21,6 @@ module Typus
 
         extend TemplateMethods unless extended_modules.include?(TemplateMethods)
       end
-    end
-
-    def extended_modules
-      (class << self; self end).included_modules
     end
 
     module TemplateMethods
