@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency "typus"
   s.add_dependency "coffee-rails", ">= 3.1.0"
   s.add_dependency "jquery-rails"
-  s.add_dependency "backbone-on-rails", "~> 0.9"
+  s.add_dependency "backbone-on-rails", "0.9.2"
   s.add_dependency "eco"
 end
