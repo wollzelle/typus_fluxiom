@@ -1,5 +1,5 @@
 module Admin::FluxiomHelper
-  @@default_preview_options = { width: 170, height: 100, crop: false}
+  @@default_preview_options = { width: 170, height: 100, crop: false }
 
   def flux_capacitor_for(path, format)
     return "#" if path.nil? || format.nil?
@@ -19,8 +19,7 @@ module Admin::FluxiomHelper
     crop     = config[:crop]
     fill     = crop ? "f" : ""
     geometry = "#{width}x#{height}"
-    width   = crop ? width : height
-    {:width => width, :height => height, :url => "#{fill}#{geometry}.jpg"}
+    { :width => width, :height => height, :url => "#{fill}#{geometry}.jpg" }
   end
 
   def get_name(model, attribute)
