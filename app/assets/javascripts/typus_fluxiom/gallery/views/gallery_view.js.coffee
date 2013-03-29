@@ -42,8 +42,8 @@ class Fluxiom.Views.Gallery extends Backbone.View
     @el.find('.flux-add-button').fancybox({
       titleShow        : false
       type             : 'iframe'
-      width            : '80%'
-      height           : '80%'
+      width            : '90%'
+      height           : '90%'
       padding          : 0
       margin           : 0
       overlayOpacity   : 0.3
