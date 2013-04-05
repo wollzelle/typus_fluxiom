@@ -37,7 +37,23 @@ module Admin::FluxiomHelper
   end
 
   def get_translations
-    locales = Typus::Translate::Configuration.config["locales"] rescue nil
-    raw locales.keys.to_json rescue []
+    locales_json
   end
+
+  def translatable?
+    @model.respond_to?('translations_attributes=') && @model.translated_attribute_names.include?(@attribute.to_sym)
+  end
+
+  def locales
+    Typus::Translate::Configuration.config['locales'] if translatable?
+  end
+
+  def locales_json
+    if translatable?
+      raw locales.keys.to_json
+    else
+      raw [].to_json
+    end
+  end
+
 end
