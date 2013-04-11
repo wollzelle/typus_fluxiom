@@ -10,7 +10,7 @@ class Fluxiom.Views.Tag extends Backbone.View
 
   initialize: ->
     @el = @$el
-    @model.bind('change', @render)
+    @model.bind('change:selected', @render)
     @render()
 
   render: =>
@@ -22,7 +22,7 @@ class Fluxiom.Views.Tag extends Backbone.View
 
   select: (e) ->
     if @model.get('selected') is true
-      @model.set({ selected: false })
+      @model.deselect()
     else
-      @model.set({ selected: true })
+      @model.select()
     e.preventDefault()

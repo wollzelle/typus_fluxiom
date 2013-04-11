@@ -36,10 +36,12 @@ class Fluxiom.Collections.Assets extends Backbone.Collection
   clearSelected: ->
     @each((model) -> model.set({ selected: false }))
 
-  filter: (tag, selected) ->
-    @reset()
-    @tag = tag.id if selected
-    @fetchAssets()
+  filter: (tag, selected, options) ->
+    # Don't filter assets when quiet option passed
+    unless options.quiet
+      @reset()
+      @tag = tag.id if selected
+      @fetchAssets()
 
   handleSuccess: (collection, response) =>
     @trigger('loaded', collection)

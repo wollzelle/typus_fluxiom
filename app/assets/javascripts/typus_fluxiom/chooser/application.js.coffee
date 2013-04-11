@@ -34,10 +34,10 @@ Fluxiom.Chooser.prototype =
     selectedAssets = new Fluxiom.Collections.SelectedAssets()
     chooser = new Fluxiom.Views.Chooser({ collection: selectedAssets })
     @getTags = _.bind(@getTags, this)
-    
+
     # get tags when assets are ready
     assets.bind('loaded', @getTags)
-    
+
     # add assets > selected assets
     assets.bind('change:selected', _.bind(selectedAssets.toggleSelected, selectedAssets))
 
@@ -46,7 +46,7 @@ Fluxiom.Chooser.prototype =
 
     # clear selected assets
     selectedAssets.bind('reset', _.bind(assets.clearSelected, assets))
-  
+
   # this is needed for authorization in Firefox
   getTags: ->
     assets = @assets
