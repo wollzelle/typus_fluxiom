@@ -36,8 +36,20 @@ module Admin::FluxiomHelper
     raw gallery_items.values.to_json rescue []
   end
 
-  def get_translations
-    locales = Typus::Translate::Configuration.config["locales"] rescue nil
-    raw locales.keys.to_json rescue []
+  def get_translations(model, attribute)
+    if translatable?(model, attribute)
+      raw locales.keys.to_json
+    else
+      raw [].to_json
+    end
   end
+
+  def translatable?(model, attribute)
+    model.class.typus_fluxiom_options[attribute.to_sym][:translatable] || false
+  end
+
+  def locales
+    Typus::Translate::Configuration.config['locales']
+  end
+
 end

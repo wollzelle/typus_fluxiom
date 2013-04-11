@@ -14,6 +14,6 @@
 
 <% else: %>
 
-  <textarea class="flux-caption" name="<%= @base_name %>[description]"><%= @description %></textarea>
+  <textarea class="flux-caption" name="<%= @base_name %>[caption]"><%= @caption %></textarea>
 
 <% end %>

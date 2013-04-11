@@ -1,4 +1,4 @@
 <li class="flux-asset <%= @has_caption %>">
-  <img src="<%= @img_url %>" data-public-url="<%= @public_url %>" data-description="<%= @caption %>">
+  <img src="<%= @img_url %>">
   <span class="caption"><%= @caption %></span>
 </li>
