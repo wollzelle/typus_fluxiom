@@ -1,4 +1,6 @@
-
+/*
+ *= require jquery.fancybox
+*/
 
 /* Overlay
 ------------------------------------- */
@@ -12,18 +14,20 @@ body.fancybox-overlay {
   display: none !important;
 }
 
-#fancybox-outer {
-  background: none;
-  border: 10px solid rgba(0,0,0,0.4);
-  -webkit-border-radius: 1em;
-     -moz-border-radius: 1em;
-          border-radius: 1em;
-}
-
 #fancybox-content {
   background: #fff;
   border: 1px solid #999;
 }
+
+#fancybox-left, #fancybox-right {
+  background: none;
+}
+
+#fancybox-loading div,
+#fancybox-close {
+  background: none;
+}
+
 
 /* Gallery
 ------------------------------------- */

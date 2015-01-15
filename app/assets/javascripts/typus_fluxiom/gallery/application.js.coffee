@@ -6,6 +6,8 @@
 #= require underscore
 #= require backbone
 #= require jquery-ui
+#= require jquery.browser
+#= require jquery.fancybox
 
 #= require_self
 #= require_tree ./models
