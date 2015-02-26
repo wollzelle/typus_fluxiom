@@ -3,7 +3,7 @@ class Fluxiom.Models.GalleryItem extends Backbone.Model
     caption: []
 
   baseName: ->
-    @collection.baseName + '[' + @cid + ']'
-  
+    @collection.baseName + '[]'
+
   thumbnail: ->
     @get('public_url').replace(/_.*/, '_' + @collection.format)

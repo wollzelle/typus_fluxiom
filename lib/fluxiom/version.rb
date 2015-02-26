@@ -1,5 +1,5 @@
 module Typus
   module Fluxiom
-    VERSION = "3.3.0"
+    VERSION = "4.2.0"
   end
 end
