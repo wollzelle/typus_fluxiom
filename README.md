@@ -73,4 +73,4 @@ In your model:
 
 ## Copyright
 
-Copyright (c) 2011 Wollzelle GmbH. See LICENSE for details.
+Copyright (c) 2015 Wollzelle GmbH. See LICENSE for details.
