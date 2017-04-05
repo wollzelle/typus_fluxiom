@@ -2,11 +2,11 @@ class Admin::FluxiomController < ActionController::Base
 
   if defined?(Typus::Authentication::const_get(Typus.authentication.to_s.classify))
     include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
-    before_filter :authenticate
+    before_action :authenticate
   end
 
-  before_filter :set_cache
-  before_filter :prepare_params
+  before_action :set_cache
+  before_action :prepare_params
 
   # show the asset chooser
   def index
