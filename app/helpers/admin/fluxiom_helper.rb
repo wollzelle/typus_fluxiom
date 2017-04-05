@@ -33,7 +33,7 @@ module Admin::FluxiomHelper
 
   def get_json(model, attribute)
     gallery_items = model[attribute].delete_if {|x| x == ""} rescue nil
-    raw gallery_items.values.to_json rescue []
+    raw gallery_items.to_json rescue []
   end
 
   def get_translations(model, attribute)
